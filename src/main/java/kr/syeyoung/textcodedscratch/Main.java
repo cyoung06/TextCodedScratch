@@ -20,7 +20,7 @@ import java.util.zip.ZipOutputStream;
 public class Main {
     public static void main(String args[]) throws IOException, NoSuchAlgorithmException {
         if (args.length == 0) {
-            System.out.println("Correct Usage: java -jar tcscompile.jar [TCS Sprite File]");
+            System.out.println("Correct Usage: java -jar (filename).jar [TCS Sprite File]");
             return;
         }
 

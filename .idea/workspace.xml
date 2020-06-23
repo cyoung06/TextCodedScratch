@@ -3,8 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="2f7c2811-c825-4b1d-9edc-399842841dce" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/spritebuilder/SpriteTargetBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/spritebuilder/SpriteTargetBuilder.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -46,6 +46,8 @@
       <recent name="kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.statements" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="B:\프로그래밍\TextCodedScratch\src\main\resources\kr.syeyoung.textcodedscratch.predefined" />
+      <recent name="B:\프로그래밍\TextCodedScratch\src\main\java\kr\syeyoung\textcodedscratch\predefined" />
       <recent name="B:\프로그래밍\TextCodedScratch" />
       <recent name="B:\프로그래밍\TextCodedScratch\src" />
     </key>
