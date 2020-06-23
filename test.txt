@@ -1,0 +1,14 @@
+Sprite "Yes"
+
+Require "Events";
+
+
+Var TEST_VAR = 1+1;
+
+Costume DEFAULT_COSTUME = "awesome.svg";
+
+Event Events::OnGreenFlagClicked {
+    repeat (10) {
+        TEST_VAR = TEST_VAR+1;
+    }
+}
