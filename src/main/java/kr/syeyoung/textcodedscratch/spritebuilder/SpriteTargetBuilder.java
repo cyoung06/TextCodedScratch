@@ -12,9 +12,7 @@ import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.UnsupportedAudioFileException;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.security.DigestInputStream;
@@ -22,6 +20,9 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
 public class SpriteTargetBuilder {
     private SpriteDefinition definition;
@@ -43,6 +44,40 @@ public class SpriteTargetBuilder {
             e.printStackTrace();
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void buildToFile(File f2) throws IOException, NoSuchAlgorithmException {
+        build();
+        Objects.requireNonNull(f2).getParentFile().mkdirs();
+        try (FileOutputStream fos = new FileOutputStream(f2);
+             ZipOutputStream zos = new ZipOutputStream(new BufferedOutputStream(fos))) {
+
+            for (CostumeDeclaration costumeDeclaration : definition.getCostumes().values()) {
+                File f = new File(costumeDeclaration.getLocation().getValue(String.class));
+                String hash = FileUtils.calcMD5Hash(f);
+                zos.putNextEntry(new ZipEntry(hash + "." + FileUtils.getExtension(f)));
+                Files.copy(f.toPath(), zos);
+                zos.flush();
+                zos.closeEntry();
+            }
+            for (SoundDeclaration costumeDeclaration : definition.getSounds().values()) {
+                File f = new File(costumeDeclaration.getLocation().getValue(String.class));
+                String hash = FileUtils.calcMD5Hash(f);
+                zos.putNextEntry(new ZipEntry(hash + "." + FileUtils.getExtension(f)));
+                Files.copy(f.toPath(), zos);
+                zos.flush();
+                zos.closeEntry();
+            }
+
+            {
+                zos.putNextEntry(new ZipEntry("sprite.json"));
+                OutputStreamWriter osw = new OutputStreamWriter(zos);
+                getJSON().write(osw);
+                osw.flush();
+                zos.flush();
+                zos.closeEntry();
+            }
         }
     }
 

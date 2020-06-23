@@ -19,51 +19,21 @@ import java.util.zip.ZipOutputStream;
 
 public class Main {
     public static void main(String args[]) throws IOException, NoSuchAlgorithmException {
-        FileInputStream fis = new FileInputStream("test.txt");
+        if (args.length == 0) {
+            System.out.println("Correct Usage: java -jar tcscompile.jar [TCS Sprite File]");
+            return;
+        }
+
+        FileInputStream fis = new FileInputStream(args[0]);
         Tokenizer tokenizer = new Tokenizer(fis);
         tokenizer.Tokenize();
-        for (ParserNode node : tokenizer.getTerminalNodes()) {
-            System.out.println(node.getClass().getName() + " - " + node);
-        }
-        System.out.println("--");
         Parser parser = new Parser(new LinkedList<>(tokenizer.getTerminalNodes().stream().map(t -> (ParserNode)t).collect(Collectors.toList())));
         parser.parse();
-        for (ParserNode node : parser.getOutput()) {
-            System.out.println(node.getClass().getName() + " - " + node);
-        }
         SpriteDefinition definition = parser.getSyntexCheckerRule().getDefinition();
         SpriteTargetBuilder stb = new SpriteTargetBuilder(definition);
-        stb.build();
 
-        try (FileOutputStream fos = new FileOutputStream("sprite.sprite3");
-                ZipOutputStream zos = new ZipOutputStream(new BufferedOutputStream(fos))) {
-
-            for (CostumeDeclaration costumeDeclaration : definition.getCostumes().values()) {
-                File f = new File(costumeDeclaration.getLocation().getValue(String.class));
-                String hash = FileUtils.calcMD5Hash(f);
-                zos.putNextEntry(new ZipEntry(hash + "." + FileUtils.getExtension(f)));
-                Files.copy(f.toPath(), zos);
-                zos.flush();
-                zos.closeEntry();
-            }
-            for (SoundDeclaration costumeDeclaration : definition.getSounds().values()) {
-                File f = new File(costumeDeclaration.getLocation().getValue(String.class));
-                String hash = FileUtils.calcMD5Hash(f);
-                zos.putNextEntry(new ZipEntry(hash + "." + FileUtils.getExtension(f)));
-                Files.copy(f.toPath(), zos);
-                zos.flush();
-                zos.closeEntry();
-            }
-
-            {
-                zos.putNextEntry(new ZipEntry("sprite.json"));
-                OutputStreamWriter osw = new OutputStreamWriter(zos);
-                stb.getJSON().write(osw);
-                osw.flush();
-                zos.flush();
-                zos.closeEntry();
-            }
-        }
-
+        String fileName = new File(args[0]).getName();
+        fileName = fileName.substring(0, fileName.lastIndexOf('.'));
+        stb.buildToFile(new File(fileName + ".sprite3"));
     }
 }

@@ -1,5 +1,6 @@
 package kr.syeyoung.textcodedscratch.parser.rule;
 
+import kr.syeyoung.textcodedscratch.Main;
 import kr.syeyoung.textcodedscratch.parser.ParserNode;
 import kr.syeyoung.textcodedscratch.parser.Tokenizer;
 import kr.syeyoung.textcodedscratch.parser.exception.ParsingGrammarException;
@@ -10,6 +11,7 @@ import kr.syeyoung.textcodedscratch.parser.tokens.terminal.keywords.KeywordModul
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.LinkedList;
 
 public class IncludeRule implements ParserRule {
@@ -20,7 +22,10 @@ public class IncludeRule implements ParserRule {
             try {
                 String name = rdec.getName().getValue(String.class) + ".tcsmodule";
 
-                Tokenizer tokenizer = new Tokenizer(new FileInputStream(name));
+                InputStream possible = Main.class.getResourceAsStream("/kr/syeyoung/textcodedscratch/predefined/"+name);
+                if (possible == null) possible = new FileInputStream(name);
+
+                Tokenizer tokenizer = new Tokenizer(possible);
                 ParserNode pn = tokenizer.getNextToken();
                 if (!(pn instanceof KeywordModule)) throw new ParsingGrammarException("File referenced in Require Declaration should be a module file - " + rdec.getName().getValue(String.class));
                 tokenizer.Tokenize();
