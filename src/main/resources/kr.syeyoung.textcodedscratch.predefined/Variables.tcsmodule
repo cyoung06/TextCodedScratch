@@ -1,0 +1,17 @@
+Module
+
+Native Func Variables::show(variable: VariablePointer)
+Native Func Variables::hide(variable: VariablePointer)
+
+Native Func List::add(variable: VariablePointer, element: Text)
+Native Func List::delete(variable: VariablePointer, element: Text)
+Native Func List::deleteAll(variable: VariablePointer)
+Native Func List::insert(variable: VariablePointer, index: Text, element: Text)
+Native Func List::set(variable: VariablePointer, index: Text, element: Text)
+Native Reporter Func List::get(variable: VariablePointer, index: Text)
+Native Reporter Func List::indexOf(variable: VariablePointer, element: Text)
+Native Reporter Func List::getSize(variable: VariablePointer)
+Native Reporter Func List::contains(variable: VariablePointer, element: Text)
+
+Native Func List::show(variable: VariablePointer)
+Native Func List::hide(variable: VariablePointer)

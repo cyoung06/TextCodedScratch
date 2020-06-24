@@ -1,0 +1,35 @@
+Module
+
+Native Func Motion::moveDirection(steps: Text)
+
+Native Func Motion::turnRight(degrees: Text)
+
+Native Func Motion::turnLeft(degrees: Text)
+
+Native Func Motion::moveNamed(name: Text)
+
+Native Func Motion::moveXY(x: Text, y: Text)
+
+Native Func Motion::glideNamed(name: Text)
+
+Native Func Motion::glideXY(x: Text, y: Text)
+
+Native Func Motion::setDirectionDegrees(degrees: Text)
+
+Native Func Motion::setDirectionTowards(name: Text)
+
+Native Func Motion::addX(x: Text)
+
+Native Func Motion::setX(x: Text)
+
+Native Func Motion::addY(y: Text)
+
+Native Func Motion::setY(y: Text)
+
+Native Func Motion::edgebounce()
+
+Native Func Motion::setRotationStyle(style: Text)
+
+Native Reporter Func Motion::getXPos()
+Native Reporter Func Motion::getYPos()
+Native Reporter Func Motion::getDirection()

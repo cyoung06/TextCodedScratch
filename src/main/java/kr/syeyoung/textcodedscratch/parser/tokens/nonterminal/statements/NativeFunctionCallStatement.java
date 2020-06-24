@@ -79,9 +79,10 @@ public class NativeFunctionCallStatement extends FunctionCallStatement implement
             else if (obj2 instanceof JSONArray) fillParameters((JSONArray) obj2, parameters, fieldParam);
             else if (obj2 instanceof String) {
                 String content = (String) obj2;
-                if (!content.startsWith("$TCS$")) continue;
-                boolean isInput = content.charAt(5) == 'I';
-                String index = content.substring(6);
+                if (!content.contains("$TCS$")) continue;;
+                int findex = content.indexOf("$TCS$");
+                boolean isInput = content.charAt(findex + 5) == 'I';
+                String index = content.substring(findex + 6);
                 if (index.isEmpty()) continue;;
                 int i;
                 try {

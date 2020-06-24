@@ -2,9 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2f7c2811-c825-4b1d-9edc-399842841dce" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/kr.syeyoung.textcodedscratch.predefined/Control.tcsmodule" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/kr.syeyoung.textcodedscratch.predefined/Looks.tcsmodule" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/kr.syeyoung.textcodedscratch.predefined/Math.tcsmodule" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/kr.syeyoung.textcodedscratch.predefined/Motion.tcsmodule" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/kr.syeyoung.textcodedscratch.predefined/Sensing.tcsmodule" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/kr.syeyoung.textcodedscratch.predefined/Sound.tcsmodule" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/kr.syeyoung.textcodedscratch.predefined/StringUtils.tcsmodule" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/kr.syeyoung.textcodedscratch.predefined/Time.tcsmodule" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/kr.syeyoung.textcodedscratch.predefined/Variables.tcsmodule" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/statements/NativeFunctionCallStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/statements/NativeFunctionCallStatement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/kr.syeyoung.textcodedscratch.predefined/Events.tcsmodule" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/kr.syeyoung.textcodedscratch.predefined/Events.tcsmodule" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -28,7 +37,7 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/kr.syeyoung.textcodedscratch.predefined" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -36,6 +45,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="B:\프로그래밍\TextCodedScratch\src\main\resources\kr.syeyoung.textcodedscratch.predefined" />
       <recent name="B:\프로그래밍\TextCodedScratch" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">

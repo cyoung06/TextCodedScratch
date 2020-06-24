@@ -1,0 +1,5 @@
+Module
+
+Native Reporter Func StringUtils::getLetterOf(string: Text, index: Text)
+Native Reporter Func StringUtils::getLengthOf(string: Text)
+Native Reporter Func StringUtils::contains(string: Text, search: Text)

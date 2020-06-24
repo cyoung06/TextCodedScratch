@@ -1,0 +1,20 @@
+Module
+
+Native Reporter Func Math::getRandomInt(min: Text, max:Text)
+
+Native Reporter Func Math::round(number: Text)
+
+Native Reporter Func Math::abs(number: Text)
+Native Reporter Func Math::floor(number: Text)
+Native Reporter Func Math::ceil(number: Text)
+Native Reporter Func Math::sqrt(number: Text)
+Native Reporter Func Math::sin(number: Text)
+Native Reporter Func Math::cos(number: Text)
+Native Reporter Func Math::tan(number: Text)
+Native Reporter Func Math::asin(number: Text)
+Native Reporter Func Math::acos(number: Text)
+Native Reporter Func Math::atan(number: Text)
+Native Reporter Func Math::ln(number: Text)
+Native Reporter Func Math::log(number: Text)
+Native Reporter Func Math::powerOfe(number: Text)
+Native Reporter Func Math::powerOf10(number: Text)

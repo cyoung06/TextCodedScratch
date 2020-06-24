@@ -1,0 +1,14 @@
+Module
+
+Native Reporter Func Time::getTimer()
+Native Func Time::resetTimer()
+
+Native Reporter Func Time::getYear()
+Native Reporter Func Time::getMonth()
+Native Reporter Func Time::getDate()
+Native Reporter Func Time::getDayOfWeek()
+Native Reporter Func Time::getHour()
+Native Reporter Func Time::getMinute()
+Native Reporter Func Time::getSecond()
+
+Native Reporter Func Time::getDaysSince2000()

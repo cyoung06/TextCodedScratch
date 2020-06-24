@@ -1,0 +1,13 @@
+Module
+
+Native Func Control::waitFor(time: Text)
+Native Func Control::waitUntil(condition: Boolean)
+
+Native Func Control::stopAll()
+Native Func Control::stopOtherScripts()
+
+Native Event Control::whenCloned
+Native Func Control::cloneMySelf()
+Native Func Control::cloneSprite(spriteName: Text)
+
+Native Func Control::deleteThisClone()

@@ -1,0 +1,55 @@
+Module
+
+Native Func Looks::sayFor(string: Text, time: Text)
+
+Native Func Looks::say(string: Text)
+
+Native Func Looks::thinkFor(string: Text, time: Text)
+
+Native Func Looks::think(string: Text)
+
+Native Func Looks::setCostume(costume: Text)
+
+Native Func Looks::nextCostume()
+
+Native Func Looks::setBackdrop(backdrop: Text)
+
+Native Func Looks::nextBackdrop()
+
+Native Func Looks::addSize(size: Text)
+
+Native Func Looks::setSize(size: Text)
+
+Native Func Looks::addColorEffect(effect: Text)
+Native Func Looks::addFisheyeEffect(effect: Text)
+Native Func Looks::addWhirlEffect(effect: Text)
+Native Func Looks::addPixelateEffect(effect: Text)
+Native Func Looks::addMosaicEffect(effect: Text)
+Native Func Looks::addBrightnessEffect(effect: Text)
+Native Func Looks::addGhostEffect(effect: Text)
+
+Native Func Looks::setColorEffect(effect: Text)
+Native Func Looks::setFisheyeEffect(effect: Text)
+Native Func Looks::setWhirlEffect(effect: Text)
+Native Func Looks::setPixelateEffect(effect: Text)
+Native Func Looks::setMosaicEffect(effect: Text)
+Native Func Looks::setBrightnessEffect(effect: Text)
+Native Func Looks::setGhostEffect(effect: Text)
+
+Native Func Looks::clearEffects()
+
+Native Func Looks::show()
+Native Func Looks::hide()
+
+Native Func Looks::frontLayer()
+Native Func Looks::backLayer()
+
+Native Func Looks::goForwardLayer(layers: Text)
+Native Func Looks::goBackwardLayer(layers: Text)
+
+
+Native Reporter Func Looks::getCostumeIndex()
+Native Reporter Func Looks::getCostumeName()
+Native Reporter Func Looks::getBackdropIndex()
+Native Reporter Func Looks::getBackdropName()
+Native Reporter Func Looks::getSize()

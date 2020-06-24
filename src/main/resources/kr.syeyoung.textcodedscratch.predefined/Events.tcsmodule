@@ -1,3 +1,11 @@
 Module
 
-Native Event Events::OnGreenFlagClicked "{\"opcode\":\"event_whenflagclicked\", \"inputs\": {}, \"fields\": {}, \"shadow\": false, \"topLevel\": true, \"x\": 0, \"y\": 0}";
+Native Event Events::OnGreenFlagClicked "{\"opcode\":\"event_whenflagclicked\", \"inputs\": {}, \"fields\": {}, \"shadow\": false, \"topLevel\": true, \"x\": 0, \"y\": 0}"
+
+Native Event Events::OnKeyPressed "{\"opcode\":\"event_whenkeypressed\",\"inputs\":{},\"fields\":{\"KEY_OPTION\":[\"$TCS$Const$\",null]},\"shadow\":false,\"topLevel\":true,\"x\":0,\"y\":0}"
+
+Native Event Events::OnBackdropSwitch "{\"opcode\":\"event_whenbackdropswitchesto\",\"inputs\":{},\"fields\":{\"BACKDROP\":[\"$TCS$Const$\",null]},\"shadow\":false,\"topLevel\":true,\"x\":0,\"y\":0}"
+
+Native Event Events::OnLoudnessGreaterThan "{\"opcode\":\"event_whengreaterthan\",\"inputs\":{\"VALUE\":[1,\"$TCS$Expr$\"]},\"fields\":{\"WHENGREATERTHANMENU\":[\"LOUDNESS\",null]},\"shadow\":false,\"topLevel\":true,\"x\":0,\"y\":0}"
+
+Native Event Events::OnTimerGreaterThan "{\"opcode\":\"event_whengreaterthan\",\"inputs\":{\"VALUE\":[1,[4,\"$TCS$Expr$\"]]},\"fields\":{\"WHENGREATERTHANMENU\":[\"TIMER\",null]},\"shadow\":false,\"topLevel\":true,\"x\":0,\"y\":0}"

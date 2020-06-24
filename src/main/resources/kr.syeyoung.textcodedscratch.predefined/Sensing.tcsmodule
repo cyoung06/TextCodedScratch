@@ -1,0 +1,23 @@
+Module
+
+Native Reporter Func Sensing::isTouching(name: Text)
+Native Reporter Func Sensing::isTouchingColor(color: Text)
+Native Reporter Func Sensing::isColorTouchingColor(color1: Text, color2: Text)
+
+Native Reporter Func Sensing::getDistanceTo(name: Text)
+
+Native Func Sensing::ask(question: Text)
+Native Reporter Func Sensing::getAnswer()
+
+Native Reporter Func Sensing::isKeyPressed(key: Text)
+Native Reporter Func Sensing::isMouseDown()
+Native Reporter Func Sensing::getMouseX()
+Native Reporter Func Sensing::getMouseY()
+
+Native Func Sensing::setDragMode(mode: Text)
+
+Native Reporter Func Sensing::getLoudness()
+
+Native Reporter Func Sensing::getAttributeOf(attribute: Text, target: Text)
+
+Native Reporter Func Sensing::getUsername()

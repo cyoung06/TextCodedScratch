@@ -1,0 +1,19 @@
+Module
+
+Native Func Sound::playWait(name: Text)
+Native Func Sound::startPlay(name: Text)
+Native Func Sound::stopAll()
+
+Native Func Sound::addPitchEffect(effect: Text)
+Native Func Sound::setPitchEffect(effect: Text)
+
+Native Func Sound::addPanEffect(effect: Text)
+Native Func Sound::setPanEffect(effect: Text)
+
+Native Func Sound::clearEffects()
+
+
+Native Func Sound::addVolume(volume: Text)
+Native Func Sound::setVolume(volume: Text)
+
+Native Reporter Func Sound::getVolume()
