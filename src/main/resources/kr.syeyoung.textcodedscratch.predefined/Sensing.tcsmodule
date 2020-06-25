@@ -1,23 +1,29 @@
 Module
 
-Native Reporter Func Sensing::isTouching(name: Text)
-Native Reporter Func Sensing::isTouchingColor(color: Text)
-Native Reporter Func Sensing::isColorTouchingColor(color1: Text, color2: Text)
+// _mouse_ / _edge_ / Spritename
+Native Reporter Func Sensing::isTouching(name: Text) "{\"shadow\":false,\"inputs\":{\"TOUCHINGOBJECTMENU\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"sensing_touchingobject\",\"fields\":{}}"
+Native Reporter Func Sensing::isTouchingColor(color: Text) "{\"shadow\":false,\"inputs\":{\"COLOR\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"sensing_touchingcolor\",\"fields\":{}}"
+Native Reporter Func Sensing::isColorTouchingColor(color1: Text, color2: Text) "{\"shadow\":false,\"inputs\":{\"COLOR\":[1,\"$TCS$I0\"],\"COLOR2\":[1,\"$TCS$I1\"]},\"topLevel\":false,\"opcode\":\"sensing_coloristouchingcolor\",\"fields\":{}}"
 
-Native Reporter Func Sensing::getDistanceTo(name: Text)
+// _mouse_ / Spritename
+Native Reporter Func Sensing::getDistanceTo(name: Text) "{\"shadow\":false,\"inputs\":{\"DISTANCETOMENU\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"sensing_distanceto\",\"fields\":{}}"
 
-Native Func Sensing::ask(question: Text)
-Native Reporter Func Sensing::getAnswer()
+Native Func Sensing::ask(question: Text) "{\"shadow\":false,\"inputs\":{\"QUESTION\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"sensing_askandwait\",\"fields\":{}}"
+Native Reporter Func Sensing::getAnswer() "{\"shadow\":false,\"inputs\":{},\"topLevel\":false,\"opcode\":\"sensing_answer\",\"fields\":{}}"
 
-Native Reporter Func Sensing::isKeyPressed(key: Text)
-Native Reporter Func Sensing::isMouseDown()
-Native Reporter Func Sensing::getMouseX()
-Native Reporter Func Sensing::getMouseY()
+Native Reporter Func Sensing::isKeyPressed(key: Text) "{\"shadow\":false,\"inputs\":{\"KEY_OPTION\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"sensing_keypressed\",\"fields\":{}}"
 
-Native Func Sensing::setDragMode(mode: Text)
+Native Reporter Func Sensing::isMouseDown() "{\"shadow\":false,\"inputs\":{},\"topLevel\":false,\"opcode\":\"sensing_mousedown\",\"fields\":{}}"
+Native Reporter Func Sensing::getMouseX() "{\"shadow\":false,\"inputs\":{},\"topLevel\":false,\"opcode\":\"sensing_mousex\",\"fields\":{}}"
+Native Reporter Func Sensing::getMouseY() "{\"shadow\":false,\"inputs\":{},\"topLevel\":false,\"opcode\":\"sensing_mousey\",\"fields\":{}}"
 
-Native Reporter Func Sensing::getLoudness()
+Native Func Sensing::setDragMode(mode: Text) "{\"shadow\":false,\"inputs\":{},\"topLevel\":false,\"opcode\":\"sensing_setdragmode\",\"fields\":{\"DRAG_MODE\":[\"$TCS$F0\",null]}}"
 
-Native Reporter Func Sensing::getAttributeOf(attribute: Text, target: Text)
+Native Reporter Func Sensing::getLoudness() "{\"shadow\":false,\"inputs\":{},\"topLevel\":false,\"opcode\":\"sensing_loudness\",\"fields\":{}}"
 
-Native Reporter Func Sensing::getUsername()
+
+// Attribute :: refer to scratch
+// Target :: _stage_
+Native Reporter Func Sensing::getAttributeOf(attribute: Text, target: Text) "{\"shadow\":false,\"inputs\":{\"OBJECT\":[1,\"$TCS$I1\"]},\"topLevel\":false,\"opcode\":\"sensing_of\",\"fields\":{\"PROPERTY\":[\"$TCS$F0\",null]}}"
+
+Native Reporter Func Sensing::getUsername() "{\"shadow\":false,\"inputs\":{},\"topLevel\":false,\"opcode\":\"sensing_username\",\"fields\":{}}"
