@@ -1,5 +1,5 @@
 Module
 
-Native Reporter Func StringUtils::getLetterOf(string: Text, index: Text)
-Native Reporter Func StringUtils::getLengthOf(string: Text)
-Native Reporter Func StringUtils::contains(string: Text, search: Text)
+Native Reporter Func StringUtils::getLetterOf(string: Text, index: Text) "{\"shadow\":false,\"inputs\":{\"LETTER\":[1,\"$TCS$I1\"],\"STRING\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"operator_letter_of\",\"fields\":{}}"
+Native Reporter Func StringUtils::getLengthOf(string: Text) "{\"shadow\":false,\"inputs\":{\"STRING\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"operator_length\",\"fields\":{}}"
+Native Reporter Func StringUtils::contains(string: Text, search: Text) "{\"shadow\":false,\"inputs\":{\"STRING1\":[1,\"$TCS$I0\"],\"STRING2\":[1,\"$TCS$I1\"]},\"topLevel\":false,\"opcode\":\"operator_contains\",\"fields\":{}}"

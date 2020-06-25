@@ -1,14 +1,16 @@
 Module
 
-Native Reporter Func Time::getTimer()
-Native Func Time::resetTimer()
+Native Reporter Func Time::getTimer() "{\"shadow\":false,\"inputs\":{},\"topLevel\":false,\"opcode\":\"sensing_timer\",\"fields\":{}}"
+Native Func Time::resetTimer() "{\"shadow\":false,\"inputs\":{},\"topLevel\":false,\"opcode\":\"sensing_resettimer\",\"fields\":{}}"
 
-Native Reporter Func Time::getYear()
-Native Reporter Func Time::getMonth()
-Native Reporter Func Time::getDate()
-Native Reporter Func Time::getDayOfWeek()
-Native Reporter Func Time::getHour()
-Native Reporter Func Time::getMinute()
-Native Reporter Func Time::getSecond()
+Native Reporter Func Time::getCurrent(field: Text) "{\"shadow\":false,\"inputs\":{},\"topLevel\":false,\"opcode\":\"sensing_current\",\"fields\":{\"CURRENTMENU\":[\"$TCS$F0\",null]}}"
 
-Native Reporter Func Time::getDaysSince2000()
+Native Reporter Func Time::getYear() "{\"shadow\":false,\"inputs\":{},\"topLevel\":false,\"opcode\":\"sensing_current\",\"fields\":{\"CURRENTMENU\":[\"YEAR\",null]}}"
+Native Reporter Func Time::getMonth() "{\"shadow\":false,\"inputs\":{},\"topLevel\":false,\"opcode\":\"sensing_current\",\"fields\":{\"CURRENTMENU\":[\"MONTH\",null]}}"
+Native Reporter Func Time::getDate() "{\"shadow\":false,\"inputs\":{},\"topLevel\":false,\"opcode\":\"sensing_current\",\"fields\":{\"CURRENTMENU\":[\"DATE\",null]}}"
+Native Reporter Func Time::getDayOfWeek() "{\"shadow\":false,\"inputs\":{},\"topLevel\":false,\"opcode\":\"sensing_current\",\"fields\":{\"CURRENTMENU\":[\"DAYOFWEEK\",null]}}"
+Native Reporter Func Time::getHour() "{\"shadow\":false,\"inputs\":{},\"topLevel\":false,\"opcode\":\"sensing_current\",\"fields\":{\"CURRENTMENU\":[\"HOUR\",null]}}"
+Native Reporter Func Time::getMinute() "{\"shadow\":false,\"inputs\":{},\"topLevel\":false,\"opcode\":\"sensing_current\",\"fields\":{\"CURRENTMENU\":[\"MINUTE\",null]}}"
+Native Reporter Func Time::getSecond() "{\"shadow\":false,\"inputs\":{},\"topLevel\":false,\"opcode\":\"sensing_current\",\"fields\":{\"CURRENTMENU\":[\"SECOND\",null]}}"
+
+Native Reporter Func Time::getDaysSince2000() "{\"shadow\":false,\"inputs\":{},\"topLevel\":false,\"opcode\":\"sensing_dayssince2000\",\"fields\":{}}"
