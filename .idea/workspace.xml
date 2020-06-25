@@ -2,18 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2f7c2811-c825-4b1d-9edc-399842841dce" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/kr.syeyoung.textcodedscratch.predefined/Control.tcsmodule" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/kr.syeyoung.textcodedscratch.predefined/Looks.tcsmodule" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/kr.syeyoung.textcodedscratch.predefined/Math.tcsmodule" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/kr.syeyoung.textcodedscratch.predefined/Motion.tcsmodule" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/kr.syeyoung.textcodedscratch.predefined/Sensing.tcsmodule" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/kr.syeyoung.textcodedscratch.predefined/Sound.tcsmodule" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/kr.syeyoung.textcodedscratch.predefined/StringUtils.tcsmodule" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/kr.syeyoung.textcodedscratch.predefined/Time.tcsmodule" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/kr.syeyoung.textcodedscratch.predefined/Variables.tcsmodule" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/spritebuilder/NativeFunctionBuilderHelper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/statements/NativeFunctionCallStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/statements/NativeFunctionCallStatement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/kr.syeyoung.textcodedscratch.predefined/Events.tcsmodule" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/kr.syeyoung.textcodedscratch.predefined/Events.tcsmodule" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/Tokenizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/Tokenizer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/kr.syeyoung.textcodedscratch.predefined/Control.tcsmodule" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/kr.syeyoung.textcodedscratch.predefined/Control.tcsmodule" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/kr.syeyoung.textcodedscratch.predefined/Looks.tcsmodule" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/kr.syeyoung.textcodedscratch.predefined/Looks.tcsmodule" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -37,6 +30,7 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="JAVA" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/kr.syeyoung.textcodedscratch.predefined" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
@@ -56,6 +50,7 @@
       <recent name="kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.statements" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="B:\프로그래밍\TextCodedScratch\src\main\java\kr\syeyoung\textcodedscratch\spritebuilder" />
       <recent name="B:\프로그래밍\TextCodedScratch\src\main\resources\kr.syeyoung.textcodedscratch.predefined" />
       <recent name="B:\프로그래밍\TextCodedScratch\src\main\java\kr\syeyoung\textcodedscratch\predefined" />
       <recent name="B:\프로그래밍\TextCodedScratch" />
@@ -79,7 +74,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.NativeFunctionBuilderHelper">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="kr.syeyoung.textcodedscratch.Main" />
       <module name="TextCodedScratch" />
@@ -93,8 +88,38 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="NativeFunctionBuilderHelper" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="kr.syeyoung.textcodedscratch.spritebuilder.NativeFunctionBuilderHelper" />
+      <module name="TextCodedScratch" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="kr.syeyoung.textcodedscratch.spritebuilder.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Scratch (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Scratch" />
+      <module name="TextCodedScratch" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Scratch" type="Java Scratch" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Scratch" />
+      <option name="SCRATCH_FILE_URL" value="file://$APPLICATION_CONFIG_DIR$/scratches/scratch_3.java" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.NativeFunctionBuilderHelper" />
+        <item itemvalue="Application.Scratch (1)" />
+        <item itemvalue="Java Scratch.Scratch" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
