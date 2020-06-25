@@ -1,55 +1,57 @@
 Module
 
-Native Func Looks::sayFor(string: Text, time: Text)
+Native Func Looks::sayFor(string: Text, time: Text) "{\"shadow\":false,\"inputs\":{\"MESSAGE\":[1,\"$TCS$I0\"],\"SECS\":[1,\"$TCS$I1\"]},\"topLevel\":false,\"opcode\":\"looks_sayforsecs\",\"fields\":{}}"
 
-Native Func Looks::say(string: Text)
-
-Native Func Looks::thinkFor(string: Text, time: Text)
-
-Native Func Looks::think(string: Text)
-
-Native Func Looks::setCostume(costume: Text)
-
-Native Func Looks::nextCostume()
-
-Native Func Looks::setBackdrop(backdrop: Text)
-
-Native Func Looks::nextBackdrop()
-
-Native Func Looks::addSize(size: Text)
-
-Native Func Looks::setSize(size: Text)
-
-Native Func Looks::addColorEffect(effect: Text)
-Native Func Looks::addFisheyeEffect(effect: Text)
-Native Func Looks::addWhirlEffect(effect: Text)
-Native Func Looks::addPixelateEffect(effect: Text)
-Native Func Looks::addMosaicEffect(effect: Text)
-Native Func Looks::addBrightnessEffect(effect: Text)
-Native Func Looks::addGhostEffect(effect: Text)
-
-Native Func Looks::setColorEffect(effect: Text)
-Native Func Looks::setFisheyeEffect(effect: Text)
-Native Func Looks::setWhirlEffect(effect: Text)
-Native Func Looks::setPixelateEffect(effect: Text)
-Native Func Looks::setMosaicEffect(effect: Text)
-Native Func Looks::setBrightnessEffect(effect: Text)
-Native Func Looks::setGhostEffect(effect: Text)
-
-Native Func Looks::clearEffects()
-
-Native Func Looks::show()
-Native Func Looks::hide()
-
-Native Func Looks::frontLayer()
-Native Func Looks::backLayer()
-
-Native Func Looks::goForwardLayer(layers: Text)
-Native Func Looks::goBackwardLayer(layers: Text)
+Native Func Looks::say(string: Text) "{\"shadow\":false,\"inputs\":{\"MESSAGE\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"looks_say\",\"fields\":{}}"
 
 
-Native Reporter Func Looks::getCostumeIndex()
-Native Reporter Func Looks::getCostumeName()
-Native Reporter Func Looks::getBackdropIndex()
-Native Reporter Func Looks::getBackdropName()
-Native Reporter Func Looks::getSize()
+Native Func Looks::thinkFor(string: Text, time: Text) "{\"shadow\":false,\"inputs\":{\"MESSAGE\":[1,\"$TCS$I0\"],\"SECS\":[1,\"$TCS$I1\"]},\"topLevel\":false,\"opcode\":\"looks_thinkforsecs\",\"fields\":{}}"
+
+Native Func Looks::think(string: Text) "{\"shadow\":false,\"inputs\":{\"MESSAGE\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"looks_think\",\"fields\":{}}"
+
+Native Func Looks::setCostume(costume: Text) "{\"shadow\":false,\"inputs\":{\"COSTUME\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"looks_switchcostumeto\",\"fields\":{}}"
+
+
+Native Func Looks::nextCostume() "{\"shadow\":false,\"inputs\":{},\"topLevel\":false,\"opcode\":\"looks_nextcostume\",\"fields\":{}}"
+
+Native Func Looks::setBackdrop(backdrop: Text) "{\"shadow\":false,\"inputs\":{\"BACKDROP\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"looks_switchbackdropto\",\"fields\":{}}"
+
+Native Func Looks::nextBackdrop() "{\"shadow\":false,\"inputs\":{},\"topLevel\":false,\"opcode\":\"looks_nextbackdrop\",\"fields\":{}}"
+
+Native Func Looks::addSize(size: Text) "{\"shadow\":false,\"inputs\":{\"CHANGE\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"looks_changesizeby\",\"fields\":{}}"
+
+Native Func Looks::setSize(size: Text) "{\"shadow\":false,\"inputs\":{\"SIZE\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"looks_setsizeto\",\"fields\":{}}"
+
+Native Func Looks::addColorEffect(effect: Text) "{\"shadow\":false,\"inputs\":{\"CHANGE\":[1,[4,\"$TCS$I0\"]]},\"topLevel\":false,\"opcode\":\"looks_changeeffectby\",\"fields\":{\"EFFECT\":[\"COLOR\",null]}}"
+Native Func Looks::addFisheyeEffect(effect: Text) "{\"shadow\":false,\"inputs\":{\"CHANGE\":[1,[4,\"$TCS$I0\"]]},\"topLevel\":false,\"opcode\":\"looks_changeeffectby\",\"fields\":{\"EFFECT\":[\"FISHEYE\",null]}}"
+Native Func Looks::addWhirlEffect(effect: Text) "{\"shadow\":false,\"inputs\":{\"CHANGE\":[1,[4,\"$TCS$I0\"]]},\"topLevel\":false,\"opcode\":\"looks_changeeffectby\",\"fields\":{\"EFFECT\":[\"WHIRL\",null]}}"
+Native Func Looks::addPixelateEffect(effect: Text) "{\"shadow\":false,\"inputs\":{\"CHANGE\":[1,[4,\"$TCS$I0\"]]},\"topLevel\":false,\"opcode\":\"looks_changeeffectby\",\"fields\":{\"EFFECT\":[\"PIXELATE\",null]}}"
+Native Func Looks::addMosaicEffect(effect: Text) "{\"shadow\":false,\"inputs\":{\"CHANGE\":[1,[4,\"$TCS$I0\"]]},\"topLevel\":false,\"opcode\":\"looks_changeeffectby\",\"fields\":{\"EFFECT\":[\"MOSAIC\",null]}}"
+Native Func Looks::addBrightnessEffect(effect: Text) "{\"shadow\":false,\"inputs\":{\"CHANGE\":[1,[4,\"$TCS$I0\"]]},\"topLevel\":false,\"opcode\":\"looks_changeeffectby\",\"fields\":{\"EFFECT\":[\"BRIGHTNESS\",null]}}"
+Native Func Looks::addGhostEffect(effect: Text) "{\"shadow\":false,\"inputs\":{\"CHANGE\":[1,[4,\"$TCS$I0\"]]},\"topLevel\":false,\"opcode\":\"looks_changeeffectby\",\"fields\":{\"EFFECT\":[\"GHOST\",null]}}"
+
+Native Func Looks::setColorEffect(effect: Text) "{\"shadow\":false,\"inputs\":{\"VALUE\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"looks_seteffectto\",\"fields\":{\"EFFECT\":[\"COLOR\",null]}}"
+Native Func Looks::setFisheyeEffect(effect: Text) "{\"shadow\":false,\"inputs\":{\"VALUE\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"looks_seteffectto\",\"fields\":{\"EFFECT\":[\"FISHEYE\",null]}}"
+Native Func Looks::setWhirlEffect(effect: Text) "{\"shadow\":false,\"inputs\":{\"VALUE\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"looks_seteffectto\",\"fields\":{\"EFFECT\":[\"WHIRL\",null]}}"
+Native Func Looks::setPixelateEffect(effect: Text) "{\"shadow\":false,\"inputs\":{\"VALUE\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"looks_seteffectto\",\"fields\":{\"EFFECT\":[\"PIXELATE\",null]}}"
+Native Func Looks::setMosaicEffect(effect: Text) "{\"shadow\":false,\"inputs\":{\"VALUE\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"looks_seteffectto\",\"fields\":{\"EFFECT\":[\"MOSAIC\",null]}}"
+Native Func Looks::setBrightnessEffect(effect: Text) "{\"shadow\":false,\"inputs\":{\"VALUE\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"looks_seteffectto\",\"fields\":{\"EFFECT\":[\"BRIGHTNESS\",null]}}"
+Native Func Looks::setGhostEffect(effect: Text) "{\"shadow\":false,\"inputs\":{\"VALUE\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"looks_seteffectto\",\"fields\":{\"EFFECT\":[\"GHOST\",null]}}"
+
+Native Func Looks::clearEffects() "{\"shadow\":false,\"inputs\":{},\"topLevel\":false,\"opcode\":\"looks_cleargraphiceffects\",\"fields\":{}}"
+
+Native Func Looks::show() "{\"shadow\":false,\"inputs\":{},\"topLevel\":false,\"opcode\":\"looks_show\",\"fields\":{}}"
+Native Func Looks::hide() "{\"shadow\":false,\"inputs\":{},\"topLevel\":false,\"opcode\":\"looks_hide\",\"fields\":{}}"
+
+Native Func Looks::frontLayer() "{\"shadow\":false,\"inputs\":{},\"topLevel\":false,\"opcode\":\"looks_gotofrontback\",\"fields\":{\"FRONT_BACK\":[\"front\",null]}}"
+Native Func Looks::backLayer() "{\"shadow\":false,\"inputs\":{},\"topLevel\":false,\"opcode\":\"looks_gotofrontback\",\"fields\":{\"FRONT_BACK\":[\"back\",null]}}"
+
+Native Func Looks::goForwardLayer(layers: Text) "{\"shadow\":false,\"inputs\":{\"NUM\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"looks_goforwardbackwardlayers\",\"fields\":{\"FORWARD_BACKWARD\":[\"forward\",null]}}"
+Native Func Looks::goBackwardLayer(layers: Text) "{\"shadow\":false,\"inputs\":{\"NUM\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"looks_goforwardbackwardlayers\",\"fields\":{\"FORWARD_BACKWARD\":[\"backward\",null]}}"
+
+
+Native Reporter Func Looks::getCostumeIndex() "{\"shadow\":false,\"inputs\":{},\"topLevel\":false,\"opcode\":\"looks_costumenumbername\",\"fields\":{\"NUMBER_NAME\":[\"number\",null]}}"
+Native Reporter Func Looks::getCostumeName() "{\"shadow\":false,\"inputs\":{},\"topLevel\":false,\"opcode\":\"looks_costumenumbername\",\"fields\":{\"NUMBER_NAME\":[\"name\",null]}}"
+Native Reporter Func Looks::getBackdropIndex() "{\"shadow\":false,\"inputs\":{},\"topLevel\":false,\"opcode\":\"looks_backdropnumbername\",\"fields\":{\"NUMBER_NAME\":[\"number\",null]}}"
+Native Reporter Func Looks::getBackdropName() "{\"shadow\":false,\"inputs\":{},\"topLevel\":false,\"opcode\":\"looks_backdropnumbername\",\"fields\":{\"NUMBER_NAME\":[\"name\",null]}}"
+Native Reporter Func Looks::getSize() "{\"shadow\":false,\"inputs\":{},\"topLevel\":false,\"opcode\":\"looks_size\",\"fields\":{}}"
