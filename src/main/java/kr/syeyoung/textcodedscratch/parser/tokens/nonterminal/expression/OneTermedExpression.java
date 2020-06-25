@@ -36,7 +36,7 @@ public class OneTermedExpression implements Expression {
     public Expression simplify() {
         if (operator instanceof OperatorGetName) {
             if (!(firstTerm instanceof VariableExpression)) throw new ParsingGrammarException("After the Pointer Operator, there should Only be identifier name");
-            if (firstTerm instanceof ConstantVariableExpression) throw new ParsingGrammarException("No pointers after constant variable");
+            if (firstTerm instanceof ConstantVariableExpression) throw new ParsingGrammarException("No pointers for constant variable");
             return firstTerm;
         }
 
@@ -52,6 +52,9 @@ public class OneTermedExpression implements Expression {
 
     @Override
     public Object buildJSON(String parentId, String nextId, ScriptBuilder builder) {
+        if (operator instanceof OperatorGetName)
+            return ((OperatorGetName) operator).operate((VariableExpression) firstTerm);
+
         String id = builder.getNextID();
         Object JfirstTerm = firstTerm.buildJSON(id,null,builder);
         JSONObject obj = operator.operate(parentId, nextId, JfirstTerm);
