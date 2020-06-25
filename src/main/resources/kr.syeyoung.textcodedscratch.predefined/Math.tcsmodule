@@ -1,20 +1,20 @@
 Module
 
-Native Reporter Func Math::getRandomInt(min: Text, max:Text)
+Native Reporter Func Math::getRandomInt(min: Text, max:Text) "{\"shadow\":false,\"inputs\":{\"FROM\":[1,\"$TCS$I0\"],\"TO\":[1,\"$TCS$I1\"]},\"topLevel\":false,\"opcode\":\"operator_random\",\"fields\":{}}"
 
-Native Reporter Func Math::round(number: Text)
+Native Reporter Func Math::round(number: Text)  "{\"shadow\":false,\"inputs\":{\"NUM\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"operator_round\",\"fields\":{}}"
 
-Native Reporter Func Math::abs(number: Text)
-Native Reporter Func Math::floor(number: Text)
-Native Reporter Func Math::ceil(number: Text)
-Native Reporter Func Math::sqrt(number: Text)
-Native Reporter Func Math::sin(number: Text)
-Native Reporter Func Math::cos(number: Text)
-Native Reporter Func Math::tan(number: Text)
-Native Reporter Func Math::asin(number: Text)
-Native Reporter Func Math::acos(number: Text)
-Native Reporter Func Math::atan(number: Text)
-Native Reporter Func Math::ln(number: Text)
-Native Reporter Func Math::log(number: Text)
-Native Reporter Func Math::powerOfe(number: Text)
-Native Reporter Func Math::powerOf10(number: Text)
+Native Reporter Func Math::abs(number: Text) "{\"shadow\":false,\"inputs\":{\"NUM\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"operator_mathop\",\"fields\":{\"OPERATOR\":[\"abs\",null]}}"
+Native Reporter Func Math::floor(number: Text) "{\"shadow\":false,\"inputs\":{\"NUM\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"operator_mathop\",\"fields\":{\"OPERATOR\":[\"floor\",null]}}"
+Native Reporter Func Math::ceil(number: Text) "{\"shadow\":false,\"inputs\":{\"NUM\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"operator_mathop\",\"fields\":{\"OPERATOR\":[\"ceiling\",null]}}"
+Native Reporter Func Math::sqrt(number: Text) "{\"shadow\":false,\"inputs\":{\"NUM\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"operator_mathop\",\"fields\":{\"OPERATOR\":[\"sqrt\",null]}}"
+Native Reporter Func Math::sin(number: Text) "{\"shadow\":false,\"inputs\":{\"NUM\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"operator_mathop\",\"fields\":{\"OPERATOR\":[\"sin\",null]}}"
+Native Reporter Func Math::cos(number: Text) "{\"shadow\":false,\"inputs\":{\"NUM\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"operator_mathop\",\"fields\":{\"OPERATOR\":[\"cos\",null]}}"
+Native Reporter Func Math::tan(number: Text) "{\"shadow\":false,\"inputs\":{\"NUM\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"operator_mathop\",\"fields\":{\"OPERATOR\":[\"tan\",null]}}"
+Native Reporter Func Math::asin(number: Text) "{\"shadow\":false,\"inputs\":{\"NUM\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"operator_mathop\",\"fields\":{\"OPERATOR\":[\"asin\",null]}}"
+Native Reporter Func Math::acos(number: Text) "{\"shadow\":false,\"inputs\":{\"NUM\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"operator_mathop\",\"fields\":{\"OPERATOR\":[\"acos\",null]}}"
+Native Reporter Func Math::atan(number: Text) "{\"shadow\":false,\"inputs\":{\"NUM\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"operator_mathop\",\"fields\":{\"OPERATOR\":[\"atan\",null]}}"
+Native Reporter Func Math::ln(number: Text) "{\"shadow\":false,\"inputs\":{\"NUM\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"operator_mathop\",\"fields\":{\"OPERATOR\":[\"ln\",null]}}"
+Native Reporter Func Math::log(number: Text) "{\"shadow\":false,\"inputs\":{\"NUM\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"operator_mathop\",\"fields\":{\"OPERATOR\":[\"log\",null]}}"
+Native Reporter Func Math::powerOfe(number: Text) "{\"shadow\":false,\"inputs\":{\"NUM\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"operator_mathop\",\"fields\":{\"OPERATOR\":[\"e ^\",null]}}"
+Native Reporter Func Math::powerOf10(number: Text) "{\"shadow\":false,\"inputs\":{\"NUM\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"operator_mathop\",\"fields\":{\"OPERATOR\":[\"10 ^\",null]}}"
