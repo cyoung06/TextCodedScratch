@@ -1,19 +1,19 @@
 Module
 
-Native Func Sound::playWait(name: Text)
-Native Func Sound::startPlay(name: Text)
-Native Func Sound::stopAll()
+Native Func Sound::playWait(name: Text) "{\"shadow\":false,\"inputs\":{\"SOUND_MENU\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"sound_playuntildone\",\"fields\":{}}"
+Native Func Sound::startPlay(name: Text) "{\"shadow\":false,\"inputs\":{\"SOUND_MENU\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"sound_play\",\"fields\":{}}"
+Native Func Sound::stopAll() "{\"shadow\":false,\"inputs\":{},\"topLevel\":false,\"opcode\":\"sound_stopallsounds\",\"fields\":{}}"
 
-Native Func Sound::addPitchEffect(effect: Text)
-Native Func Sound::setPitchEffect(effect: Text)
+Native Func Sound::addPitchEffect(effect: Text) "{\"shadow\":false,\"inputs\":{\"VALUE\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"sound_changeeffectby\",\"fields\":{\"EFFECT\":[\"PITCH\",null]}}"
+Native Func Sound::setPitchEffect(effect: Text) "{\"shadow\":false,\"inputs\":{\"VALUE\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"sound_seteffectto\",\"fields\":{\"EFFECT\":[\"PITCH\",null]}}"
 
-Native Func Sound::addPanEffect(effect: Text)
-Native Func Sound::setPanEffect(effect: Text)
+Native Func Sound::addPanEffect(effect: Text) "{\"shadow\":false,\"inputs\":{\"VALUE\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"sound_changeeffectby\",\"fields\":{\"EFFECT\":[\"PAN\",null]}}"
+Native Func Sound::setPanEffect(effect: Text) "{\"shadow\":false,\"inputs\":{\"VALUE\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"sound_seteffectto\",\"fields\":{\"EFFECT\":[\"PAN\",null]}}"
 
-Native Func Sound::clearEffects()
+Native Func Sound::clearEffects() "{\"shadow\":false,\"inputs\":{},\"topLevel\":false,\"opcode\":\"sound_cleareffects\",\"fields\":{}}"
 
 
-Native Func Sound::addVolume(volume: Text)
-Native Func Sound::setVolume(volume: Text)
+Native Func Sound::addVolume(volume: Text) "{\"shadow\":false,\"inputs\":{\"VOLUME\":[1,\"$TCS$I0\"]]},\"topLevel\":false,\"opcode\":\"sound_changevolumeby\",\"fields\":{}}"
+Native Func Sound::setVolume(volume: Text) "{\"shadow\":false,\"inputs\":{\"VOLUME\":[1,\"$TCS$I0\"]]},\"topLevel\":false,\"opcode\":\"sound_setvolumeto\",\"fields\":{}}"
 
-Native Reporter Func Sound::getVolume()
+Native Reporter Func Sound::getVolume() "{\"shadow\":false,\"inputs\":{},\"topLevel\":false,\"opcode\":\"sound_volume\",\"fields\":{}}"
