@@ -86,11 +86,13 @@ public class Tokenizer {
     private static final Pattern number = Pattern.compile("\\d+(\\.\\d+)?");
     private static final Pattern identifier = Pattern.compile("[a-zA-Z_][a-zA-Z0-9_\\-]*");
     private static final Pattern identAfter = Pattern.compile("[a-zA-Z0-9_\\-]");
+
+    private static final Pattern string = Pattern.compile("(\".+[^\\\\](?:[\\\\]{2})*\")");
     static {
         terminalNodeConverter.put((str,next) -> str.equals("\n"), str -> new EOLToken(str));
         terminalNodeConverter.put((str,next) -> str.equals(";"), str -> new EOSToken(str));
         // CONSTANTS
-        terminalNodeConverter.put((str,next) -> str.startsWith("\"") && str.length() > 1 && str.endsWith("\"") && !str.endsWith("\\\"") , str -> new StringToken(str.replace("\\\"", "\"")));
+        terminalNodeConverter.put((str,next) -> string.matcher(str).matches(), str -> new StringToken(str.replaceAll("\\\\(.)", "$1")));
         terminalNodeConverter.put((str,next) -> str.equals("true") || str.equals("false"), str -> new BooleanToken(str));
         terminalNodeConverter.put((str,next) -> number.matcher(str).matches() && (next < '0' || next > '9') && next != '.', str -> new NumberToken(str));
         // KEYWORDS
