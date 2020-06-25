@@ -134,6 +134,8 @@ public class Tokenizer {
         terminalNodeConverter.put((str,next) -> str.equals(">"), (str) -> new OperatorBigger());
         terminalNodeConverter.put((str,next) -> str.equals("<"), (str) -> new OperatorLesser());
         terminalNodeConverter.put((str,next) -> str.equals("=="), (str) -> new OperatorEquals());
+        // STRING OPERATION
+        terminalNodeConverter.put((str,next) -> str.equals(".."), (str) -> new OperatorConcat());
 
         // SET
         terminalNodeConverter.put((str,next) -> str.equals("=") && next != '=', (str) -> new OperatorSet());

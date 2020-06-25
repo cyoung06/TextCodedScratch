@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2f7c2811-c825-4b1d-9edc-399842841dce" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/resources/kr.syeyoung.textcodedscratch.predefined/StringUtils.tcsmodule" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/kr.syeyoung.textcodedscratch.predefined/StringUtils.tcsmodule" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/kr.syeyoung.textcodedscratch.predefined/Time.tcsmodule" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/kr.syeyoung.textcodedscratch.predefined/Time.tcsmodule" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/terminal/operators/OperatorConcat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/Tokenizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/Tokenizer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/terminal/operators/OperatorPlus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/terminal/operators/OperatorPlus.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -40,11 +42,11 @@
       <recent name="B:\프로그래밍\TextCodedScratch" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="kr.syeyoung.textcodedscratch.parser.tokens.terminal.operators" />
       <recent name="kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.expression" />
       <recent name="kr.syeyoung.textcodedscratch.parser.rule" />
       <recent name="kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.declaration" />
       <recent name="kr.syeyoung.textcodedscratch.parser.tokens.nonterminal" />
-      <recent name="kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.statements" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="B:\프로그래밍\TextCodedScratch\src\main\java\kr\syeyoung\textcodedscratch\spritebuilder" />
