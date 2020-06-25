@@ -1,35 +1,37 @@
 Module
 
-Native Func Motion::moveDirection(steps: Text)
+Native Func Motion::moveDirection(steps: Text) "{\"shadow\":false,\"inputs\":{\"STEPS\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"motion_movesteps\",\"fields\":{}}"
 
-Native Func Motion::turnRight(degrees: Text)
+Native Func Motion::turnRight(degrees: Text) "{\"shadow\":false,\"inputs\":{\"DEGREES\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"motion_turnright\",\"fields\":{}}"
 
-Native Func Motion::turnLeft(degrees: Text)
+Native Func Motion::turnLeft(degrees: Text) "{\"shadow\":false,\"inputs\":{\"DEGREES\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"motion_turnleft\",\"fields\":{}}"
 
-Native Func Motion::moveNamed(name: Text)
+Native Func Motion::moveNamed(name: Text) "{\"shadow\":false,\"inputs\":{\"TO\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"motion_goto\",\"fields\":{}}"
 
-Native Func Motion::moveXY(x: Text, y: Text)
+Native Func Motion::moveXY(x: Text, y: Text) "{\"shadow\":false,\"inputs\":{\"X\":[1,\"$TCS$I0\"],\"Y\":[1,\"$TCS$I1\"]},\"topLevel\":false,\"opcode\":\"motion_gotoxy\",\"fields\":{}}"
 
-Native Func Motion::glideNamed(name: Text)
+Native Func Motion::glideNamed(name: Text, time: Text) "{\"shadow\":false,\"inputs\":{\"SECS\":[1,\"$TCS$I1\"],\"TO\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"motion_glideto\",\"fields\":{}}"
 
-Native Func Motion::glideXY(x: Text, y: Text)
+Native Func Motion::glideXY(x: Text, y: Text, time: Text) "{\"shadow\":false,\"inputs\":{\"SECS\":[1,\"$TCS$I2\"],\"X\":[1,\"$TCS$I0\"],\"Y\":[1,\"$TCS$I1\"]},\"topLevel\":false,\"opcode\":\"motion_glidesecstoxy\",\"fields\":{}}"
 
-Native Func Motion::setDirectionDegrees(degrees: Text)
+Native Func Motion::setDirectionDegrees(degrees: Text) "{\"shadow\":false,\"inputs\":{\"DIRECTION\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"motion_pointindirection\",\"fields\":{}}"
 
-Native Func Motion::setDirectionTowards(name: Text)
+Native Func Motion::setDirectionTowards(name: Text) "{\"shadow\":false,\"inputs\":{\"TOWARDS\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"motion_pointtowards\",\"fields\":{}}"
 
-Native Func Motion::addX(x: Text)
 
-Native Func Motion::setX(x: Text)
+Native Func Motion::addX(x: Text) "{\"shadow\":false,\"inputs\":{\"DX\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"motion_changexby\",\"fields\":{}}"
 
-Native Func Motion::addY(y: Text)
+Native Func Motion::setX(x: Text) "{\"shadow\":false,\"inputs\":{\"X\":[1,"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"motion_setx\",\"fields\":{}}"
 
-Native Func Motion::setY(y: Text)
+Native Func Motion::addY(y: Text) "{\"shadow\":false,\"inputs\":{\"DY\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"motion_changeyby\",\"fields\":{}}"
 
-Native Func Motion::edgebounce()
+Native Func Motion::setY(y: Text) "{\"shadow\":false,\"inputs\":{\"Y\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"motion_sety\",\"fields\":{}}"
 
-Native Func Motion::setRotationStyle(style: Text)
+Native Func Motion::edgebounce() "{\"shadow\":false,\"inputs\":{},\"topLevel\":false,\"opcode\":\"motion_ifonedgebounce\",\"fields\":{}}"
 
-Native Reporter Func Motion::getXPos()
-Native Reporter Func Motion::getYPos()
-Native Reporter Func Motion::getDirection()
+// left-right or all around or don't rotate
+Native Func Motion::setRotationStyle(style: Text) "{\"shadow\":false,\"inputs\":{},\"topLevel\":false,\"opcode\":\"motion_setrotationstyle\",\"fields\":{\"STYLE\":[\"$TCS$F0\",null]}}"
+
+Native Reporter Func Motion::getXPos() "{\"shadow\":false,\"inputs\":{},\"topLevel\":false,\"opcode\":\"motion_xposition\",\"fields\":{}}"
+Native Reporter Func Motion::getYPos() "{\"shadow\":false,\"inputs\":{},\"topLevel\":false,\"opcode\":\"motion_yposition\",\"fields\":{}}"
+Native Reporter Func Motion::getDirection() "{\"shadow\":false,\"inputs\":{},\"topLevel\":false,\"opcode\":\"motion_direction\",\"fields\":{}}"
