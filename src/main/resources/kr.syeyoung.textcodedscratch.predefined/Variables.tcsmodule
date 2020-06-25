@@ -1,17 +1,17 @@
 Module
 
-Native Func Variables::show(variable: VariablePointer)
-Native Func Variables::hide(variable: VariablePointer)
+Native Func Variables::show(variable: VariablePointer) "{\"shadow\":false,\"inputs\":{},\"topLevel\":false,\"opcode\":\"data_showvariable\",\"fields\":{\"VARIABLE\":\"$TCS$I0\"}}"
+Native Func Variables::hide(variable: VariablePointer) "{\"shadow\":false,\"inputs\":{},\"topLevel\":false,\"opcode\":\"data_hidevariable\",\"fields\":{\"VARIABLE\":\"$TCS$I0\"}}"
 
-Native Func List::add(variable: VariablePointer, element: Text)
-Native Func List::delete(variable: VariablePointer, element: Text)
-Native Func List::deleteAll(variable: VariablePointer)
-Native Func List::insert(variable: VariablePointer, index: Text, element: Text)
-Native Func List::set(variable: VariablePointer, index: Text, element: Text)
-Native Reporter Func List::get(variable: VariablePointer, index: Text)
-Native Reporter Func List::indexOf(variable: VariablePointer, element: Text)
-Native Reporter Func List::getSize(variable: VariablePointer)
-Native Reporter Func List::contains(variable: VariablePointer, element: Text)
+Native Func List::add(variable: VariablePointer, element: Text) "{\"shadow\":false,\"inputs\":{\"ITEM\":[1,\"$TCS$I1\"]},\"topLevel\":false,\"opcode\":\"data_addtolist\",\"fields\":{\"LIST\":\"$TCS$I0\"}}"
+Native Func List::deleteIndex(variable: VariablePointer, index: Text) "{\"shadow\":false,\"inputs\":{\"INDEX\":[1,\"$TCS$I1\"]},\"topLevel\":false,\"opcode\":\"data_deleteoflist\",\"fields\":{\"LIST\":\"$TCS$I0\"}}"
+Native Func List::deleteAll(variable: VariablePointer) "{\"shadow\":false,\"inputs\":{},\"topLevel\":false,\"opcode\":\"data_deletealloflist\",\"fields\":{\"LIST\":\"$TCS$I0\"}}"
+Native Func List::insert(variable: VariablePointer, index: Text, element: Text) "{\"shadow\":false,\"inputs\":{\"ITEM\":[1,\"$TCS$I2\"],\"INDEX\":[1,\"$TCS$I1\"]},\"topLevel\":false,\"opcode\":\"data_insertatlist\",\"fields\":{\"LIST\":\"$TCS$I0\"}}"
+Native Func List::set(variable: VariablePointer, index: Text, element: Text) "{\"shadow\":false,\"inputs\":{\"ITEM\":[1,\"$TCS$I2\"],\"INDEX\":[1,\"$TCS$I1\"]},\"topLevel\":false,\"opcode\":\"data_replaceitemoflist\",\"fields\":{\"LIST\":\"$TCS$I0\"}}"
+Native Reporter Func List::get(variable: VariablePointer, index: Text) "{\"shadow\":false,\"inputs\":{\"INDEX\":[1,\"$TCS$I1\"]},\"topLevel\":false,\"opcode\":\"data_itemoflist\",\"fields\":{\"LIST\":\"$TCS$I0\"}}"
+Native Reporter Func List::indexOf(variable: VariablePointer, element: Text) "{\"shadow\":false,\"inputs\":{\"ITEM\":[1,\"$TCS$I1\"]},\"topLevel\":false,\"opcode\":\"data_itemnumoflist\",\"fields\":{\"LIST\":\"$TCS$I0\"}}"
+Native Reporter Func List::getSize(variable: VariablePointer) "{\"shadow\":false,\"inputs\":{},\"topLevel\":false,\"opcode\":\"data_lengthoflist\",\"fields\":{\"LIST\":\"$TCS$I0\"}}"
+Native Reporter Func List::contains(variable: VariablePointer, element: Text) "{\"shadow\":false,\"inputs\":{\"ITEM\":[1,\"$TCS$I1\"]},\"topLevel\":false,\"opcode\":\"data_listcontainsitem\",\"fields\":{\"LIST\":\"$TCS$I0\"}}"
 
-Native Func List::show(variable: VariablePointer)
-Native Func List::hide(variable: VariablePointer)
+Native Func List::show(variable: VariablePointer) "{\"shadow\":false,\"inputs\":{},\"topLevel\":false,\"opcode\":\"data_showlist\",\"fields\":{\"LIST\":\"$TCS$I0\"}}"
+Native Func List::hide(variable: VariablePointer) "{\"shadow\":false,\"inputs\":{},\"topLevel\":false,\"opcode\":\"data_hidelist\",\"fields\":{\"LIST\":\"$TCS$I0\"}}"
