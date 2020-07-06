@@ -18,7 +18,7 @@ public class StatementGroupingRule implements ParserRule {
         Iterator<ParserNode> pNodes = past.descendingIterator();
         if (!(pNodes.next() instanceof CBCloseToken)) return false;
         int nodes = 0;
-        int stmts = 0;
+        int stmts = 1;
         while(pNodes.hasNext()) {
             try {
                 ParserNode node = pNodes.next();

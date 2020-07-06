@@ -12,6 +12,10 @@ public class VariableExpression implements Expression {
     public VariableExpression(IdentifierToken variableName) {
         this.variableName = variableName;
     }
+    public VariableExpression(IdentifierToken variableName, boolean list) {
+        this.variableName = variableName;
+        this.isList = list;
+    }
     @Override
     public int getPriority() {
         return 4;

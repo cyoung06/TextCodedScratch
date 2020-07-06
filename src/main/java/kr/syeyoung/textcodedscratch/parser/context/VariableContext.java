@@ -5,18 +5,20 @@ import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.declaration.Variab
 import java.util.HashMap;
 import java.util.Objects;
 
-public class VariableContext implements IVariableContext {
+public class VariableContext implements ICodeContext {
     private HashMap<String, VariableDeclaration> variables = new HashMap<>();
 
-    private IVariableContext parentContext;
+    private ICodeContext parentContext;
+    private int stack = 0;
 
-    public VariableContext(IVariableContext parentContext) {
+
+    public VariableContext(ICodeContext parentContext) {
         this.parentContext = Objects.requireNonNull(parentContext);
     }
 
     @Override
-    public boolean isDefined(String variable) {
-        return variables.containsKey(variable) || parentContext.isDefined(variable);
+    public boolean isVarialbeDefined(String variable) {
+        return variables.containsKey(variable) || parentContext.isVarialbeDefined(variable);
     }
 
     @Override
@@ -28,5 +30,21 @@ public class VariableContext implements IVariableContext {
     @Override
     public void putVariable(VariableDeclaration variableDeclaration) {
         variables.put(Objects.requireNonNull(variableDeclaration).getName().getMatchedStr(), variableDeclaration);
+    }
+
+    @Override
+    public int incrementStackCount() {
+        ++stack;
+        return getTotalStackSize();
+    }
+
+    @Override
+    public int getLocalStackSize() {
+        return stack;
+    }
+
+    @Override
+    public int getTotalStackSize() {
+        return stack + parentContext.getTotalStackSize();
     }
 }

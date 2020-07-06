@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
-public class SpriteDefinition implements IVariableContext {
+public class SpriteDefinition implements ICodeContext {
     private SpriteDeclaration spriteName;
     private HashMap<String, VariableDeclaration> variables = new HashMap<>();
     private HashMap<String, ListDeclaration> lists = new HashMap<>();  // LISTS
@@ -91,7 +91,7 @@ public class SpriteDefinition implements IVariableContext {
     }
 
     @Override
-    public boolean isDefined(String variable) {
+    public boolean isVarialbeDefined(String variable) {
         return variables.containsKey(variable);
     }
 
@@ -103,5 +103,20 @@ public class SpriteDefinition implements IVariableContext {
     @Override
     public void putVariable(VariableDeclaration variableDeclaration) {
         variables.put(Objects.requireNonNull(variableDeclaration).getName().getMatchedStr(), variableDeclaration);
+    }
+
+    @Override
+    public int incrementStackCount() {
+        throw new UnsupportedOperationException("Sprite Definition does not have stack defined");
+    }
+
+    @Override
+    public int getLocalStackSize() {
+        return 0;
+    }
+
+    @Override
+    public int getTotalStackSize() {
+        return 0;
     }
 }

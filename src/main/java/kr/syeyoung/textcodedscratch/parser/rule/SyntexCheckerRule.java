@@ -1,7 +1,9 @@
 package kr.syeyoung.textcodedscratch.parser.rule;
 
 import kr.syeyoung.textcodedscratch.parser.ParserNode;
-import kr.syeyoung.textcodedscratch.parser.context.IVariableContext;
+import kr.syeyoung.textcodedscratch.parser.StackAddingOperation;
+import kr.syeyoung.textcodedscratch.parser.StackRequringOperation;
+import kr.syeyoung.textcodedscratch.parser.context.ICodeContext;
 import kr.syeyoung.textcodedscratch.parser.context.SpriteDefinition;
 import kr.syeyoung.textcodedscratch.parser.exception.ParsingGrammarException;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.FunctionCall;
@@ -15,13 +17,12 @@ import kr.syeyoung.textcodedscratch.parser.tokens.terminal.brackets.CBCloseToken
 import kr.syeyoung.textcodedscratch.parser.tokens.terminal.brackets.CBOpenToken;
 
 import java.util.LinkedList;
-import java.util.Queue;
 
 public class SyntexCheckerRule implements ParserRule {
     private SpriteDefinition definition = new SpriteDefinition();
 
-    private LinkedList<IVariableContext> variableContextQueue = new LinkedList<>();
-    private IVariableContext lastContext = definition;
+    private LinkedList<ICodeContext> variableContextQueue = new LinkedList<>();
+    private ICodeContext lastContext = definition;
 
     public SpriteDefinition getDefinition() {
         return definition;
@@ -102,7 +103,7 @@ public class SyntexCheckerRule implements ParserRule {
             definition.getEvents().add(fcs);
         } else if (node instanceof VariableExpression) {
             String name = ((VariableExpression) node).getVariableName().getMatchedStr();
-            if (lastContext.isDefined(name)) {
+            if (lastContext.isVarialbeDefined(name)) {
                 VariableDeclaration varDec = lastContext.getVariable(name);
                 if (varDec instanceof CostumeDeclaration || varDec instanceof SoundDeclaration) {
                     past.removeLast();
@@ -116,14 +117,23 @@ public class SyntexCheckerRule implements ParserRule {
         } else if (node instanceof CBOpenToken) {
             variableContextQueue.add(lastContext = ((CBOpenToken) node).createContext(lastContext));
         } else if (node instanceof CBCloseToken) {
+            ((CBCloseToken) node).setICodeContext(lastContext);
             variableContextQueue.removeLast();
             lastContext = variableContextQueue.getLast();
+        }
+
+        if (node instanceof StackRequringOperation) {
+            ((StackRequringOperation) node).setCurrentStack(lastContext.getTotalStackSize());
+        }
+
+        if (node instanceof StackAddingOperation) {
+            lastContext.incrementStackCount();
         }
         return false;
     }
 
     public boolean checkDuplicate(String name) {
-        if (lastContext.isDefined(name)) {
+        if (lastContext.isVarialbeDefined(name)) {
             return true;
         } else if (definition.getLists().containsKey(name)) {
             return true;

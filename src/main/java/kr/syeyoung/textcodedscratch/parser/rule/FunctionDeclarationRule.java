@@ -1,7 +1,7 @@
 package kr.syeyoung.textcodedscratch.parser.rule;
 
 import kr.syeyoung.textcodedscratch.parser.ParserNode;
-import kr.syeyoung.textcodedscratch.parser.context.IVariableContext;
+import kr.syeyoung.textcodedscratch.parser.context.ICodeContext;
 import kr.syeyoung.textcodedscratch.parser.exception.ParsingGrammarException;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.AccessedIdentifier;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.declaration.FunctionDeclaration;
@@ -15,17 +15,13 @@ import kr.syeyoung.textcodedscratch.parser.tokens.terminal.IdentifierToken;
 import kr.syeyoung.textcodedscratch.parser.tokens.terminal.brackets.CBOpenToken;
 import kr.syeyoung.textcodedscratch.parser.tokens.terminal.brackets.PCloseToken;
 import kr.syeyoung.textcodedscratch.parser.tokens.terminal.brackets.POpenToken;
-import kr.syeyoung.textcodedscratch.parser.tokens.terminal.brackets.SBOpenToken;
 import kr.syeyoung.textcodedscratch.parser.tokens.terminal.constant.StringToken;
 import kr.syeyoung.textcodedscratch.parser.tokens.terminal.keywords.KeywordFunc;
 import kr.syeyoung.textcodedscratch.parser.tokens.terminal.keywords.KeywordNative;
-import kr.syeyoung.textcodedscratch.parser.tokens.terminal.keywords.KeywordNode;
 import kr.syeyoung.textcodedscratch.parser.tokens.terminal.keywords.KeywordReporter;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.List;
 
 public class FunctionDeclarationRule implements ParserRule {
     @Override
@@ -99,8 +95,8 @@ public class FunctionDeclarationRule implements ParserRule {
             future.removeFirst();
             future.addFirst(new CBOpenToken("{") {
                 @Override
-                public IVariableContext createContext(IVariableContext parent) {
-                    IVariableContext context = super.createContext(parent);
+                public ICodeContext createContext(ICodeContext parent) {
+                    ICodeContext context = super.createContext(parent);
                     for (FunctionParameter p:parameters)
                         context.putVariable(p);
                     return context;
