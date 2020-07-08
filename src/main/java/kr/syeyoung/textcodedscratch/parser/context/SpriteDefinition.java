@@ -111,6 +111,11 @@ public class SpriteDefinition implements ICodeContext {
     }
 
     @Override
+    public int decrementStackCount() {
+        throw new UnsupportedOperationException("Sprite Definition does not have stack defined");
+    }
+
+    @Override
     public int getLocalStackSize() {
         return 0;
     }

@@ -37,6 +37,11 @@ public class VariableContext implements ICodeContext {
         ++stack;
         return getTotalStackSize();
     }
+    @Override
+    public int decrementStackCount() {
+        --stack;
+        return getTotalStackSize();
+    }
 
     @Override
     public int getLocalStackSize() {

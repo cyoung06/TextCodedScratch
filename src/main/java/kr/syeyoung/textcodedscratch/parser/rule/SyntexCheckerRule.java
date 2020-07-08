@@ -2,6 +2,7 @@ package kr.syeyoung.textcodedscratch.parser.rule;
 
 import kr.syeyoung.textcodedscratch.parser.ParserNode;
 import kr.syeyoung.textcodedscratch.parser.StackAddingOperation;
+import kr.syeyoung.textcodedscratch.parser.StackRemovingOperation;
 import kr.syeyoung.textcodedscratch.parser.StackRequringOperation;
 import kr.syeyoung.textcodedscratch.parser.context.ICodeContext;
 import kr.syeyoung.textcodedscratch.parser.context.SpriteDefinition;
@@ -126,6 +127,9 @@ public class SyntexCheckerRule implements ParserRule {
         }
         if (node instanceof StackAddingOperation) {
             lastContext.incrementStackCount();
+        }
+        if (node instanceof StackRemovingOperation) {
+            lastContext.decrementStackCount();
         }
         if (node instanceof StackRequringOperation) {
             ((StackRequringOperation) node).setCurrentStack(lastContext.getTotalStackSize());

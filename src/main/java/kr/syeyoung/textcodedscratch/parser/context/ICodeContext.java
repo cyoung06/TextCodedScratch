@@ -10,6 +10,7 @@ public interface ICodeContext {
     public void putVariable(VariableDeclaration variableDeclaration);
 
     public int incrementStackCount();
+    public int decrementStackCount();
     public int getLocalStackSize();
     public int getTotalStackSize();
 }
