@@ -34,6 +34,7 @@ public class EventDeclarationRule implements ParserRule {
                 IdentifierToken identifierToken = (IdentifierToken) past.removeLast();
                 past.removeLast();
                 past.removeLast();
+
                 future.addFirst(new EventDeclaration(identifierToken, inside, optionalToken));
                 return true;
             }

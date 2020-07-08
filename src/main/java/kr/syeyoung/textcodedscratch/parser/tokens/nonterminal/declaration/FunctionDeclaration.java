@@ -1,12 +1,14 @@
 package kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.declaration;
 
 import kr.syeyoung.textcodedscratch.parser.ParserNode;
+import kr.syeyoung.textcodedscratch.parser.tokens.terminal.constant.StringToken;
 import kr.syeyoung.textcodedscratch.parser.util.ScratchBlockBuilder;
 import kr.syeyoung.textcodedscratch.parser.ScratchTransferable;
 import kr.syeyoung.textcodedscratch.parser.util.ScriptBuilder;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.function.FunctionParameter;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.statements.GroupedStatements;
 import kr.syeyoung.textcodedscratch.parser.tokens.terminal.IdentifierToken;
+import kr.syeyoung.textcodedscratch.parser.util.StackHelper;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -69,9 +71,12 @@ public class FunctionDeclaration implements ParserNode, ScratchTransferable, Dec
         }
         builder.putComplexObject(defID, new ScratchBlockBuilder().op("procedures_definition").nextId(null).parentId(parentId).input("custom_block", new JSONArray().put(1).put(protoID)).shadow(false).topLevel(true).xy(0,0).build());
 
-        Object id2 = toExecute.buildJSON(defID, nextId, builder);
+        Object id2 = toExecute.buildJSON(defID, null, builder);
         builder.getComplexObject(defID).put("next", id2 == null ? JSONObject.NULL : id2);
-        return id2;
+
+        String id3 = StackHelper.putStack(builder, (String) id2, nextId, new StringToken(""));
+        builder.getComplexObject((String) id2).put("next", id3 == null ? JSONObject.NULL : id3);
+        return id3;
     }
 
     @Override

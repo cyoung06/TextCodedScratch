@@ -1,10 +1,14 @@
 package kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.expression;
 
 import kr.syeyoung.textcodedscratch.parser.ParserNode;
+import kr.syeyoung.textcodedscratch.parser.StatementFormedListener;
+import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.statements.Statements;
 import kr.syeyoung.textcodedscratch.parser.util.ScriptBuilder;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.function.FunctionParameter;
 
-public class GroupedExpression implements Expression {
+import java.util.LinkedList;
+
+public class GroupedExpression implements Expression, StatementFormedListener {
     private Expression expr;
 
     public GroupedExpression(Expression expr) {
@@ -39,5 +43,11 @@ public class GroupedExpression implements Expression {
     @Override
     public Object buildJSON(String parentId, String nextId, ScriptBuilder builder) {
         return expr.buildJSON(parentId, nextId, builder);
+    }
+
+    @Override
+    public void process(Statements formed, ParserNode parent, LinkedList<ParserNode> past, LinkedList<ParserNode> future) {
+        if (expr instanceof StatementFormedListener)
+            ((StatementFormedListener) expr).process(formed, formed, past, future);
     }
 }

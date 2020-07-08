@@ -108,6 +108,9 @@ public class SyntexCheckerRule implements ParserRule {
                 if (varDec instanceof CostumeDeclaration || varDec instanceof SoundDeclaration) {
                     past.removeLast();
                     past.addLast(new ConstantVariableExpression(varDec.getName(), varDec.getDefaultValue()));
+                } else if (varDec instanceof LocalVariableDeclaration) {
+                    past.removeLast();
+                    past.addLast(node = new LocalVariableExpression(varDec.getName(), (LocalVariableDeclaration) varDec));
                 }
             } else if (definition.getLists().containsKey(name)) {
                 ((VariableExpression) node).setList(true);
@@ -121,14 +124,13 @@ public class SyntexCheckerRule implements ParserRule {
             variableContextQueue.removeLast();
             lastContext = variableContextQueue.getLast();
         }
-
+        if (node instanceof StackAddingOperation) {
+            lastContext.incrementStackCount();
+        }
         if (node instanceof StackRequringOperation) {
             ((StackRequringOperation) node).setCurrentStack(lastContext.getTotalStackSize());
         }
 
-        if (node instanceof StackAddingOperation) {
-            lastContext.incrementStackCount();
-        }
         return false;
     }
 

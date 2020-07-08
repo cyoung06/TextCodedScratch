@@ -2,14 +2,15 @@ package kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.statements;
 
 import kr.syeyoung.textcodedscratch.parser.ParserNode;
 import kr.syeyoung.textcodedscratch.parser.StackAddingOperation;
-import kr.syeyoung.textcodedscratch.parser.util.ScratchBlockBuilder;
-import kr.syeyoung.textcodedscratch.parser.util.ScriptBuilder;
+import kr.syeyoung.textcodedscratch.parser.StackRequringOperation;
 import kr.syeyoung.textcodedscratch.parser.exception.ParsingGrammarException;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.FunctionCall;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.declaration.FunctionDeclaration;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.expression.Expression;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.function.FunctionParameter;
 import kr.syeyoung.textcodedscratch.parser.tokens.terminal.IdentifierToken;
+import kr.syeyoung.textcodedscratch.parser.util.ScratchBlockBuilder;
+import kr.syeyoung.textcodedscratch.parser.util.ScriptBuilder;
 import kr.syeyoung.textcodedscratch.parser.util.StackHelper;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -17,14 +18,16 @@ import org.json.JSONObject;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
-public class FunctionCallStatement implements Statements, FunctionCall {
+public class FunctionExprCallMicroStatement implements Statements, FunctionCall, StackRequringOperation {
     private IdentifierToken identifierToken;
     private Expression[] parameters;
+    private Statements stmt;
 
     private FunctionDeclaration functionDeclaration;
 
-    public FunctionCallStatement(IdentifierToken token, Expression[] expressions) {
+    public FunctionExprCallMicroStatement(IdentifierToken token, Expression[] expressions, Statements stmt) {
         this.identifierToken = token;
+        this.stmt = stmt;
         this.parameters = expressions;
     }
 
@@ -70,9 +73,19 @@ public class FunctionCallStatement implements Statements, FunctionCall {
             sbb.input(id, parameters[i].buildJSON(id2, null, builder));
         }
         sbb.put("mutation", new JSONObject().put("tagName", "mutation").put("children", new JSONArray()).put("proccode", procCode).put("argumentids", inputIDs.toString()));
-        String id3 = StackHelper.deallocateStack(builder, id2, nextId, 1);
-        sbb.nextId(id3);
         builder.putComplexObject(id2, sbb.build());
-        return id3;
+        return id2;
+    }
+
+
+    private int stack;
+    @Override
+    public void setCurrentStack(int stackSize) {
+        this.stack = stackSize;
+    }
+
+    @Override
+    public int getCurrentStack() {
+        return stack;
     }
 }

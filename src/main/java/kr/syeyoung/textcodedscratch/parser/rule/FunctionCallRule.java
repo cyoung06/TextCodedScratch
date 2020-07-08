@@ -1,6 +1,7 @@
 package kr.syeyoung.textcodedscratch.parser.rule;
 
 import kr.syeyoung.textcodedscratch.parser.ParserNode;
+import kr.syeyoung.textcodedscratch.parser.StatementFormedListener;
 import kr.syeyoung.textcodedscratch.parser.exception.ParsingGrammarException;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.expression.Expression;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.statements.FunctionCallStatement;
@@ -41,7 +42,13 @@ public class FunctionCallRule implements ParserRule {
         if (weirdnessFound) throw new ParsingGrammarException("Invalid Function Call To :: "+id + " :: Check parameters");
         Collections.reverse(expressions);
         for (int i =0; i < tokensRead; i++) past.removeLast();
-        future.addFirst(new FunctionCallStatement((IdentifierToken)id, expressions.toArray(new Expression[0])));
+        FunctionCallStatement fcs;
+        future.addFirst(fcs = new FunctionCallStatement((IdentifierToken)id, expressions.toArray(new Expression[0])));
+        for (Expression expr: expressions) {
+            if (expr instanceof StatementFormedListener) {
+                ((StatementFormedListener) expr).process(fcs, fcs, past, future);
+            }
+        }
         return true;
     }
 }

@@ -1,6 +1,7 @@
 package kr.syeyoung.textcodedscratch.parser.rule;
 
 import kr.syeyoung.textcodedscratch.parser.ParserNode;
+import kr.syeyoung.textcodedscratch.parser.StatementFormedListener;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.AccessedIdentifier;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.expression.Expression;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.expression.VariableExpression;
@@ -25,7 +26,10 @@ public class VariableAssignmentRule implements ParserRule {
             VariableExpression name = (VariableExpression) past.removeLast();
             past.removeLast();
             if (name.getVariableName() instanceof AccessedIdentifier) throw new RuntimeException("Variable name shouldn't be accessed identifier - "+name);
-            future.addFirst(new VariableAssignment(name, token.simplify()));
+            VariableAssignment va;
+            future.addFirst(va = new VariableAssignment(name, token.simplify()));
+            if (token instanceof StatementFormedListener)
+                ((StatementFormedListener) token).process(va, va, past, future);
             return true;
         }
         return false;

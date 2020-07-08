@@ -1,13 +1,17 @@
 package kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.expression;
 
 import kr.syeyoung.textcodedscratch.parser.ParserNode;
+import kr.syeyoung.textcodedscratch.parser.StatementFormedListener;
+import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.statements.Statements;
 import kr.syeyoung.textcodedscratch.parser.util.ScriptBuilder;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.function.FunctionParameter;
 import kr.syeyoung.textcodedscratch.parser.tokens.terminal.constant.ConstantNode;
 import kr.syeyoung.textcodedscratch.parser.tokens.terminal.operators.OperatorNode;
 import org.json.JSONObject;
 
-public class TwoTermedExpression implements Expression {
+import java.util.LinkedList;
+
+public class TwoTermedExpression implements Expression, StatementFormedListener {
     private Expression firstTerm;
     private OperatorNode operator;
     private Expression secondTerm;
@@ -68,5 +72,14 @@ public class TwoTermedExpression implements Expression {
     @Override
     public int getPriority() {
         return operator.getPriority();
+    }
+
+
+    @Override
+    public void process(Statements formed, ParserNode parent, LinkedList<ParserNode> past, LinkedList<ParserNode> future) {
+        if (firstTerm instanceof StatementFormedListener)
+            ((StatementFormedListener) firstTerm).process(formed, this, past, future);
+        if (secondTerm instanceof StatementFormedListener)
+            ((StatementFormedListener) secondTerm).process(formed, this, past, future);
     }
 }

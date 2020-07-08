@@ -1,10 +1,15 @@
 package kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.expression;
 
 import kr.syeyoung.textcodedscratch.parser.ParserNode;
+import kr.syeyoung.textcodedscratch.parser.StatementFormedListener;
+import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.statements.Statements;
+import kr.syeyoung.textcodedscratch.parser.tokens.terminal.constant.StringToken;
 import kr.syeyoung.textcodedscratch.parser.util.ScriptBuilder;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.function.FunctionParameter;
 
-public class WrappingExpression implements Expression {
+import java.util.LinkedList;
+
+public class WrappingExpression implements Expression, StatementFormedListener {
     private Expression parent;
     private int priority;
     public WrappingExpression(Expression expr, int priority) {
@@ -45,5 +50,11 @@ public class WrappingExpression implements Expression {
     @Override
     public String toString() {
         return "{"+parent.toString()+", "+priority+"}";
+    }
+
+    @Override
+    public void process(Statements formed, ParserNode parent, LinkedList<ParserNode> past, LinkedList<ParserNode> future) {
+        if (parent instanceof StatementFormedListener)
+            ((StatementFormedListener) parent).process(formed, parent, past, future);
     }
 }

@@ -1,6 +1,7 @@
 package kr.syeyoung.textcodedscratch.parser.rule;
 
 import kr.syeyoung.textcodedscratch.parser.ParserNode;
+import kr.syeyoung.textcodedscratch.parser.StatementFormedListener;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.expression.Expression;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.expression.GroupedExpression;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.statements.Statements;
@@ -22,7 +23,10 @@ public class WhileStatementRule implements ParserRule {
 
             Statements stmts = (Statements) past.removeLast();
             Expression expr = (Expression) past.removeLast(); past.removeLast();past.removeLast();
-            future.addFirst(new WhileStatement(expr, stmts));
+            WhileStatement ws;
+            future.addFirst(ws = new WhileStatement(expr, stmts));
+            if (expr instanceof StatementFormedListener)
+                ((StatementFormedListener) expr).process(ws, ws, past, future);
             return true;
         } else if ((it = past.descendingIterator()) != null && it.next() instanceof GroupedExpression && it.next() instanceof KeywordWhile && it.next() instanceof EOSToken) {
             past.add(new EOSToken("while"));

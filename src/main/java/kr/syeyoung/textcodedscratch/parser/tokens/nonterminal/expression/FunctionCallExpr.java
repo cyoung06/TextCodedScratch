@@ -1,16 +1,24 @@
 package kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.expression;
 
 import kr.syeyoung.textcodedscratch.parser.ParserNode;
+import kr.syeyoung.textcodedscratch.parser.StackAddingOperation;
+import kr.syeyoung.textcodedscratch.parser.StackRequringOperation;
+import kr.syeyoung.textcodedscratch.parser.StatementFormedListener;
+import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.statements.FunctionExprCallMicroStatement;
+import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.statements.FunctionExprCallStackClearingMicroStatement;
+import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.statements.Statements;
 import kr.syeyoung.textcodedscratch.parser.util.ScriptBuilder;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.FunctionCall;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.declaration.FunctionDeclaration;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.function.FunctionParameter;
 import kr.syeyoung.textcodedscratch.parser.tokens.terminal.IdentifierToken;
+import kr.syeyoung.textcodedscratch.parser.util.StackHelper;
 
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.stream.Collectors;
 
-public class FunctionCallExpr implements Expression, FunctionCall {
+public class FunctionCallExpr implements Expression, FunctionCall, StatementFormedListener, StackRequringOperation, StackAddingOperation {
     private IdentifierToken identifierToken;
     private Expression[] parameters;
     private FunctionDeclaration functionDeclaration;
@@ -61,7 +69,29 @@ public class FunctionCallExpr implements Expression, FunctionCall {
 
     @Override
     public Object buildJSON(String parentId, String nextId, ScriptBuilder builder) {
+        return StackHelper.accessStack(builder, parentId, nextId,  stack- fecms.getCurrentStack());
+    }
 
-        throw new AssertionError("Not implemented");
+    private Statements stmt;
+    private FunctionExprCallMicroStatement fecms;
+    @Override
+    public void process(Statements formed, ParserNode parent, LinkedList<ParserNode> past, LinkedList<ParserNode> future) {
+        // TODO
+        this.stmt = formed;
+        int index = future.indexOf(formed);
+        future.add(index+1, new FunctionExprCallStackClearingMicroStatement(formed));
+        future.addFirst(fecms = new FunctionExprCallMicroStatement(identifierToken, parameters, formed));
+    }
+
+
+    private int stack;
+    @Override
+    public void setCurrentStack(int stackSize) {
+        this.stack = stackSize;
+    }
+
+    @Override
+    public int getCurrentStack() {
+        return stack;
     }
 }

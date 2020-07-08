@@ -1,6 +1,7 @@
 package kr.syeyoung.textcodedscratch.parser.rule;
 
 import kr.syeyoung.textcodedscratch.parser.ParserNode;
+import kr.syeyoung.textcodedscratch.parser.StatementFormedListener;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.expression.Expression;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.expression.GroupedExpression;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.statements.IfElseStatement;
@@ -24,7 +25,10 @@ public class IfElseStatementRule implements ParserRule {
             Statements stmts = (Statements) past.removeLast(); past.removeLast(); past.removeLast();
             Statements ifstmts = (Statements) past.removeLast();
             Expression expr = (Expression) past.removeLast(); past.removeLast();past.removeLast();
-            future.addFirst(new IfElseStatement(expr.simplify(), ifstmts, stmts));
+            IfElseStatement ies;
+            future.addFirst(ies = new IfElseStatement(expr.simplify(), ifstmts, stmts));
+            if (expr instanceof StatementFormedListener)
+                ((StatementFormedListener) expr).process(ies, ies, past, future);
             return true;
         } else if ((it = past.descendingIterator()) != null && it.next() instanceof KeywordElse && it.next() instanceof EOSToken) {
             past.add(new EOSToken("if"));
