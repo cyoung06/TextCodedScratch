@@ -33,7 +33,7 @@ public class EventDeclaration implements ParserNode, ScratchTransferable, Declar
 
     @Override
     public ParserNode[] getChildren() {
-        return new ParserNode[] {identifierToken, toExecute};
+        return new ParserNode[] {identifierToken, toExecute, optionalParameter};
     }
 
     public IdentifierToken getEvent() {

@@ -88,14 +88,8 @@ public class SyntexCheckerRule implements ParserRule {
             if (fd.getParameters().length != fcs.getParameters().length) throw new ParsingGrammarException("Parameter size mismatch" + fcs.getFunctionName().getMatchedStr());
             fcs.setFunctionDeclaration(fd);
             for (int i = 0; i < fd.getParameters().length; i++) {
-                if (fd.getParameters()[i].getType() == FunctionParameter.ParameterType.VARIABLE_POINTER) {
-                    if (!(fcs.getParameters()[i] instanceof OneTermedExpression && fcs.getParameters()[i].getReturnType() == FunctionParameter.ParameterType.VARIABLE_POINTER)) {
-                        throw new ParsingGrammarException("Variable pointer expected on function call to " + fcs.getFunctionName().getMatchedStr() +" But found non-variable pointer");
-                    }
-                } else {
-                    if (fcs.getParameters()[i] instanceof OneTermedExpression && fcs.getParameters()[i].getReturnType() == FunctionParameter.ParameterType.VARIABLE_POINTER) {
-                        throw new ParsingGrammarException("Non-variable pointer expected on function call to " + fcs.getFunctionName().getMatchedStr() +" But found variable pointer");
-                    }
+                if (fd.getParameters()[i].getType() != fcs.getParameters()[i].getReturnType()) {
+                    throw new ParsingGrammarException("Argument Type mismatch while calling " + fcs.getFunctionName().getMatchedStr() +" expected type "+fd.getParameters()[i].getType() +" but found " +fcs.getParameters()[i].getReturnType());
                 }
             }
             if (fd instanceof NativeFunctionDeclaration && !(fcs instanceof NativeFunctionCall)) {
@@ -130,6 +124,9 @@ public class SyntexCheckerRule implements ParserRule {
                 } else if (varDec instanceof LocalVariableDeclaration) {
                     past.removeLast();
                     past.addLast(node = new LocalVariableExpression(varDec.getName(), (LocalVariableDeclaration) varDec));
+                } else if (varDec instanceof FunctionParameter) {
+                    past.removeLast();
+                    past.addLast(new FunctionVariableExpression(varDec.getName(), (FunctionParameter) varDec));
                 }
             } else if (definition.getLists().containsKey(name)) {
                 ((VariableExpression) node).setList(true);
@@ -145,9 +142,11 @@ public class SyntexCheckerRule implements ParserRule {
         }
         if (node instanceof StackAddingOperation) {
             lastContext.incrementStackCount();
+            System.out.println("stack incremented by" +node);
         }
         if (node instanceof StackRemovingOperation) {
             lastContext.decrementStackCount();
+            System.out.println("stack decremented by" +node);
         }
         if (node instanceof StackRequringOperation) {
             ((StackRequringOperation) node).setCurrentStack(lastContext.getTotalStackSize());

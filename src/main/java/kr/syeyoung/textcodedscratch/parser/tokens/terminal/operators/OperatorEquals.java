@@ -34,6 +34,6 @@ public class OperatorEquals extends OperatorNode {
     @Override
     public ConstantNode operate(ConstantNode... nodes) {
         ConstantNode par1 = nodes[0], par2 = nodes[1];
-        return new BooleanToken(par1.getValue() == par2.getValue());
+        return new BooleanToken(par1.getValue().equals(par2.getValue()));
     }
 }

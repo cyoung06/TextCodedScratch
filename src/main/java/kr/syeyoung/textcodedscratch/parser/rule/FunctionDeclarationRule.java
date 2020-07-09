@@ -111,15 +111,15 @@ public class FunctionDeclarationRule implements ParserRule {
             }
             if (identifierToken instanceof AccessedIdentifier) throw new RuntimeException("Function name shouldn't be accessed identifier - "+identifierToken);
             future.removeFirst();
-            future.addFirst(new CBOpenToken("{") {
-                @Override
-                public ICodeContext createContext(ICodeContext parent) {
-                    ICodeContext context = super.createContext(parent);
-                    for (FunctionParameter p:parameters)
-                        context.putVariable(p);
-                    return context;
-                }
-            });
+//            future.addFirst(new CBOpenToken("{") {
+//                @Override
+//                public ICodeContext createContext(ICodeContext parent) {
+//                    ICodeContext context = super.createContext(parent);
+//                    for (FunctionParameter p:parameters)
+//                        context.putVariable(p);
+//                    return context;
+//                }
+//            });
             future.addFirst(new FunctionDeclaration(identifierToken, parameters, inside));
 
             scr.getVariableContextQueue().removeLast();

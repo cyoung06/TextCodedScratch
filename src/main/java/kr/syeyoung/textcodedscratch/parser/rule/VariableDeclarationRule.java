@@ -10,6 +10,7 @@ import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.declaration.Declar
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.declaration.VariableDeclaration;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.expression.LocalVariableExpression;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.expression.OneTermedExpression;
+import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.statements.Statements;
 import kr.syeyoung.textcodedscratch.parser.tokens.terminal.EOSToken;
 import kr.syeyoung.textcodedscratch.parser.tokens.terminal.IdentifierToken;
 import kr.syeyoung.textcodedscratch.parser.tokens.terminal.constant.ConstantNode;
@@ -32,18 +33,18 @@ public class VariableDeclarationRule implements ParserRule {
             boolean isGlobal = node1 instanceof KeywordGlobal;
             if (isGlobal) node1 = (ParserNode) it.next();
             ParserNode nextDec = (ParserNode) it.next();
-            if (!(node1 instanceof EOSToken && nextDec instanceof Declaration)) {
+            if (!(node1 instanceof EOSToken)) return false;
+            if (!(nextDec instanceof Declaration) || nextDec instanceof Statements) {
                 if (isGlobal) throw new ParsingGrammarException("Local Variable can not be global variable");
                 Expression token = (Expression) past.removeLast();
                 Expression simplified = token.simplify();
-                if (!(simplified instanceof ConstantNode)) throw new ParsingGrammarException("No variabled expression inside variable declaration");
                 past.removeLast();
                 IdentifierToken name = (IdentifierToken) past.removeLast();
                 past.removeLast();
                 past.removeLast();
                 if (name instanceof AccessedIdentifier) throw new ParsingGrammarException("Variable name shouldn't be accessed identifier - "+name);
                 LocalVariableDeclaration lvd;
-                future.addFirst(lvd = new LocalVariableDeclaration(name, (ConstantNode) simplified));
+                future.addFirst(lvd = new LocalVariableDeclaration(name, simplified));
                 if (simplified instanceof StatementFormedListener)
                     ((StatementFormedListener) simplified).process(lvd, lvd, past, future);
             } else {

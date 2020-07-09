@@ -60,7 +60,9 @@ public class StackHelper {
         }, new StringToken("\"{\"shadow\":false,\"inputs\":{\"INDEX\":[1,\"$TCS$I1\"]},\"topLevel\":false,\"opcode\":\"data_itemoflist\",\"fields\":{\"LIST\":\"$TCS$I0\"}}\""), true);
         NativeFunctionCallExpr nfcs = new NativeFunctionCallExpr(new IdentifierToken("get"), new Expression[] {
                 new OneTermedExpression(new VariableExpression(new IdentifierToken("$THREAD_STACK$"), true), new OperatorGetName()),
-                new TwoTermedExpression(new NativeFunctionCallExpr(new IdentifierToken("size"), new Expression[] {
+                sizeDiff == 0 ?  new NativeFunctionCallExpr(new IdentifierToken("size"), new Expression[] {
+                        new OneTermedExpression(new VariableExpression(new IdentifierToken("$THREAD_STACK$"), true), new OperatorGetName())
+                }, nfdSize) : new TwoTermedExpression(new NativeFunctionCallExpr(new IdentifierToken("size"), new Expression[] {
                         new OneTermedExpression(new VariableExpression(new IdentifierToken("$THREAD_STACK$"), true), new OperatorGetName())
                 }, nfdSize), new OperatorMinus(), new NumberToken(sizeDiff))
         }, nfd);
@@ -77,7 +79,9 @@ public class StackHelper {
         }, new StringToken("\"{\"shadow\":false,\"inputs\":{\"ITEM\":[1,\"$TCS$I2\"],\"INDEX\":[1,\"$TCS$I1\"]},\"topLevel\":false,\"opcode\":\"data_replaceitemoflist\",\"fields\":{\"LIST\":\"$TCS$I0\"}}\""), false);
         NativeFunctionCallStatement nfcs = new NativeFunctionCallStatement(new IdentifierToken("replace"), new Expression[] {
                 new OneTermedExpression(new VariableExpression(new IdentifierToken("$THREAD_STACK$"), true), new OperatorGetName()),
-                new TwoTermedExpression(new NativeFunctionCallExpr(new IdentifierToken("size"), new Expression[] {
+                sizeDiff == 0 ?  new NativeFunctionCallExpr(new IdentifierToken("size"), new Expression[] {
+                        new OneTermedExpression(new VariableExpression(new IdentifierToken("$THREAD_STACK$"), true), new OperatorGetName())
+                }, nfdSize) : new TwoTermedExpression(new NativeFunctionCallExpr(new IdentifierToken("size"), new Expression[] {
                         new OneTermedExpression(new VariableExpression(new IdentifierToken("$THREAD_STACK$"), true), new OperatorGetName())
                 }, nfdSize), new OperatorMinus(), new NumberToken(sizeDiff)),
                 exprToPut

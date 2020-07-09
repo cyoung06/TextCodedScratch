@@ -26,7 +26,7 @@ public class VariableDeclaration implements ParserNode, Declaration {
 
     @Override
     public ParserNode[] getChildren() {
-        return new ParserNode[] {name};
+        return new ParserNode[] {name, defaultValue};
     }
 
     @Override

@@ -46,10 +46,18 @@ public class VariableAssignment implements Statements, StackRequringOperation {
     @Override
     public void setCurrentStack(int stackSize) {
         this.currentStack = stackSize;
+        if (stackAtExe == -1)
+            stackAtExe = stackSize;
     }
 
     @Override
     public int getCurrentStack() {
         return currentStack;
+    }
+
+    private int stackAtExe = -1;
+    @Override
+    public int getStackCountAtExecution() {
+        return stackAtExe;
     }
 }

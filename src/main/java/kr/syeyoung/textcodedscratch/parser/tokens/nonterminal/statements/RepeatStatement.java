@@ -31,4 +31,23 @@ public class RepeatStatement implements Statements {
         builder.putComplexObject(id, new ScratchBlockBuilder().op("control_repeat").nextId(nextId).parentId(parentId).input("TIMES", countObj[0]).input("SUBSTACK", stmtObj[0]).shadow(false).topLevel(false).build());
         return new String[] {id, id};
     }
+
+    private int stack;
+    @Override
+    public void setCurrentStack(int stackSize) {
+        this.stack = stackSize;
+        if (stackAtExe == -1)
+            stackAtExe = stackSize;
+    }
+
+    @Override
+    public int getCurrentStack() {
+        return stack;
+    }
+
+    private int stackAtExe = -1;
+    @Override
+    public int getStackCountAtExecution() {
+        return stackAtExe;
+    }
 }

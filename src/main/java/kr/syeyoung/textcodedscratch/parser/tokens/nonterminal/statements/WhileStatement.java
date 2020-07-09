@@ -33,4 +33,24 @@ public class WhileStatement implements Statements {
         builder.putComplexObject(id, new ScratchBlockBuilder().op("control_repeat_until").nextId(nextId).parentId(parentId).input("CONDITION", conditionObj[0]).input("SUBSTACK", stack1[0]).shadow(false).topLevel(false).build());
         return new Object[] {id, id};
     }
+
+
+    private int stack;
+    @Override
+    public void setCurrentStack(int stackSize) {
+        this.stack = stackSize;
+        if (stackAtExe == -1)
+            stackAtExe = stackSize;
+    }
+
+    @Override
+    public int getCurrentStack() {
+        return stack;
+    }
+
+    private int stackAtExe = -1;
+    @Override
+    public int getStackCountAtExecution() {
+        return stackAtExe;
+    }
 }

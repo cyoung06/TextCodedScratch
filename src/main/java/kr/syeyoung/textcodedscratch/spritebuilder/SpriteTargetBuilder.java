@@ -150,8 +150,11 @@ public class SpriteTargetBuilder {
         JSONObject lists = new JSONObject();
         for (ListDeclaration varDec: definition.getLists().values()) {
             JSONArray arr = new JSONArray().put(varDec.getName().getMatchedStr());
+            JSONArray values = new JSONArray();
             for (ConstantNode cn:varDec.getDefaultValues())
-                arr.put(cn.getValue());
+                values.put(cn.getValue());
+            arr.put(values);
+
             lists.put("$TCS_L$_"+varDec.getName().getMatchedStr(), arr);
         }
 
@@ -174,14 +177,14 @@ public class SpriteTargetBuilder {
         List<EventDeclaration> events = definition.getEvents();
         Collection<FunctionDeclaration> functions = definition.getFunctions().values();
 
-        for (EventDeclaration eventDeclaration:events) {
-            if (eventDeclaration == null) continue;
-            eventDeclaration.buildJSON(null, null, builder);
-        }
-
         for (FunctionDeclaration functionDeclaration:functions) {
             if (functionDeclaration == null) continue;
             functionDeclaration.buildJSON(null, null, builder);
+        }
+
+        for (EventDeclaration eventDeclaration:events) {
+            if (eventDeclaration == null) continue;
+            eventDeclaration.buildJSON(null, null, builder);
         }
 
         built.put("blocks", builder.getJSON());

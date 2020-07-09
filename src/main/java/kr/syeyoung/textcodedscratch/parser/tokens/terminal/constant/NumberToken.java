@@ -47,7 +47,10 @@ public class NumberToken implements ConstantNode {
     @Override
     public <T> T getValue(Class<T> tClass) {
         if (tClass == Boolean.class) return (T) (value == 0 ? Boolean.FALSE : Boolean.TRUE);
-        if (tClass == String.class) return (T) String.valueOf(value);
+        if (tClass == String.class) {
+            String s = String.valueOf(value);
+            return (T) (s.indexOf(".") < 0 ? s : s.replaceAll("0*$", "").replaceAll("\\.$", ""));
+        };
         if (tClass == Double.class) return (T) Double.valueOf(value);
         return null;
     }

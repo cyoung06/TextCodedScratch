@@ -1,9 +1,6 @@
 package kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.expression;
 
-import kr.syeyoung.textcodedscratch.parser.ParserNode;
-import kr.syeyoung.textcodedscratch.parser.StackAddingOperation;
-import kr.syeyoung.textcodedscratch.parser.StackRequringOperation;
-import kr.syeyoung.textcodedscratch.parser.StatementFormedListener;
+import kr.syeyoung.textcodedscratch.parser.*;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.statements.FunctionExprCallMicroStatement;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.statements.FunctionExprCallStackClearingMicroStatement;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.statements.Statements;
@@ -18,7 +15,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.stream.Collectors;
 
-public class FunctionCallExpr implements Expression, FunctionCall, StatementFormedListener, StackRequringOperation, StackAddingOperation {
+public class FunctionCallExpr implements Expression, FunctionCall, StatementFormedListener, StackRequringOperation {
     private IdentifierToken identifierToken;
     private Expression[] parameters;
     private FunctionDeclaration functionDeclaration;
@@ -69,7 +66,9 @@ public class FunctionCallExpr implements Expression, FunctionCall, StatementForm
 
     @Override
     public Object[] buildJSON(String parentId, String nextId, ScriptBuilder builder) {
-        String id= StackHelper.accessStack(builder, parentId, nextId,  stack- fecms.getCurrentStack());
+        System.out.println(stmt.getCurrentStack());
+        System.out.println(fecms.getCurrentStack());
+        String id= StackHelper.accessStack(builder, parentId, nextId, stmt.getStackCountAtExecution() - fecms.getCurrentStack() + (stmt instanceof StackAddingOperation ? -1 : stmt instanceof StackRemovingOperation ? 1 : 0));
         return new Object[] {id, id};
     }
 

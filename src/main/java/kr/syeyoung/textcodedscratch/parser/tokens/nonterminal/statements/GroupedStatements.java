@@ -33,7 +33,7 @@ public class GroupedStatements implements ParserNode, Statements {
             if (preprev == null) continue;
             prevID = preprev;
             if (firstId == null)
-                firstId = (String) prevID[1];
+                firstId = (String) prevID[0];
             if (prevObj != null) prevObj.put("next", prevID[0]);
             prevObj = builder.getComplexObject((String) prevID[1]);
         }
@@ -41,5 +41,25 @@ public class GroupedStatements implements ParserNode, Statements {
         prevObj.put("next", rnextId == null ? JSONObject.NULL : rnextId);
 
         return new String[] {firstId, (String) prevID[1]};
+    }
+
+
+    private int stack;
+    @Override
+    public void setCurrentStack(int stackSize) {
+        this.stack = stackSize;
+        if (stackAtExe == -1)
+            stackAtExe = stackSize;
+    }
+
+    @Override
+    public int getCurrentStack() {
+        return stack;
+    }
+
+    private int stackAtExe = -1;
+    @Override
+    public int getStackCountAtExecution() {
+        return stackAtExe;
     }
 }

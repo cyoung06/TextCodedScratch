@@ -60,7 +60,7 @@ public class FunctionDeclaration implements ParserNode, ScratchTransferable, Dec
             for (int i =0; i < parameters.length; i++) {
                 Object[] id = parameters[i].buildJSON(protoID, null, builder);
                 paramNames.put(parameters[i].getName().getMatchedStr());
-                defaults.put("");
+                defaults.put(parameters[i].getType() == FunctionParameter.ParameterType.BOOLEAN ? "false" : "");
                 sbb.input("$TCS_FP$_"+identifierToken.getMatchedStr()+"$"+parameters[i].getName().getMatchedStr(), id[0]);
                 paramIDs.put("$TCS_FP$_"+identifierToken.getMatchedStr()+"$"+parameters[i].getName().getMatchedStr());
                 procCode += " "+(parameters[i].getType() == FunctionParameter.ParameterType.TEXT ? "%s" : "%b");

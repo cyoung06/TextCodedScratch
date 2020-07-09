@@ -2,6 +2,7 @@ package kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.statements;
 
 import kr.syeyoung.textcodedscratch.parser.ParserNode;
 import kr.syeyoung.textcodedscratch.parser.StackAddingOperation;
+import kr.syeyoung.textcodedscratch.parser.StackRemovingOperation;
 import kr.syeyoung.textcodedscratch.parser.StackRequringOperation;
 import kr.syeyoung.textcodedscratch.parser.exception.ParsingGrammarException;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.FunctionCall;
@@ -9,6 +10,9 @@ import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.declaration.Functi
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.expression.Expression;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.function.FunctionParameter;
 import kr.syeyoung.textcodedscratch.parser.tokens.terminal.IdentifierToken;
+import kr.syeyoung.textcodedscratch.parser.tokens.terminal.constant.ConstantNode;
+import kr.syeyoung.textcodedscratch.parser.tokens.terminal.constant.NumberToken;
+import kr.syeyoung.textcodedscratch.parser.tokens.terminal.constant.StringToken;
 import kr.syeyoung.textcodedscratch.parser.util.ScratchBlockBuilder;
 import kr.syeyoung.textcodedscratch.parser.util.ScriptBuilder;
 import kr.syeyoung.textcodedscratch.parser.util.StackHelper;
@@ -18,7 +22,7 @@ import org.json.JSONObject;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
-public class FunctionExprCallMicroStatement implements Statements, FunctionCall, StackRequringOperation {
+public class FunctionExprCallMicroStatement implements Statements, FunctionCall, StackAddingOperation {
     private IdentifierToken identifierToken;
     private Expression[] parameters;
     private Statements stmt;
@@ -29,6 +33,10 @@ public class FunctionExprCallMicroStatement implements Statements, FunctionCall,
         this.identifierToken = token;
         this.stmt = stmt;
         this.parameters = expressions;
+        for (int i = 0; i < parameters.length; i++) {
+            if (parameters[i] instanceof NumberToken)
+                parameters[i] = new StringToken("\""+((ConstantNode)parameters[i]).getValue(String.class)+"\"");
+        }
     }
 
     public IdentifierToken getFunctionName() {
@@ -72,7 +80,7 @@ public class FunctionExprCallMicroStatement implements Statements, FunctionCall,
             inputIDs.put(id);
             sbb.input(id, parameters[i].buildJSON(id2, null, builder)[0]);
         }
-        sbb.put("mutation", new JSONObject().put("tagName", "mutation").put("children", new JSONArray()).put("proccode", procCode).put("argumentids", inputIDs.toString()));
+        sbb.put("mutation", new JSONObject().put("tagName", "mutation").put("children", new JSONArray()).put("proccode", procCode).put("argumentids", inputIDs.toString()).put("warp", "false"));
         builder.putComplexObject(id2, sbb.build());
         return new String[] {id2, id2};
     }
@@ -82,10 +90,29 @@ public class FunctionExprCallMicroStatement implements Statements, FunctionCall,
     @Override
     public void setCurrentStack(int stackSize) {
         this.stack = stackSize;
+        if (stackAtExe == -1)
+            stackAtExe = stackSize;
+
+        incrementChildren(stmt.getChildren());
+    }
+
+    public void incrementChildren(ParserNode[] nodes) {
+        for (ParserNode pn:nodes) {
+            if (pn instanceof StackRequringOperation && pn instanceof Expression) {
+                ((StackRequringOperation) pn).setCurrentStack(((StackRequringOperation) pn).getCurrentStack() + 1);
+            }
+            incrementChildren(pn.getChildren());
+        }
     }
 
     @Override
     public int getCurrentStack() {
         return stack;
+    }
+
+    private int stackAtExe = -1;
+    @Override
+    public int getStackCountAtExecution() {
+        return stackAtExe;
     }
 }

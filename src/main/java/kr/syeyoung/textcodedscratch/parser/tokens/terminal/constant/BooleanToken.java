@@ -37,7 +37,7 @@ public class BooleanToken implements ConstantNode {
 
     @Override
     public Object[] buildJSON(String parentId, String nextId, ScriptBuilder builder) {
-        String id = builder.putComplexObject(new JSONObject().put("opcode", value ? "operator_not" : "operator_or").put("next", nextId).put("parent", parentId).put("inputs", new JSONArray()).put("fields", new JSONArray()).put("shadow", false).put("topLevel", false));
+        String id = builder.putComplexObject(new JSONObject().put("opcode", value ? "operator_not" : "operator_or").put("next", nextId == null ? JSONObject.NULL : nextId).put("parent", parentId == null ? JSONObject.NULL : parentId).put("inputs", new JSONObject()).put("fields", new JSONObject()).put("shadow", false).put("topLevel", false));
         return new Object[] {id, id};
     }
 
