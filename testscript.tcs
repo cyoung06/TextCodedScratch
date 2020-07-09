@@ -2,18 +2,27 @@ Sprite "test stack";
 
 Require "Events";
 Require "Control";
+Require Variables;
 Require Looks;
 
 Costume DEFAULT = "default.png";
 
-Event Events::OnGreenFlagClicked {
-    Looks::say("asdasd1");
-    Looks::say("asdasd2");
-    Looks::say("asdasd3");
-    repeat (1) {
-        Looks::say("asdasd4");
-        Looks::say("asdasd5");
+
+Func testFunction(param1: Text, param2: Boolean) {
+    if (param1 == param2) {
+        Control::stopAll();
     }
-    Looks::say("asdasd6");
-    Looks::say("asdasd7");
+}
+
+Var asdf=1+1;
+
+Event Events::OnGreenFlagClicked {
+    asdf = asdf + 1;
+    Var localVar = 10;
+
+    Looks::say(testFunction(1,3) .. (localVar + 10) .. asdf);
+
+    localVar = localVar - 10;
+
+    Looks::say(localVar);
 }

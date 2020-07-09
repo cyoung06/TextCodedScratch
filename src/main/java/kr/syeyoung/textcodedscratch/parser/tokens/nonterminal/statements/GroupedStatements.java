@@ -26,20 +26,20 @@ public class GroupedStatements implements ParserNode, Statements {
     @Override
     public Object[] buildJSON(String rparentId, String rnextId, ScriptBuilder builder) {
         String firstId = null;
-        String[] prevID = new String[] {rparentId, rparentId};
+        Object[] prevID = new Object[] {rparentId, rparentId};
         JSONObject prevObj = null;
         for (int i = 0; i < statements.length; i++) {
-            Object[] preprev = statements[i].buildJSON(prevID[1], null, builder);
+            Object[] preprev = statements[i].buildJSON((String) prevID[1], null, builder);
             if (preprev == null) continue;
-            prevID = (String[]) preprev;
+            prevID = preprev;
             if (firstId == null)
-                firstId = prevID[1];
+                firstId = (String) prevID[1];
             if (prevObj != null) prevObj.put("next", prevID[0]);
-            prevObj = builder.getComplexObject(prevID[1]);
+            prevObj = builder.getComplexObject((String) prevID[1]);
         }
         if (prevObj != null)
         prevObj.put("next", rnextId == null ? JSONObject.NULL : rnextId);
 
-        return new String[] {firstId, prevID[1]};
+        return new String[] {firstId, (String) prevID[1]};
     }
 }
