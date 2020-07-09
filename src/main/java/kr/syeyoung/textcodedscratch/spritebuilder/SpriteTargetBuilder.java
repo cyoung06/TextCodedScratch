@@ -49,7 +49,8 @@ public class SpriteTargetBuilder {
 
     public void buildToFile(File f2) throws IOException, NoSuchAlgorithmException {
         build();
-        Objects.requireNonNull(f2).getParentFile().mkdirs();
+        if (Objects.requireNonNull(f2).getParent() != null)
+            f2.getParentFile().mkdirs();
         try (FileOutputStream fos = new FileOutputStream(f2);
              ZipOutputStream zos = new ZipOutputStream(new BufferedOutputStream(fos))) {
 

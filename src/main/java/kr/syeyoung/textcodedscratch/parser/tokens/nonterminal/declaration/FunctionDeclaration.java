@@ -48,7 +48,7 @@ public class FunctionDeclaration implements ParserNode, ScratchTransferable, Dec
     }
 
     @Override
-    public Object buildJSON(String parentId, String nextId, ScriptBuilder builder) {
+    public Object[] buildJSON(String parentId, String nextId, ScriptBuilder builder) {
         String defID = builder.getNextID();
         String protoID = builder.getNextID();
         {
@@ -58,10 +58,10 @@ public class FunctionDeclaration implements ParserNode, ScratchTransferable, Dec
             String procCode = identifierToken.getMatchedStr();
             ScratchBlockBuilder sbb = new ScratchBlockBuilder().op("procedures_prototype").nextId(null).parentId(defID).shadow(true).topLevel(false);
             for (int i =0; i < parameters.length; i++) {
-                Object id = parameters[i].buildJSON(protoID, null, builder);
+                Object[] id = parameters[i].buildJSON(protoID, null, builder);
                 paramNames.put(parameters[i].getName().getMatchedStr());
                 defaults.put("");
-                sbb.input("$TCS_FP$_"+identifierToken.getMatchedStr()+"$"+parameters[i].getName().getMatchedStr(), id);
+                sbb.input("$TCS_FP$_"+identifierToken.getMatchedStr()+"$"+parameters[i].getName().getMatchedStr(), id[0]);
                 paramIDs.put("$TCS_FP$_"+identifierToken.getMatchedStr()+"$"+parameters[i].getName().getMatchedStr());
                 procCode += " "+(parameters[i].getType() == FunctionParameter.ParameterType.TEXT ? "%s" : "%b");
             }
@@ -69,14 +69,14 @@ public class FunctionDeclaration implements ParserNode, ScratchTransferable, Dec
 
             builder.putComplexObject(protoID, sbb.build());
         }
-        builder.putComplexObject(defID, new ScratchBlockBuilder().op("procedures_definition").nextId(null).parentId(parentId).input("custom_block", new JSONArray().put(1).put(protoID)).shadow(false).topLevel(true).xy(0,0).build());
+        builder.putComplexObject(defID, new ScratchBlockBuilder().op("procedures_definition").nextId(null).parentId(parentId).input("custom_block", protoID).shadow(false).topLevel(true).xy(0,0).build());
 
-        Object id2 = toExecute.buildJSON(defID, null, builder);
-        builder.getComplexObject(defID).put("next", id2 == null ? JSONObject.NULL : id2);
+        Object[] id2 = toExecute.buildJSON(defID, null, builder);
+        builder.getComplexObject(defID).put("next", id2 == null ? JSONObject.NULL : id2[0]);
 
-        String id3 = StackHelper.putStack(builder, (String) id2, nextId, new StringToken(""));
-        builder.getComplexObject((String) id2).put("next", id3 == null ? JSONObject.NULL : id3);
-        return id3;
+        String id3 = StackHelper.putStack(builder, (String) id2[1], nextId, new StringToken("\"\""));
+        builder.getComplexObject((String) id2[1]).put("next", id3 == null ? JSONObject.NULL : id3);
+        return new String[] {defID, id3};
     }
 
     @Override

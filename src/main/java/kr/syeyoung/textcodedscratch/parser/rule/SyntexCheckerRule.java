@@ -6,6 +6,7 @@ import kr.syeyoung.textcodedscratch.parser.StackRemovingOperation;
 import kr.syeyoung.textcodedscratch.parser.StackRequringOperation;
 import kr.syeyoung.textcodedscratch.parser.context.ICodeContext;
 import kr.syeyoung.textcodedscratch.parser.context.SpriteDefinition;
+import kr.syeyoung.textcodedscratch.parser.context.VariableContext;
 import kr.syeyoung.textcodedscratch.parser.exception.ParsingGrammarException;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.FunctionCall;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.NativeFunctionCall;
@@ -14,8 +15,11 @@ import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.expression.*;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.function.FunctionParameter;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.statements.FunctionCallStatement;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.statements.NativeFunctionCallStatement;
+import kr.syeyoung.textcodedscratch.parser.tokens.terminal.TypeToken;
 import kr.syeyoung.textcodedscratch.parser.tokens.terminal.brackets.CBCloseToken;
 import kr.syeyoung.textcodedscratch.parser.tokens.terminal.brackets.CBOpenToken;
+import kr.syeyoung.textcodedscratch.parser.tokens.terminal.keywords.KeywordFunc;
+import kr.syeyoung.textcodedscratch.parser.tokens.terminal.keywords.TypeKeywords;
 
 import java.util.LinkedList;
 
@@ -24,6 +28,20 @@ public class SyntexCheckerRule implements ParserRule {
 
     private LinkedList<ICodeContext> variableContextQueue = new LinkedList<>();
     private ICodeContext lastContext = definition;
+
+
+    public LinkedList<ICodeContext> getVariableContextQueue() {
+        return variableContextQueue;
+    }
+
+    public ICodeContext getLastContext() {
+        return lastContext;
+    }
+
+    public void setLastContext(ICodeContext lastContext) {
+        this.lastContext = lastContext;
+    }
+
 
     public SpriteDefinition getDefinition() {
         return definition;
@@ -36,6 +54,7 @@ public class SyntexCheckerRule implements ParserRule {
     @Override
     public boolean process(LinkedList<ParserNode> past, LinkedList<ParserNode> future) {
         ParserNode node = past.getLast();
+
         if (node instanceof SpriteDeclaration) {
             if (definition.getSpriteName() == null) {
                 definition.setSpriteName((SpriteDeclaration) node);
@@ -51,7 +70,6 @@ public class SyntexCheckerRule implements ParserRule {
             if (node instanceof SoundDeclaration) {
                 definition.getSounds().put(varName, (SoundDeclaration) node);
             }
-            if (node instanceof FunctionParameter) return false;
             lastContext.putVariable((VariableDeclaration) node);
         } else if (node instanceof ListDeclaration) {
             String varName = ((ListDeclaration)node).getName().getMatchedStr();

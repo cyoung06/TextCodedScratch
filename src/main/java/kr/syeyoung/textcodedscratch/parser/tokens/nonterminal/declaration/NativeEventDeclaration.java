@@ -29,7 +29,7 @@ public class NativeEventDeclaration implements ParserNode, ScratchTransferable, 
     }
 
     @Override
-    public Object buildJSON(String parentId, String nextId, ScriptBuilder builder) {
+    public Object[] buildJSON(String parentId, String nextId, ScriptBuilder builder) {
         return null;
     }
 

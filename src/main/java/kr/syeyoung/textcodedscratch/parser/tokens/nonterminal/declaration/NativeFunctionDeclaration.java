@@ -50,7 +50,7 @@ public class NativeFunctionDeclaration extends FunctionDeclaration implements Pa
     }
 
     @Override
-    public Object buildJSON(String parentId, String nextId, ScriptBuilder builder) {
+    public Object[] buildJSON(String parentId, String nextId, ScriptBuilder builder) {
         return null;
     }
 

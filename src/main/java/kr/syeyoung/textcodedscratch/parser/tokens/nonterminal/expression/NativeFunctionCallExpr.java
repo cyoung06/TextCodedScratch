@@ -64,26 +64,31 @@ public class NativeFunctionCallExpr extends FunctionCallExpr implements NativeFu
     }
 
     @Override
-    public Object buildJSON(String parentId, String nextId, ScriptBuilder builder) {
+    public Object[] buildJSON(String parentId, String nextId, ScriptBuilder builder) {
         String json = nativeFunctionDeclaration.json();
-        if (nativeFunctionDeclaration.isReporter()) throw new ParsingGrammarException("native Statement function used as a statement : " +getFunctionName().getMatchedStr());
+        if (!nativeFunctionDeclaration.isReporter()) throw new ParsingGrammarException("native Statement function used as a statement : " +getFunctionName().getMatchedStr());
         String id = builder.getNextID();
         Object[] arrays = new Object[parameters.length];
         for (int i =0; i < parameters.length; i++)
-            arrays[i] = parameters[i].buildJSON(id, null, builder);
+            arrays[i] = parameters[i].buildJSON(id, null, builder)[0];
         Object[] asFieldarrays = new Object[parameters.length];
         for (int i =0; i < parameters.length; i++) {
             Object obj = arrays[i];
             if (obj instanceof String) asFieldarrays[i] = null;
             else if (obj instanceof JSONArray) {
-                asFieldarrays[i] = new JSONArray().put(((JSONArray) obj).get(1)).put(((JSONArray) obj).get(2));
+                if (((JSONArray) obj).length() == 2)
+                    asFieldarrays[i] = obj;
+                else
+                    asFieldarrays[i] = new JSONArray().put(((JSONArray) obj).get(1)).put(((JSONArray) obj).get(2));
             }
         }
 
         JSONObject obj = new JSONObject(json);
         fillParameters(obj, arrays, asFieldarrays);
+        obj.put("parent", parentId == null ? JSONObject.NULL : parentId);
+        obj.put("next", nextId == null ? JSONObject.NULL : nextId);
         builder.putComplexObject(id, obj);
-        return id;
+        return new Object[] {id, id};
     }
 
     private void fillParameters(JSONObject obj, Object[] parameters, Object[] fieldParam) {

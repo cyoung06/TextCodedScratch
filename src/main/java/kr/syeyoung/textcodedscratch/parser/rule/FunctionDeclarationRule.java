@@ -2,6 +2,7 @@ package kr.syeyoung.textcodedscratch.parser.rule;
 
 import kr.syeyoung.textcodedscratch.parser.ParserNode;
 import kr.syeyoung.textcodedscratch.parser.context.ICodeContext;
+import kr.syeyoung.textcodedscratch.parser.context.VariableContext;
 import kr.syeyoung.textcodedscratch.parser.exception.ParsingGrammarException;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.AccessedIdentifier;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.declaration.FunctionDeclaration;
@@ -24,9 +25,21 @@ import java.util.Iterator;
 import java.util.LinkedList;
 
 public class FunctionDeclarationRule implements ParserRule {
+    private SyntexCheckerRule scr;
+    public FunctionDeclarationRule(SyntexCheckerRule scr) {
+        this.scr = scr;
+    }
+
     @Override
     public boolean process(LinkedList<ParserNode> past, LinkedList<ParserNode> future) {
         Iterator<ParserNode> it = past.descendingIterator();
+
+        if (past.getLast() instanceof KeywordFunc && !(future.getFirst() instanceof EOSToken)) {
+            scr.getVariableContextQueue().addLast(new VariableContext(scr.getLastContext()));
+            scr.setLastContext(scr.getVariableContextQueue().getLast());
+        }
+
+
         if (!(future.getFirst() instanceof EOSToken)) return false;
         boolean possibleNative = false;
         {
@@ -77,6 +90,11 @@ public class FunctionDeclarationRule implements ParserRule {
                 if (pn instanceof IdentifierToken) identifierToken = (IdentifierToken) pn;
             }
             future.addFirst(new NativeFunctionDeclaration(identifierToken, parameters, json, isReporter));
+
+
+
+            scr.getVariableContextQueue().removeLast();
+            scr.setLastContext(scr.getVariableContextQueue().getLast());
         } else {
             GroupedStatements inside = (GroupedStatements) past.removeLast();
             IdentifierToken identifierToken = null;
@@ -103,6 +121,9 @@ public class FunctionDeclarationRule implements ParserRule {
                 }
             });
             future.addFirst(new FunctionDeclaration(identifierToken, parameters, inside));
+
+            scr.getVariableContextQueue().removeLast();
+            scr.setLastContext(scr.getVariableContextQueue().getLast());
         }
         return true;
     }

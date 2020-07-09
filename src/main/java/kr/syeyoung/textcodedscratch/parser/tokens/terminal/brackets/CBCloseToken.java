@@ -19,7 +19,10 @@ public class CBCloseToken extends MarkerToken implements Statements {
     }
 
     @Override
-    public Object buildJSON(String parentId, String nextId, ScriptBuilder builder) {
-        return StackHelper.deallocateStack(builder, parentId, nextId, codeContext.getLocalStackSize());
+    public Object[] buildJSON(String parentId, String nextId, ScriptBuilder builder) {
+        if (codeContext.getLocalStackSize() == 0) return null;
+
+        String id = StackHelper.deallocateStack(builder, parentId, nextId, codeContext.getLocalStackSize());
+        return new Object[] {id, id};
     }
 }

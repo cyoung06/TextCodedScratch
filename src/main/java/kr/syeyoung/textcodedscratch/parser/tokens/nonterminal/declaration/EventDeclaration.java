@@ -53,7 +53,7 @@ public class EventDeclaration implements ParserNode, ScratchTransferable, Declar
 
 
     @Override
-    public Object buildJSON(String parentId, String nextId, ScriptBuilder builder) {
+    public Object[] buildJSON(String parentId, String nextId, ScriptBuilder builder) {
         String json = eventJsonDeclaration.json();
         String id = builder.getNextID();
 
@@ -62,9 +62,9 @@ public class EventDeclaration implements ParserNode, ScratchTransferable, Declar
         obj.put("parent", parentId == null ? JSONObject.NULL : parentId);
         builder.putComplexObject(id, obj);
 
-        Object id2 = toExecute.buildJSON(id, nextId, builder);
-        obj.put("next", id2== null ? JSONObject.NULL : id2);
-        return id2;
+        Object[] id2 = toExecute.buildJSON(id, nextId, builder);
+        obj.put("next", id2[0] == null ? JSONObject.NULL : id2[0]);
+        return new String[] {id, (String) id2[1]};
     }
 
     private void fillParameters(JSONObject obj, String id, ScriptBuilder builder) {
@@ -78,13 +78,13 @@ public class EventDeclaration implements ParserNode, ScratchTransferable, Declar
 
                 if (prevContent.contains("$TCS$") && optionalParameter == null) throw new ParsingGrammarException("Optional Parameter Required for event "+identifierToken.getMatchedStr());
 
-                if (prevContent.equals("$TCS$Expr$")) FinalContent = optionalParameter.simplify().buildJSON(id, null, builder);
+                if (prevContent.equals("$TCS$Expr$")) FinalContent = optionalParameter.simplify().buildJSON(id, null, builder)[0];
                 else if (prevContent.contains("$TCS$Const$")) {
-                    Object json = optionalParameter.simplify().buildJSON(id, null, builder);
+                    Object json = optionalParameter.simplify().buildJSON(id, null, builder)[0];
                     if (!(json instanceof JSONArray)) throw new ParsingGrammarException("Illegal Event argument for "+identifierToken.getMatchedStr());
                     FinalContent = prevContent.replace("$TCS$Const$", String.valueOf(((JSONArray) json).get(1)));
                 } else if (prevContent.equals("$TCS$ConstExpr$")) {
-                    Object json = optionalParameter.simplify().buildJSON(id, null, builder);
+                    Object json = optionalParameter.simplify().buildJSON(id, null, builder)[0];
                     if (!(json instanceof JSONArray)) throw new ParsingGrammarException("Illegal Event argument for "+identifierToken.getMatchedStr());
                     FinalContent = json;
                 }
@@ -104,13 +104,13 @@ public class EventDeclaration implements ParserNode, ScratchTransferable, Declar
 
                 if (prevContent.contains("$TCS$") && optionalParameter == null) throw new ParsingGrammarException("Optional Parameter Required for event "+identifierToken.getMatchedStr());
 
-                if (prevContent.equals("$TCS$Expr$")) FinalContent = optionalParameter.simplify().buildJSON(id, null, builder);
+                if (prevContent.equals("$TCS$Expr$")) FinalContent = optionalParameter.simplify().buildJSON(id, null, builder)[0];
                 else if (prevContent.contains("$TCS$Const$")) {
-                    Object json = optionalParameter.simplify().buildJSON(id, null, builder);
+                    Object json = optionalParameter.simplify().buildJSON(id, null, builder)[0];
                     if (!(json instanceof JSONArray)) throw new ParsingGrammarException("Illegal Event argument for "+identifierToken.getMatchedStr());
                     FinalContent = prevContent.replace("$TCS$Const$", String.valueOf(((JSONArray) json).get(1)));
                 } else if (prevContent.equals("$TCS$ConstExpr$")) {
-                    Object json = optionalParameter.simplify().buildJSON(id, null, builder);
+                    Object json = optionalParameter.simplify().buildJSON(id, null, builder)[0];
                     if (!(json instanceof JSONArray)) throw new ParsingGrammarException("Illegal Event argument for "+identifierToken.getMatchedStr());
                     FinalContent = json;
                 }

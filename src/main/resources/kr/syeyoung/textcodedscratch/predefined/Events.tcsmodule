@@ -1,6 +1,6 @@
 Module
 
-Native Event Events::OnGreenFlagClicked "{\"opcode\":\"event_whenflagclicked\", \"inputs\": {}, \"fields\": {}, \"shadow\": false, \"topLevel\": true, \"x\": 0, \"y\": 0}"
+Native Event Events::OnGreenFlagClicked "{\"opcode\":\"event_whenflagclicked\", \"inputs\": {}, \"fields\": {}, \"shadow\":false, \"topLevel\": true, \"x\": 0, \"y\": 0}"
 
 Native Event Events::OnKeyPressed "{\"opcode\":\"event_whenkeypressed\",\"inputs\":{},\"fields\":{\"KEY_OPTION\":[\"$TCS$Const$\",null]},\"shadow\":false,\"topLevel\":true,\"x\":0,\"y\":0}"
 

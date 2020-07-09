@@ -30,8 +30,9 @@ public class LocalVariableExpression extends VariableExpression  implements Stac
     }
 
     @Override
-    public Object buildJSON(String parentId, String nextId, ScriptBuilder builder) {
-        return StackHelper.accessStack(builder, parentId, nextId,  currentStack- declaration.getCurrentStack());
+    public Object[] buildJSON(String parentId, String nextId, ScriptBuilder builder) {
+        String id =  StackHelper.accessStack(builder, parentId, nextId,  currentStack- declaration.getCurrentStack());
+        return new Object[] {id, id};
     }
 
     private int currentStack;

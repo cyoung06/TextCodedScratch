@@ -1,0 +1,19 @@
+Sprite "test stack";
+
+Require "Events";
+Require "Control";
+Require Looks;
+
+Costume DEFAULT = "default.png";
+
+Event Events::OnGreenFlagClicked {
+    Looks::say("asdasd1");
+    Looks::say("asdasd2");
+    Looks::say("asdasd3");
+    repeat (1) {
+        Looks::say("asdasd4");
+        Looks::say("asdasd5");
+    }
+    Looks::say("asdasd6");
+    Looks::say("asdasd7");
+}

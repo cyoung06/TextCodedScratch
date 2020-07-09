@@ -30,14 +30,15 @@ public class VariableAssignment implements Statements, StackRequringOperation {
     }
 
     @Override
-    public Object buildJSON(String parentId, String nextId, ScriptBuilder builder) {
+    public Object[] buildJSON(String parentId, String nextId, ScriptBuilder builder) {
         if (variableExpression instanceof LocalVariableExpression) {
-            return StackHelper.replaceStack(builder, parentId, nextId, currentStack - ((LocalVariableExpression) variableExpression).getDeclaration().getCurrentStack(), expression);
+            String id = StackHelper.replaceStack(builder, parentId, nextId, currentStack - ((LocalVariableExpression) variableExpression).getDeclaration().getCurrentStack(), expression);
+            return new String[] {id, id};
         } else {
             String id = builder.getNextID();
-            Object expr = expression.buildJSON(id, null, builder);
-            builder.putComplexObject(id, new ScratchBlockBuilder().op("data_setvariableto").nextId(nextId).parentId(parentId).input("VALUE", expr).field("VARIABLE", new JSONArray().put(variableExpression.getVariableName().getMatchedStr()).put("$TCS_V$_"+variableExpression.getVariableName().getMatchedStr())).shadow(false).topLevel(false).build());
-            return id;
+            Object[] expr = expression.buildJSON(id, null, builder);
+            builder.putComplexObject(id, new ScratchBlockBuilder().op("data_setvariableto").nextId(nextId).parentId(parentId).input("VALUE", expr[0]).field("VARIABLE", new JSONArray().put(variableExpression.getVariableName().getMatchedStr()).put("$TCS_V$_"+variableExpression.getVariableName().getMatchedStr())).shadow(false).topLevel(false).build());
+            return new String[] {id, id};
         }
     }
 

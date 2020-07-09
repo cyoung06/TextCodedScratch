@@ -60,13 +60,13 @@ public class TwoTermedExpression implements Expression, StatementFormedListener 
     }
 
     @Override
-    public Object buildJSON(String parentId, String nextId, ScriptBuilder builder) {
+    public Object[] buildJSON(String parentId, String nextId, ScriptBuilder builder) {
         String id = builder.getNextID();
-        Object JfirstTerm = firstTerm.buildJSON(id,null,builder);
-        Object JsecondTerm = secondTerm.buildJSON(id,null,builder);
-        JSONObject obj = operator.operate(parentId, nextId, JfirstTerm, JsecondTerm);
+        Object[] JfirstTerm = firstTerm.buildJSON(id,null,builder);
+        Object[] JsecondTerm = secondTerm.buildJSON(id,null,builder);
+        JSONObject obj = operator.operate(parentId, nextId, JfirstTerm[0], JsecondTerm[0]);
         builder.putComplexObject(id, obj);
-        return id;
+        return new Object[] {id,id};
     }
 
     @Override

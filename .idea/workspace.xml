@@ -2,10 +2,73 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2f7c2811-c825-4b1d-9edc-399842841dce" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/context/ICodeContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/context/ICodeContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/context/SpriteDefinition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/context/SpriteDefinition.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/context/VariableContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/context/VariableContext.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/default.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/kr/syeyoung/textcodedscratch/predefined/Control.tcsmodule" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/kr/syeyoung/textcodedscratch/predefined/Events.tcsmodule" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/kr/syeyoung/textcodedscratch/predefined/Looks.tcsmodule" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/kr/syeyoung/textcodedscratch/predefined/Math.tcsmodule" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/kr/syeyoung/textcodedscratch/predefined/Motion.tcsmodule" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/kr/syeyoung/textcodedscratch/predefined/Sensing.tcsmodule" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/kr/syeyoung/textcodedscratch/predefined/Sound.tcsmodule" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/kr/syeyoung/textcodedscratch/predefined/StringUtils.tcsmodule" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/kr/syeyoung/textcodedscratch/predefined/Time.tcsmodule" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/kr/syeyoung/textcodedscratch/predefined/Variables.tcsmodule" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test stack.sprite3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/testscript.sprite3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/testscript.tcs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/testscript2.tcs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/Parser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/ScratchTransferable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/ScratchTransferable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/rule/ExpressionReducingRule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/rule/ExpressionReducingRule.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/rule/FunctionDeclarationRule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/rule/FunctionDeclarationRule.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/rule/IncludeRule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/rule/IncludeRule.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/rule/RequireDeclarationRule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/rule/RequireDeclarationRule.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/rule/SyntexCheckerRule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/rule/SyntexCheckerRule.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/declaration/EventDeclaration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/declaration/EventDeclaration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/declaration/FunctionDeclaration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/declaration/FunctionDeclaration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/declaration/LocalVariableDeclaration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/declaration/LocalVariableDeclaration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/declaration/NativeEventDeclaration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/declaration/NativeEventDeclaration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/declaration/NativeFunctionDeclaration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/declaration/NativeFunctionDeclaration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/expression/ConstantVariableExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/expression/ConstantVariableExpression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/expression/FunctionCallExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/expression/FunctionCallExpr.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/expression/FunctionVariableExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/expression/FunctionVariableExpression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/expression/GroupedExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/expression/GroupedExpression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/expression/LocalVariableExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/expression/LocalVariableExpression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/expression/NativeFunctionCallExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/expression/NativeFunctionCallExpr.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/expression/OneTermedExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/expression/OneTermedExpression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/expression/TwoTermedExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/expression/TwoTermedExpression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/expression/VariableExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/expression/VariableExpression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/expression/WrappingExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/expression/WrappingExpression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/function/FunctionParameter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/function/FunctionParameter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/statements/FunctionCallStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/statements/FunctionCallStatement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/statements/FunctionExprCallMicroStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/statements/FunctionExprCallMicroStatement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/statements/FunctionExprCallStackClearingMicroStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/statements/FunctionExprCallStackClearingMicroStatement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/statements/GroupedStatements.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/statements/GroupedStatements.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/statements/IfElseStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/statements/IfElseStatement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/statements/IfStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/statements/IfStatement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/statements/LocalVariableAssignment.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/statements/NativeFunctionCallStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/statements/NativeFunctionCallStatement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/statements/RepeatStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/statements/RepeatStatement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/statements/VariableAssignment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/statements/VariableAssignment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/statements/WhileStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/statements/WhileStatement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/terminal/brackets/CBCloseToken.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/terminal/brackets/CBCloseToken.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/terminal/constant/BooleanToken.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/terminal/constant/BooleanToken.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/terminal/constant/NumberToken.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/terminal/constant/NumberToken.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/terminal/constant/StringToken.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/terminal/constant/StringToken.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/util/ScratchBlockBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/util/ScratchBlockBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/util/StackHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/util/StackHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/spritebuilder/SpriteTargetBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/spritebuilder/SpriteTargetBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/kr.syeyoung.textcodedscratch.predefined/Control.tcsmodule" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/kr.syeyoung.textcodedscratch.predefined/Events.tcsmodule" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/kr.syeyoung.textcodedscratch.predefined/Looks.tcsmodule" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/kr.syeyoung.textcodedscratch.predefined/Math.tcsmodule" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/kr.syeyoung.textcodedscratch.predefined/Motion.tcsmodule" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/kr.syeyoung.textcodedscratch.predefined/Sensing.tcsmodule" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/kr.syeyoung.textcodedscratch.predefined/Sound.tcsmodule" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/kr.syeyoung.textcodedscratch.predefined/StringUtils.tcsmodule" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/kr.syeyoung.textcodedscratch.predefined/Time.tcsmodule" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/kr.syeyoung.textcodedscratch.predefined/Variables.tcsmodule" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,11 +89,14 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1dPD1UDJ9b4z7raggSMJww91y5X" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="JAVA" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/kr.syeyoung.textcodedscratch.predefined" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -38,8 +104,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="B:\프로그래밍\TextCodedScratch\src\main\resources\kr.syeyoung.textcodedscratch.predefined" />
       <recent name="B:\프로그래밍\TextCodedScratch" />
+      <recent name="B:\프로그래밍\TextCodedScratch\src\main\resources\kr.syeyoung.textcodedscratch.predefined" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.statements" />
@@ -73,7 +139,21 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.NativeFunctionBuilderHelper">
+  <component name="RunManager" selected="Application.Main But parameters">
+    <configuration name="Main But parameters" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="kr.syeyoung.textcodedscratch.Main" />
+      <module name="TextCodedScratch" />
+      <option name="PROGRAM_PARAMETERS" value="testscript.tcs" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="kr.syeyoung.textcodedscratch.spritebuilder.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="kr.syeyoung.textcodedscratch.Main" />
       <module name="TextCodedScratch" />
@@ -114,6 +194,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.Main But parameters" />
+      <item itemvalue="Application.Main" />
+      <item itemvalue="Application.NativeFunctionBuilderHelper" />
+      <item itemvalue="Application.Scratch (1)" />
+      <item itemvalue="Java Scratch.Scratch" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.NativeFunctionBuilderHelper" />
@@ -148,5 +235,19 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/rule/StatementGroupingRule.java</url>
+          <line>25</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

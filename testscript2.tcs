@@ -1,0 +1,28 @@
+Sprite "test stack";
+
+Require "Events";
+Require "Control";
+Require Variables;
+Require Looks;
+
+Costume DEFAULT = "default.png";
+
+
+Func testFunction(param1: Text, param2: Boolean) {
+    if (param1 == param2) {
+        Control::stopAll();
+    }
+}
+
+Var asdf=1+1;
+
+Event Events::OnGreenFlagClicked {
+    asdf = asdf + 1;
+    Var localVar = 10;
+
+    Looks::say(testFunction(1,3) .. (localVar + 10) .. asdf);
+
+    localVar = localVar - 10;
+
+    Looks::say(localVar);
+}

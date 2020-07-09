@@ -29,7 +29,8 @@ public class LocalVariableDeclaration extends VariableDeclaration implements Sta
     }
 
     @Override
-    public Object buildJSON(String parentId, String nextId, ScriptBuilder builder) {
-        return StackHelper.putStack(builder, parentId, nextId, getDefaultValue());
+    public Object[] buildJSON(String parentId, String nextId, ScriptBuilder builder) {
+        String id = StackHelper.putStack(builder, parentId, nextId, getDefaultValue());
+        return new Object[] {id, id};
     }
 }

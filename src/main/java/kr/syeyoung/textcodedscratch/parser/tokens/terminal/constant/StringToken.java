@@ -14,8 +14,8 @@ public class StringToken implements ConstantNode {
     }
 
     @Override
-    public Object buildJSON(String parentId, String nextId, ScriptBuilder builder) {
-        return new JSONArray().put(10).put(getValue());
+    public Object[] buildJSON(String parentId, String nextId, ScriptBuilder builder) {
+        return new Object[] {new JSONArray().put(10).put(getValue()), new JSONArray().put(10).put(getValue())};
     }
 
     @Override

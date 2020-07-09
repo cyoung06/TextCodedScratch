@@ -26,11 +26,11 @@ public class WhileStatement implements Statements {
     }
 
     @Override
-    public Object buildJSON(String parentId, String nextId, ScriptBuilder builder) {
+    public Object[] buildJSON(String parentId, String nextId, ScriptBuilder builder) {
         String id = builder.getNextID();
-        Object conditionObj = condition.buildJSON(id, null, builder);
-        Object stack1 = dowhile.buildJSON(id, null, builder);
-        builder.putComplexObject(id, new ScratchBlockBuilder().op("control_repeat_until").nextId(nextId).parentId(parentId).input("CONDITION", conditionObj).input("SUBSTACK", stack1).shadow(false).topLevel(false).build());
-        return id;
+        Object[] conditionObj = condition.buildJSON(id, null, builder);
+        Object[] stack1 = dowhile.buildJSON(id, null, builder);
+        builder.putComplexObject(id, new ScratchBlockBuilder().op("control_repeat_until").nextId(nextId).parentId(parentId).input("CONDITION", conditionObj[0]).input("SUBSTACK", stack1[0]).shadow(false).topLevel(false).build());
+        return new Object[] {id, id};
     }
 }

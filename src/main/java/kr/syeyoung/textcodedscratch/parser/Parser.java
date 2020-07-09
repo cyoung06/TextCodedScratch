@@ -26,7 +26,6 @@ public class Parser {
             out.add(input.removeFirst());
             for (ParserRule rule : rules) {
                 try {
-                    System.out.println(rule.getClass().getName());
                     if (rule.process(out, input)) break;
                 } catch (NoSuchElementException exception) {} catch (Exception e) {
                     for (ParserNode node : out) {
@@ -58,7 +57,7 @@ public class Parser {
         rules.add(new StatementGroupingRule());
         rules.add(new IdentifierAccessorConcatRule());
         rules.add(new EventDeclarationRule());
-        rules.add(new FunctionDeclarationRule());
+        rules.add(new FunctionDeclarationRule(syntexCheckerRule));
         rules.add(new ExtensionDeclarationRule());
         rules.add(new NativeEventDeclarationRule());
 

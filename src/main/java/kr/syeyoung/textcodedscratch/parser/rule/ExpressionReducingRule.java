@@ -43,7 +43,6 @@ public class ExpressionReducingRule implements ParserRule {
             }
 
             past.removeLast();
-            System.out.println("Changed priority of "+cTerm +" - to "+priorityChosen);
             past.add(new WrappingExpression((Expression) cTerm, priorityChosen));
             cTerm = past.getLast();
         }
@@ -60,7 +59,6 @@ public class ExpressionReducingRule implements ParserRule {
             if (aTerm instanceof Expression) {
                 if (operatorNode.getOperatorType() == OperatorType.ONE_TERM)  throw new ParsingGrammarException("Malformed Expression:: Bad use of Operator :: "+aTerm+ " - "+bTerm + " - "+cTerm);
                 if (operatorNode.getPriority() != ((Expression) aTerm).getPriority() || operatorNode.getPriority() != ((Expression) cTerm).getPriority()) {
-                    System.out.println("Failed:: "+aTerm + " - " + bTerm + " - " +cTerm);
                     return false;
                 }
                 past.removeLast();past.removeLast();past.removeLast();

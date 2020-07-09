@@ -46,8 +46,8 @@ public class FunctionVariableExpression extends VariableExpression {
     }
 
     @Override
-    public Object buildJSON(String parentId, String nextId, ScriptBuilder builder) {
-        String ID = builder.putComplexObject(new ScratchBlockBuilder().op(parameterDef.getType() == FunctionParameter.ParameterType.TEXT ? "argument_reporter_string_number" : "argument_reporter_boolean").nextId(nextId).parentId(parentId).field("VALUE", new JSONArray().put(getVariableName().getMatchedStr()).put(JSONObject.NULL)).shadow(true).topLevel(false).build());
-        return new JSONArray().put(ID);
+    public Object[] buildJSON(String parentId, String nextId, ScriptBuilder builder) {
+        String ID = builder.putComplexObject(new ScratchBlockBuilder().op(parameterDef.getType() == FunctionParameter.ParameterType.TEXT ? "argument_reporter_string_number" : "argument_reporter_boolean").nextId(nextId).parentId(parentId).field("VALUE", new JSONArray().put(getVariableName().getMatchedStr()).put(JSONObject.NULL)).shadow(false).topLevel(false).build());
+        return new Object[] {ID, ID};
     }
 }

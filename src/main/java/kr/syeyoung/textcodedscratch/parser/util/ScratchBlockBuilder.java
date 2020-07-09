@@ -26,7 +26,7 @@ public class ScratchBlockBuilder {
         scratchBlock.put("fields", obj.put(name, array));
         return this;
     }
-    public ScratchBlockBuilder shadow(boolean shadow) {scratchBlock.put("shadow", /*shadow*/ true); return this;}
+    public ScratchBlockBuilder shadow(boolean shadow) {scratchBlock.put("shadow", shadow); return this;}
     public ScratchBlockBuilder topLevel(boolean topLevel) {scratchBlock.put("topLevel", topLevel); return this;}
     public ScratchBlockBuilder xy(int x, int y) {scratchBlock.put("x", x).put("y",y); return this;}
 

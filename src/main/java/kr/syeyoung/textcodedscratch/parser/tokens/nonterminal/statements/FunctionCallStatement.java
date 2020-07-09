@@ -54,7 +54,7 @@ public class FunctionCallStatement implements Statements, FunctionCall {
 
     // {"tagName":"mutation","children":[],"proccode":"asdasd %s %s","argumentids":"[\"input1\",\"input2\"]","warp":"false"}}
     @Override
-    public Object buildJSON(String parentId, String nextId, ScriptBuilder builder) {
+    public Object[] buildJSON(String parentId, String nextId, ScriptBuilder builder) {
         String id2 = builder.getNextID();
 
         ScratchBlockBuilder sbb = new ScratchBlockBuilder().op("procedures_call").nextId(nextId).parentId(parentId).shadow(false).topLevel(false);
@@ -67,12 +67,12 @@ public class FunctionCallStatement implements Statements, FunctionCall {
             procCode += " "+(parameter.getType() == FunctionParameter.ParameterType.TEXT ? "%s" : "%b");
             String id = "$TCS_FP$_"+functionDeclaration.getName().getMatchedStr()+"$"+parameter.getName().getMatchedStr();
             inputIDs.put(id);
-            sbb.input(id, parameters[i].buildJSON(id2, null, builder));
+            sbb.input(id, parameters[i].buildJSON(id2, null, builder)[0]);
         }
         sbb.put("mutation", new JSONObject().put("tagName", "mutation").put("children", new JSONArray()).put("proccode", procCode).put("argumentids", inputIDs.toString()));
         String id3 = StackHelper.deallocateStack(builder, id2, nextId, 1);
         sbb.nextId(id3);
         builder.putComplexObject(id2, sbb.build());
-        return id3;
+        return new String[] {id2, id3};
     }
 }

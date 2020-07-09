@@ -55,15 +55,15 @@ public class OneTermedExpression implements Expression, StatementFormedListener 
     }
 
     @Override
-    public Object buildJSON(String parentId, String nextId, ScriptBuilder builder) {
+    public Object[] buildJSON(String parentId, String nextId, ScriptBuilder builder) {
         if (operator instanceof OperatorGetName)
-            return ((OperatorGetName) operator).operate((VariableExpression) firstTerm);
+            return new Object[] {((OperatorGetName) operator).operate((VariableExpression) firstTerm),((OperatorGetName) operator).operate((VariableExpression) firstTerm)};
 
         String id = builder.getNextID();
-        Object JfirstTerm = firstTerm.buildJSON(id,null,builder);
-        JSONObject obj = operator.operate(parentId, nextId, JfirstTerm);
+        Object[] JfirstTerm = firstTerm.buildJSON(id,null,builder);
+        JSONObject obj = operator.operate(parentId, nextId, JfirstTerm[0]);
         builder.putComplexObject(id, obj);
-        return id;
+        return new Object[] {id, id};
     }
 
     @Override

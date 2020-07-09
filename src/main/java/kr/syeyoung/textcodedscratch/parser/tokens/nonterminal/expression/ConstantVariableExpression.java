@@ -44,7 +44,8 @@ public class ConstantVariableExpression extends VariableExpression {
     }
 
     @Override
-    public Object buildJSON(String parentId, String nextId, ScriptBuilder builder) {
-        return defaultValue.buildJSON(parentId, nextId, builder);
+    public Object[] buildJSON(String parentId, String nextId, ScriptBuilder builder) {
+        Object[] obj = defaultValue.buildJSON(parentId, nextId, builder);
+        return obj;
     }
 }

@@ -34,9 +34,9 @@ public class FunctionExprCallStackClearingMicroStatement implements Statements, 
 
     // {"tagName":"mutation","children":[],"proccode":"asdasd %s %s","argumentids":"[\"input1\",\"input2\"]","warp":"false"}}
     @Override
-    public Object buildJSON(String parentId, String nextId, ScriptBuilder builder) {
-
-        return StackHelper.deallocateStackOffset(builder, parentId, nextId, 1);
+    public Object[] buildJSON(String parentId, String nextId, ScriptBuilder builder) {
+        String id = StackHelper.deallocateStackOffset(builder, parentId, nextId, 1);
+        return new Object[] {id, id};
     }
 
 

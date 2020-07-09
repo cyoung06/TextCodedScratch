@@ -38,9 +38,9 @@ public class FunctionParameter extends VariableDeclaration implements ParserNode
     }
 
     @Override
-    public Object buildJSON(String parentId, String nextId, ScriptBuilder builder) {
+    public Object[] buildJSON(String parentId, String nextId, ScriptBuilder builder) {
         String ID = builder.putComplexObject(new ScratchBlockBuilder().op(type == ParameterType.TEXT ? "argument_reporter_string_number" : "argument_reporter_boolean").nextId(nextId).parentId(parentId).field("VALUE", new JSONArray().put(name.getMatchedStr()).put(JSONObject.NULL)).shadow(true).topLevel(false).build());
-        return new JSONArray().put(ID);
+        return new String[] {ID, ID};
     }
 
     public static enum ParameterType implements ParserNode {

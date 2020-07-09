@@ -24,11 +24,11 @@ public class RepeatStatement implements Statements {
     }
 
     @Override
-    public Object buildJSON(String parentId, String nextId, ScriptBuilder builder) {
+    public Object[] buildJSON(String parentId, String nextId, ScriptBuilder builder) {
         String id = builder.getNextID();
-        Object countObj = count.buildJSON(id, null, builder);
-        Object stmtObj = stmts.buildJSON(id, null, builder);
-        builder.putComplexObject(id, new ScratchBlockBuilder().op("control_repeat").nextId(nextId).parentId(parentId).input("TIMES", countObj).input("SUBSTACK", stmtObj).shadow(false).topLevel(false).build());
-        return id;
+        Object[] countObj = count.buildJSON(id, null, builder);
+        Object[] stmtObj = stmts.buildJSON(id, null, builder);
+        builder.putComplexObject(id, new ScratchBlockBuilder().op("control_repeat").nextId(nextId).parentId(parentId).input("TIMES", countObj[0]).input("SUBSTACK", stmtObj[0]).shadow(false).topLevel(false).build());
+        return new String[] {id, id};
     }
 }

@@ -22,7 +22,7 @@ public class IncludeRule implements ParserRule {
             try {
                 String name = rdec.getName().getValue(String.class) + ".tcsmodule";
 
-                InputStream possible = Main.class.getResourceAsStream("/kr/syeyoung/textcodedscratch/predefined/"+name);
+                InputStream possible = IncludeRule.class.getResourceAsStream("/kr/syeyoung/textcodedscratch/predefined/"+name);
                 if (possible == null) possible = new FileInputStream(name);
 
                 Tokenizer tokenizer = new Tokenizer(possible);

@@ -54,7 +54,8 @@ public class VariableExpression implements Expression {
     }
 
     @Override
-    public Object buildJSON(String parentId, String nextId, ScriptBuilder builder) {
-        return new JSONArray().put(isList ? 13 : 12).put(variableName.getMatchedStr()).put("$TCS_"+(isList ? "L": "V")+"$_"+variableName.getMatchedStr());
+    public Object[] buildJSON(String parentId, String nextId, ScriptBuilder builder) {
+        JSONArray arr =  new JSONArray().put(isList ? 13 : 12).put(variableName.getMatchedStr()).put("$TCS_"+(isList ? "L": "V")+"$_"+variableName.getMatchedStr());
+        return new Object[] {arr, arr};
     }
 }

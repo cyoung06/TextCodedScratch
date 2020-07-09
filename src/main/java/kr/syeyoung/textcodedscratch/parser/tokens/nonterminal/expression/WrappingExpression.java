@@ -43,7 +43,7 @@ public class WrappingExpression implements Expression, StatementFormedListener {
     }
 
     @Override
-    public Object buildJSON(String parentId, String nextId, ScriptBuilder builder) {
+    public Object[] buildJSON(String parentId, String nextId, ScriptBuilder builder) {
         return parent.buildJSON(parentId, nextId, builder);
     }
 

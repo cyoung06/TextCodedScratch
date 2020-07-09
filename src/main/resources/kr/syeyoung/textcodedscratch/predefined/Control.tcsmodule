@@ -8,7 +8,7 @@ Native Func Control::stopOtherScripts() "{\"mutation\":{\"children\":[],\"hasnex
 
 
 Native Event Control::whenCloned "{\"shadow\":false,\"inputs\":{},\"topLevel\":false,\"opcode\":\"control_start_as_clone\",\"fields\":{}}"
-Native Func Control::cloneMySelf() "{\"shadow\":false,\"inputs\":{\"CLONE_OPTION\":[1,[10, "_myself_"]]]},\"topLevel\":false,\"opcode\":\"control_create_clone_of\",\"fields\":{}}"
-Native Func Control::cloneSprite(spriteName: Text) "{\"shadow\":false,\"inputs\":{\"CLONE_OPTION\":[1,\"$TCS$I0"]},\"topLevel\":false,\"opcode\":\"control_create_clone_of\",\"fields\":{}}"
+Native Func Control::cloneMySelf() "{\"shadow\":false,\"inputs\":{\"CLONE_OPTION\":[1,[10,\"_myself_\"]]]},\"topLevel\":false,\"opcode\":\"control_create_clone_of\",\"fields\":{}}"
+Native Func Control::cloneSprite(spriteName: Text) "{\"shadow\":false,\"inputs\":{\"CLONE_OPTION\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"control_create_clone_of\",\"fields\":{}}"
 
 Native Func Control::deleteThisClone() "{\"shadow\":false,\"inputs\":{},\"topLevel\":false,\"opcode\":\"control_delete_this_clone\",\"fields\":{}}"

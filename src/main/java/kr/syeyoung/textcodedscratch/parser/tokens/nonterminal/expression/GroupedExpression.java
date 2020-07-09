@@ -41,7 +41,7 @@ public class GroupedExpression implements Expression, StatementFormedListener {
     }
 
     @Override
-    public Object buildJSON(String parentId, String nextId, ScriptBuilder builder) {
+    public Object[] buildJSON(String parentId, String nextId, ScriptBuilder builder) {
         return expr.buildJSON(parentId, nextId, builder);
     }
 
