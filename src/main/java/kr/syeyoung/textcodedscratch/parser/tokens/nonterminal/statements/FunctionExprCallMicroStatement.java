@@ -80,7 +80,7 @@ public class FunctionExprCallMicroStatement implements Statements, FunctionCall,
             inputIDs.put(id);
             sbb.input(id, parameters[i].buildJSON(id2, null, builder)[0]);
         }
-        sbb.put("mutation", new JSONObject().put("tagName", "mutation").put("children", new JSONArray()).put("proccode", procCode).put("argumentids", inputIDs.toString()).put("warp", "false"));
+        sbb.put("mutation", new JSONObject().put("tagName", "mutation").put("children", new JSONArray()).put("proccode", procCode).put("argumentids", inputIDs.toString()).put("warp", String.valueOf(functionDeclaration.isNoRefresh())));
         builder.putComplexObject(id2, sbb.build());
         return new String[] {id2, id2};
     }

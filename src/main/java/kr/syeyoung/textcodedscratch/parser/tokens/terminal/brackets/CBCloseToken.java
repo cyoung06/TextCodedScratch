@@ -1,5 +1,6 @@
 package kr.syeyoung.textcodedscratch.parser.tokens.terminal.brackets;
 
+import kr.syeyoung.textcodedscratch.parser.ICodeContextConsumer;
 import kr.syeyoung.textcodedscratch.parser.context.ICodeContext;
 import kr.syeyoung.textcodedscratch.parser.context.VariableContext;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.statements.Statements;
@@ -7,7 +8,7 @@ import kr.syeyoung.textcodedscratch.parser.tokens.terminal.MarkerToken;
 import kr.syeyoung.textcodedscratch.parser.util.ScriptBuilder;
 import kr.syeyoung.textcodedscratch.parser.util.StackHelper;
 
-public class CBCloseToken extends MarkerToken implements Statements {
+public class CBCloseToken extends MarkerToken implements Statements, ICodeContextConsumer {
     public CBCloseToken(String match) {
         super(match);
     }
@@ -20,7 +21,6 @@ public class CBCloseToken extends MarkerToken implements Statements {
 
     @Override
     public Object[] buildJSON(String parentId, String nextId, ScriptBuilder builder) {
-        System.out.println("Closing - "+codeContext.getLocalStackSize());
         if (codeContext.getLocalStackSize() == 0) return null;
         String id = StackHelper.deallocateStack(builder, parentId, nextId, codeContext.getLocalStackSize());
         return new Object[] {id, id};

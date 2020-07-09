@@ -79,7 +79,7 @@ public class FunctionCallStatement implements Statements, FunctionCall {
             inputIDs.put(id);
             sbb.input(id, parameters[i].buildJSON(id2, null, builder)[0]);
         }
-        sbb.put("mutation", new JSONObject().put("tagName", "mutation").put("children", new JSONArray()).put("proccode", procCode).put("argumentids", inputIDs.toString()).put("warp", "false"));
+        sbb.put("mutation", new JSONObject().put("tagName", "mutation").put("children", new JSONArray()).put("proccode", procCode).put("argumentids", inputIDs.toString()).put("warp",  String.valueOf(functionDeclaration.isNoRefresh())));
         String id3 = StackHelper.deallocateStack(builder, id2, nextId, 1);
         sbb.nextId(id3);
         builder.putComplexObject(id2, sbb.build());

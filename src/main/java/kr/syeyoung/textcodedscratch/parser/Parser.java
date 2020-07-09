@@ -70,6 +70,7 @@ public class Parser {
         rules.add(new IfElseStatementRule());
         rules.add(new WhileStatementRule());
         rules.add(new RepeatStatementRule());
+        rules.add(new ReturnStatementRule());
 
         rules.add(new FunctionCallRule());
         rules.add(new VariableAssignmentRule());

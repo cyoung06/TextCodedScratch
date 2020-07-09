@@ -36,6 +36,8 @@ public class GroupedStatements implements ParserNode, Statements {
                 firstId = (String) prevID[0];
             if (prevObj != null) prevObj.put("next", prevID[0]);
             prevObj = builder.getComplexObject((String) prevID[1]);
+
+            if (statements[i] instanceof ReturnStatement) break;
         }
         if (prevObj != null)
         prevObj.put("next", rnextId == null ? JSONObject.NULL : rnextId);

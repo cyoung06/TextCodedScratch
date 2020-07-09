@@ -145,6 +145,7 @@ public class Tokenizer {
         terminalNodeConverter.put((str,next) -> str.equals("else") && " \t\n\r".contains(String.valueOf(next)), str -> new KeywordElse());
         terminalNodeConverter.put((str,next) -> str.equals("while") && " \t\n\r".contains(String.valueOf(next)), str -> new KeywordWhile());
         terminalNodeConverter.put((str,next) -> str.equals("repeat") && " \t\n\r".contains(String.valueOf(next)), str -> new KeywordRepeat());
+        terminalNodeConverter.put((str,next) -> str.equals("return") && " \t\n\r".contains(String.valueOf(next)), str -> new KeywordReturn());
 
         // "IDENTIFIER"
         terminalNodeConverter.put((str,next) -> identifier.matcher(str).matches() && !identAfter.matcher(String.valueOf(next)).matches(), (str) -> new IdentifierToken(str));

@@ -1,9 +1,6 @@
 package kr.syeyoung.textcodedscratch.parser.rule;
 
-import kr.syeyoung.textcodedscratch.parser.ParserNode;
-import kr.syeyoung.textcodedscratch.parser.StackAddingOperation;
-import kr.syeyoung.textcodedscratch.parser.StackRemovingOperation;
-import kr.syeyoung.textcodedscratch.parser.StackRequringOperation;
+import kr.syeyoung.textcodedscratch.parser.*;
 import kr.syeyoung.textcodedscratch.parser.context.ICodeContext;
 import kr.syeyoung.textcodedscratch.parser.context.SpriteDefinition;
 import kr.syeyoung.textcodedscratch.parser.context.VariableContext;
@@ -54,6 +51,11 @@ public class SyntexCheckerRule implements ParserRule {
     @Override
     public boolean process(LinkedList<ParserNode> past, LinkedList<ParserNode> future) {
         ParserNode node = past.getLast();
+
+        if (node instanceof ICodeContextConsumer) {
+            System.out.println("gave "+node+" "+lastContext);
+            ((ICodeContextConsumer) node).setICodeContext(lastContext);
+        }
 
         if (node instanceof SpriteDeclaration) {
             if (definition.getSpriteName() == null) {
@@ -136,10 +138,11 @@ public class SyntexCheckerRule implements ParserRule {
         } else if (node instanceof CBOpenToken) {
             variableContextQueue.add(lastContext = ((CBOpenToken) node).createContext(lastContext));
         } else if (node instanceof CBCloseToken) {
-            ((CBCloseToken) node).setICodeContext(lastContext);
             variableContextQueue.removeLast();
             lastContext = variableContextQueue.getLast();
         }
+
+
         if (node instanceof StackAddingOperation) {
             lastContext.incrementStackCount();
             System.out.println("stack incremented by" +node);

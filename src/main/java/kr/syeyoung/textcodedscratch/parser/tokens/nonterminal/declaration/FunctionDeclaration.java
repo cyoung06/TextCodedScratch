@@ -20,6 +20,12 @@ public class FunctionDeclaration implements ParserNode, ScratchTransferable, Dec
     private FunctionParameter[] parameters;
     private GroupedStatements toExecute;
 
+    private boolean noRefresh;
+
+    public boolean isNoRefresh() {
+        return noRefresh;
+    }
+
     public FunctionDeclaration(IdentifierToken identifierToken, FunctionParameter[] parameters, GroupedStatements inside) {
         this.identifierToken = identifierToken;
         this.parameters = parameters;
@@ -65,18 +71,16 @@ public class FunctionDeclaration implements ParserNode, ScratchTransferable, Dec
                 paramIDs.put("$TCS_FP$_"+identifierToken.getMatchedStr()+"$"+parameters[i].getName().getMatchedStr());
                 procCode += " "+(parameters[i].getType() == FunctionParameter.ParameterType.TEXT ? "%s" : "%b");
             }
-            sbb.put("mutation", new JSONObject().put("tagName", "mutation").put("children", new JSONArray()).put("proccode", procCode).put("argumentids", paramIDs.toString()).put("argumentnames", paramNames.toString()).put("argumentdefaults", defaults.toString()).put("warp", "false"));
+            sbb.put("mutation", new JSONObject().put("tagName", "mutation").put("children", new JSONArray()).put("proccode", procCode).put("argumentids", paramIDs.toString()).put("argumentnames", paramNames.toString()).put("argumentdefaults", defaults.toString()).put("warp", String.valueOf(refresh)));
 
             builder.putComplexObject(protoID, sbb.build());
         }
         builder.putComplexObject(defID, new ScratchBlockBuilder().op("procedures_definition").nextId(null).parentId(parentId).input("custom_block", protoID).shadow(false).topLevel(true).xy(0,0).build());
 
-        Object[] id2 = toExecute.buildJSON(defID, null, builder);
+        Object[] id2 = toExecute.buildJSON(defID, nextId, builder);
         builder.getComplexObject(defID).put("next", id2 == null ? JSONObject.NULL : id2[0]);
 
-        String id3 = StackHelper.putStack(builder, (String) id2[1], nextId, new StringToken("\"\""));
-        builder.getComplexObject((String) id2[1]).put("next", id3 == null ? JSONObject.NULL : id3);
-        return new String[] {defID, id3};
+        return new String[] {defID, (String) id2[1]};
     }
 
     @Override

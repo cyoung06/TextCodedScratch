@@ -10,6 +10,8 @@ import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.declaration.Declar
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.declaration.NativeFunctionDeclaration;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.function.FunctionParameter;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.statements.GroupedStatements;
+import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.statements.ReturnStatement;
+import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.statements.Statements;
 import kr.syeyoung.textcodedscratch.parser.tokens.terminal.CommaToken;
 import kr.syeyoung.textcodedscratch.parser.tokens.terminal.EOSToken;
 import kr.syeyoung.textcodedscratch.parser.tokens.terminal.IdentifierToken;
@@ -21,8 +23,8 @@ import kr.syeyoung.textcodedscratch.parser.tokens.terminal.keywords.KeywordFunc;
 import kr.syeyoung.textcodedscratch.parser.tokens.terminal.keywords.KeywordNative;
 import kr.syeyoung.textcodedscratch.parser.tokens.terminal.keywords.KeywordReporter;
 
-import java.util.Iterator;
-import java.util.LinkedList;
+import java.sql.Statement;
+import java.util.*;
 
 public class FunctionDeclarationRule implements ParserRule {
     private SyntexCheckerRule scr;
@@ -120,6 +122,15 @@ public class FunctionDeclarationRule implements ParserRule {
 //                    return context;
 //                }
 //            });
+            // INJECT return statement
+            {
+                List<Statements> stmts = new ArrayList<>(Arrays.asList((Statements[])inside.getChildren()));
+                ReturnStatement rs;
+                stmts.add(rs = new ReturnStatement(new StringToken("\"\"")));
+                inside = new GroupedStatements(stmts.toArray(new Statements[0]));
+                rs.setICodeContext(scr.getLastContext());
+            }
+
             future.addFirst(new FunctionDeclaration(identifierToken, parameters, inside));
 
             scr.getVariableContextQueue().removeLast();

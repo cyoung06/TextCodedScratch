@@ -9,9 +9,12 @@ Costume DEFAULT = "default.png";
 
 
 Func testFunction(param1: Text, param2: Boolean) {
+    Var localVar = param1 .. param2;
     if (param1 == param2) {
+        return "hmm";
         Control::stopAll();
     }
+    return localVar .. "fancy!";
 }
 
 Var asdf=1+1;
