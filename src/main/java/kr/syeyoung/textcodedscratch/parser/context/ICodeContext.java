@@ -13,4 +13,6 @@ public interface ICodeContext {
     public int decrementStackCount();
     public int getLocalStackSize();
     public int getTotalStackSize();
+
+    public ICodeContext getParent();
 }

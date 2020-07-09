@@ -18,6 +18,7 @@ import java.nio.file.Paths;
 import java.security.DigestInputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
@@ -26,10 +27,21 @@ import java.util.zip.ZipOutputStream;
 
 public class SpriteTargetBuilder {
     private SpriteDefinition definition;
-    private ScriptBuilder builder = new ScriptBuilder();
+    private ScriptBuilder builder;
+    protected long getBuilderIndex() {
+        return builder.getScriptCounter();
+    }
+
     private JSONObject built = new JSONObject();
+
+    protected boolean omitGlobalVars;
     public SpriteTargetBuilder(SpriteDefinition definition) {
         this.definition = definition;
+        this.builder = new ScriptBuilder(0);
+    }
+    public SpriteTargetBuilder(SpriteDefinition definition, long idx) {
+        this.definition = definition;
+        this.builder = new ScriptBuilder(idx);
     }
 
     public void build() {
@@ -54,22 +66,30 @@ public class SpriteTargetBuilder {
         try (FileOutputStream fos = new FileOutputStream(f2);
              ZipOutputStream zos = new ZipOutputStream(new BufferedOutputStream(fos))) {
 
-            for (CostumeDeclaration costumeDeclaration : definition.getCostumes().values()) {
-                File f = new File(costumeDeclaration.getLocation().getValue(String.class));
-                String hash = FileUtils.calcMD5Hash(f);
+            for (Resource r:resources) {
+                File f = r.getFile();
+                String hash = r.getHash();
                 zos.putNextEntry(new ZipEntry(hash + "." + FileUtils.getExtension(f)));
                 Files.copy(f.toPath(), zos);
                 zos.flush();
                 zos.closeEntry();
             }
-            for (SoundDeclaration costumeDeclaration : definition.getSounds().values()) {
-                File f = new File(costumeDeclaration.getLocation().getValue(String.class));
-                String hash = FileUtils.calcMD5Hash(f);
-                zos.putNextEntry(new ZipEntry(hash + "." + FileUtils.getExtension(f)));
-                Files.copy(f.toPath(), zos);
-                zos.flush();
-                zos.closeEntry();
-            }
+//            for (CostumeDeclaration costumeDeclaration : definition.getCostumes().values()) {
+//                File f = new File(costumeDeclaration.getLocation().getValue(String.class));
+//                String hash = FileUtils.calcMD5Hash(f);
+//                zos.putNextEntry(new ZipEntry(hash + "." + FileUtils.getExtension(f)));
+//                Files.copy(f.toPath(), zos);
+//                zos.flush();
+//                zos.closeEntry();
+//            }
+//            for (SoundDeclaration costumeDeclaration : definition.getSounds().values()) {
+//                File f = new File(costumeDeclaration.getLocation().getValue(String.class));
+//                String hash = FileUtils.calcMD5Hash(f);
+//                zos.putNextEntry(new ZipEntry(hash + "." + FileUtils.getExtension(f)));
+//                Files.copy(f.toPath(), zos);
+//                zos.flush();
+//                zos.closeEntry();
+//            }
 
             {
                 zos.putNextEntry(new ZipEntry("sprite.json"));
@@ -86,6 +106,11 @@ public class SpriteTargetBuilder {
         return built;
     }
 
+    private List<Resource> resources = new ArrayList<>();
+
+    public List<Resource> getResources() {
+        return resources;
+    }
 
     private void buildCostumes() throws IOException, NoSuchAlgorithmException {
         JSONArray costumeList = new JSONArray();
@@ -107,6 +132,8 @@ public class SpriteTargetBuilder {
             costume.put("rotationCenterY", 0);
 
             costumeList.put(costume);
+
+            resources.add(new Resource(file, md5));
         }
         built.put("costumes", costumeList);
     }
@@ -136,6 +163,8 @@ public class SpriteTargetBuilder {
 
 
             costumeList.put(costume);
+
+            resources.add(new Resource(file, md5));
         }
         built.put("sounds", costumeList);
     }
@@ -144,18 +173,20 @@ public class SpriteTargetBuilder {
     private void buildVariables() {
         JSONObject variables = new JSONObject();
         for (VariableDeclaration varDec: definition.getVariables().values()) {
-            variables.put("$TCS_V$_"+varDec.getName().getMatchedStr(), new JSONArray().put(varDec.getName().getMatchedStr()).put(varDec.getDefaultValue().getValue()));
+            if (omitGlobalVars && varDec.isGlobal()) continue;
+            variables.put("$TCS_V$"+definition.getSpriteName().getName().getValue()+"$"+varDec.getName().getMatchedStr(), new JSONArray().put(varDec.getName().getMatchedStr()).put(varDec.getDefaultValue().getValue()));
         }
 
         JSONObject lists = new JSONObject();
         for (ListDeclaration varDec: definition.getLists().values()) {
+            if (omitGlobalVars && varDec.isGlobal()) continue;
             JSONArray arr = new JSONArray().put(varDec.getName().getMatchedStr());
             JSONArray values = new JSONArray();
             for (ConstantNode cn:varDec.getDefaultValues())
                 values.put(cn.getValue());
             arr.put(values);
 
-            lists.put("$TCS_L$_"+varDec.getName().getMatchedStr(), arr);
+            lists.put("$TCS_L$"+definition.getSpriteName().getName().getValue()+"$"+varDec.getName().getMatchedStr(), arr);
         }
 
         built.put("variables", variables).put("lists", lists).put("broadcasts", new JSONObject()).put("comments", new JSONObject());

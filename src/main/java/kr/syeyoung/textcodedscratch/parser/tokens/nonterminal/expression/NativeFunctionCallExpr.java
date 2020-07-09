@@ -1,6 +1,9 @@
 package kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.expression;
 
+import kr.syeyoung.textcodedscratch.parser.ICodeContextConsumer;
 import kr.syeyoung.textcodedscratch.parser.ParserNode;
+import kr.syeyoung.textcodedscratch.parser.context.ICodeContext;
+import kr.syeyoung.textcodedscratch.parser.context.SpriteDefinition;
 import kr.syeyoung.textcodedscratch.parser.util.ScriptBuilder;
 import kr.syeyoung.textcodedscratch.parser.exception.ParsingGrammarException;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.NativeFunctionCall;
@@ -13,7 +16,7 @@ import org.json.JSONObject;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
-public class NativeFunctionCallExpr extends FunctionCallExpr implements NativeFunctionCall {
+public class NativeFunctionCallExpr extends FunctionCallExpr implements NativeFunctionCall, ICodeContextConsumer {
     private IdentifierToken identifierToken;
     private Expression[] parameters;
 
@@ -67,6 +70,12 @@ public class NativeFunctionCallExpr extends FunctionCallExpr implements NativeFu
     public Object[] buildJSON(String parentId, String nextId, ScriptBuilder builder) {
         String json = nativeFunctionDeclaration.json();
         if (!nativeFunctionDeclaration.isReporter()) throw new ParsingGrammarException("native Statement function used as a statement : " +getFunctionName().getMatchedStr());
+        json = json.replace("$TCS_SPNAME$", sd.getSpriteName().getName().getValue(String.class));
+        if (json.startsWith("[")) {
+            JSONArray ja = new JSONArray(json);
+            return new Object[] {ja, ja};
+        }
+
         String id = builder.getNextID();
         Object[] arrays = new Object[parameters.length];
         for (int i =0; i < parameters.length; i++)
@@ -136,5 +145,13 @@ public class NativeFunctionCallExpr extends FunctionCallExpr implements NativeFu
                 obj.put(i, isInput ? parameters[j] : fieldParam[j]);
             }
         }
+    }
+
+
+    private SpriteDefinition sd;
+    @Override
+    public void setICodeContext(ICodeContext context) {
+        while (!(context instanceof SpriteDefinition)) context = context.getParent();
+        this.sd = (SpriteDefinition) context;
     }
 }

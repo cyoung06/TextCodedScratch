@@ -5,7 +5,11 @@ import org.json.JSONObject;
 public class ScriptBuilder {
     private JSONObject script = new JSONObject();
 
-    private long scriptCounter = 100;
+    private long scriptCounter = 0;
+
+    public ScriptBuilder(long scriptCounter) {
+        this.scriptCounter = scriptCounter;
+    }
 
     public String putComplexObject(JSONObject obj) {
         String id = getNextID();
@@ -26,5 +30,9 @@ public class ScriptBuilder {
 
     public JSONObject getJSON() {
         return script;
+    }
+
+    public long getScriptCounter() {
+        return scriptCounter;
     }
 }

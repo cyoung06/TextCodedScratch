@@ -37,7 +37,7 @@ public class VariableAssignment implements Statements, StackRequringOperation {
         } else {
             String id = builder.getNextID();
             Object[] expr = expression.buildJSON(id, null, builder);
-            builder.putComplexObject(id, new ScratchBlockBuilder().op("data_setvariableto").nextId(nextId).parentId(parentId).input("VALUE", expr[0]).field("VARIABLE", new JSONArray().put(variableExpression.getVariableName().getMatchedStr()).put("$TCS_V$_"+variableExpression.getVariableName().getMatchedStr())).shadow(false).topLevel(false).build());
+            builder.putComplexObject(id, new ScratchBlockBuilder().op("data_setvariableto").nextId(nextId).parentId(parentId).input("VALUE", expr[0]).field("VARIABLE", new JSONArray().put(variableExpression.getVariableName().getMatchedStr()).put("$TCS_V$"+(variableExpression.isGlobal() ? "Stage" : variableExpression.getSpriteDefinition().getSpriteName().getName().getValue())+"$"+variableExpression.getVariableName().getMatchedStr())).shadow(false).topLevel(false).build());
             return new String[] {id, id};
         }
     }

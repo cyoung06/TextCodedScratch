@@ -52,4 +52,9 @@ public class VariableContext implements ICodeContext {
     public int getTotalStackSize() {
         return stack + parentContext.getTotalStackSize();
     }
+
+    @Override
+    public ICodeContext getParent() {
+        return parentContext;
+    }
 }

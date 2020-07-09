@@ -37,6 +37,6 @@ public class OperatorGetName extends OperatorNode {
 
     public JSONArray operate(VariableExpression varExpr) {
         String varName = varExpr.getVariableName().getMatchedStr();
-        return new JSONArray().put(varName).put("$TCS_"+(varExpr.isList() ? "L": "V")+"$_"+varName);
+        return new JSONArray().put(varName).put("$TCS_"+(varExpr.isList() ? "L": "V")+"$"+(varExpr.isGlobal() ? "Stage": varExpr.getSpriteDefinition().getSpriteName().getName().getValue())+"$"+varName);
     }
 }

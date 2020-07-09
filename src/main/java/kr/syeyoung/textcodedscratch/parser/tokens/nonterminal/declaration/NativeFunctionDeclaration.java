@@ -1,7 +1,10 @@
 package kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.declaration;
 
+import kr.syeyoung.textcodedscratch.parser.ICodeContextConsumer;
 import kr.syeyoung.textcodedscratch.parser.ParserNode;
 import kr.syeyoung.textcodedscratch.parser.ScratchTransferable;
+import kr.syeyoung.textcodedscratch.parser.context.ICodeContext;
+import kr.syeyoung.textcodedscratch.parser.context.SpriteDefinition;
 import kr.syeyoung.textcodedscratch.parser.util.ScriptBuilder;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.function.FunctionParameter;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.statements.GroupedStatements;

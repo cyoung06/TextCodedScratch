@@ -8,11 +8,14 @@ import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.declaration.*;
 import kr.syeyoung.textcodedscratch.parser.tokens.terminal.EOSToken;
 import kr.syeyoung.textcodedscratch.parser.tokens.terminal.TerminalNode;
 import kr.syeyoung.textcodedscratch.parser.tokens.terminal.keywords.KeywordModule;
+import kr.syeyoung.textcodedscratch.parser.tokens.terminal.keywords.KeywordStage;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class IncludeRule implements ParserRule {
     @Override
@@ -27,13 +30,25 @@ public class IncludeRule implements ParserRule {
 
                 Tokenizer tokenizer = new Tokenizer(possible);
                 ParserNode pn = tokenizer.getNextToken();
-                if (!(pn instanceof KeywordModule)) throw new ParsingGrammarException("File referenced in Require Declaration should be a module file - " + rdec.getName().getValue(String.class));
+                if (!(pn instanceof KeywordModule || pn instanceof KeywordStage)) throw new ParsingGrammarException("File referenced in Require Declaration should be a module file - " + rdec.getName().getValue(String.class));
                 tokenizer.Tokenize();
-                LinkedList<TerminalNode> theList = tokenizer.getTerminalNodes();
-                theList.removeFirst();
-                theList.removeFirst();
-                future.addAll(0, theList);
-                future.addFirst(new EOSToken("INCLUDE"));
+
+                if (pn instanceof KeywordModule) {
+                    LinkedList<TerminalNode> theList = tokenizer.getTerminalNodes();
+                    theList.removeFirst();
+                    theList.removeFirst();
+
+                    future.addAll(0, theList);
+                    future.addFirst(new EOSToken("INCLUDE"));
+                } else {
+                    LinkedList<TerminalNode> theList = tokenizer.getTerminalNodes();
+                    theList = new LinkedList<>(theList.stream().filter(tm -> ((tm instanceof VariableDeclaration && ((VariableDeclaration) tm).isGlobal()) || (tm instanceof ListDeclaration && ((ListDeclaration) tm).isGlobal())))
+                            .collect(Collectors.toList()));
+
+
+                    future.addAll(0, theList);
+                    future.addFirst(new EOSToken("INCLUDE STAGE VAR"));
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }

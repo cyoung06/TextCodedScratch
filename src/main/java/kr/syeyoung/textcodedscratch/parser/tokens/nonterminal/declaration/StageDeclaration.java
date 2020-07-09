@@ -1,12 +1,14 @@
 package kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.declaration;
 
 import kr.syeyoung.textcodedscratch.parser.ParserNode;
+import kr.syeyoung.textcodedscratch.parser.context.SpriteDefinition;
 import kr.syeyoung.textcodedscratch.parser.tokens.terminal.constant.StringToken;
 
-public class ExtensionDeclaration implements ParserNode, Declaration {
+public class StageDeclaration extends SpriteDeclaration implements ParserNode, Declaration {
     private StringToken name;
-    public ExtensionDeclaration(StringToken extensionName) {
-        this.name = extensionName;
+    public StageDeclaration() {
+        super(new StringToken("\"Stage\""));
+        this.name = super.getName();
     }
 
     @Override
@@ -14,12 +16,12 @@ public class ExtensionDeclaration implements ParserNode, Declaration {
         return new ParserNode[] {name};
     }
 
-    public StringToken getName() {
-        return name;
-    }
-
     @Override
     public String toString() {
-        return "Extension Declaration w/ name="+name.getValue();
+        return "Stage Declaration";
+    }
+
+    public StringToken getName() {
+        return name;
     }
 }

@@ -1,7 +1,20 @@
 
 Native Event Threads::onThreadCreation "{\"shadow\":false,\"inputs\":{},\"topLevel\":false,\"opcode\":\"control_start_as_clone\",\"fields\":{}}"
 
-Native Func Threads::createNewThread() "{\"shadow\":false,\"inputs\":{\"CLONE_OPTION\":[1,[10,\"_myself_\"]]]},\"topLevel\":false,\"opcode\":\"control_create_clone_of\",\"fields\":{}}"
-Native Func Threads::createNewThreadOf(spriteName: Text) "{\"shadow\":false,\"inputs\":{\"CLONE_OPTION\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"control_create_clone_of\",\"fields\":{}}"
+Native Func Threads::internalCreateNewThread() "{\"shadow\":false,\"inputs\":{\"CLONE_OPTION\":[1,[10,\"_myself_\"]]]},\"topLevel\":false,\"opcode\":\"control_create_clone_of\",\"fields\":{}}"
+Native Func Threads::internalCreateNewThreadOf(spriteName: Text) "{\"shadow\":false,\"inputs\":{\"CLONE_OPTION\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"control_create_clone_of\",\"fields\":{}}"
+
+Embed Func Threads::createNewThread() {
+
+}
+
+Embed Func Threads::createNewThreadOf() {
+
+}
+
+Native Func
 
 Native Func Threads::deleteThisThread() "{\"shadow\":false,\"inputs\":{},\"topLevel\":false,\"opcode\":\"control_delete_this_clone\",\"fields\":{}}"
+
+Native Reporter Func Threads::getTotalThreads() "[12,\"$THREAD_CNT$\",\"$TCS_V$$TCS_SPNAME$$$THREAD_CNT$\"]"
+Native Reporter Func Threads::getCurrentThreadIndex() "[12,\"$THREAD_IDX$\",\"$TCS_V$$TCS_SPNAME$$$THREAD_IDX$\"]"

@@ -60,6 +60,9 @@ public class SyntexCheckerRule implements ParserRule {
         if (node instanceof SpriteDeclaration) {
             if (definition.getSpriteName() == null) {
                 definition.setSpriteName((SpriteDeclaration) node);
+                if (node instanceof StageDeclaration) {
+                    definition.setStage(true);
+                }
             } else {
                 throw new ParsingGrammarException("Duplicate Sprite Declaration. Use Only ONE");
             }
@@ -131,16 +134,18 @@ public class SyntexCheckerRule implements ParserRule {
                 VariableDeclaration varDec = lastContext.getVariable(name);
                 if (varDec instanceof CostumeDeclaration || varDec instanceof SoundDeclaration) {
                     past.removeLast();
-                    past.addLast(new ConstantVariableExpression(varDec.getName(), varDec.getDefaultValue()));
+                    past.addLast(node = new ConstantVariableExpression(varDec.getName(), varDec.getDefaultValue()));
                 } else if (varDec instanceof LocalVariableDeclaration) {
                     past.removeLast();
                     past.addLast(node = new LocalVariableExpression(varDec.getName(), (LocalVariableDeclaration) varDec));
                 } else if (varDec instanceof FunctionParameter) {
                     past.removeLast();
-                    past.addLast(new FunctionVariableExpression(varDec.getName(), (FunctionParameter) varDec));
+                    past.addLast(node = new FunctionVariableExpression(varDec.getName(), (FunctionParameter) varDec));
                 }
+                if (varDec.isGlobal()) ((VariableExpression) node).setGlobal(true);
             } else if (definition.getLists().containsKey(name)) {
                 ((VariableExpression) node).setList(true);
+                if (definition.getLists().get(name).isGlobal()) ((VariableExpression) node).setGlobal(true);
             } else {
                 throw new ParsingGrammarException("Variable or List not defined" + name);
             }

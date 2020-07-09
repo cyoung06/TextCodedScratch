@@ -9,6 +9,16 @@ import java.util.Objects;
 
 public class SpriteDefinition implements ICodeContext {
     private SpriteDeclaration spriteName;
+    private boolean isStage = false;
+
+    public boolean isStage() {
+        return isStage;
+    }
+
+    public void setStage(boolean stage) {
+        isStage = stage;
+    }
+
     private HashMap<String, VariableDeclaration> variables = new HashMap<>();
     private HashMap<String, ListDeclaration> lists = new HashMap<>();  // LISTS
     private HashMap<String, CostumeDeclaration> costumes = new HashMap<>();
@@ -123,5 +133,10 @@ public class SpriteDefinition implements ICodeContext {
     @Override
     public int getTotalStackSize() {
         return 0;
+    }
+
+    @Override
+    public ICodeContext getParent() {
+        return null;
     }
 }
