@@ -6,9 +6,3 @@ Native Func Control::waitUntil(condition: Boolean) "{\"shadow\":false,\"inputs\"
 Native Func Control::stopAll() "{\"mutation\":{\"children\":[],\"hasnext\":\"false\",\"tagName\":\"mutation\"},\"shadow\":false,\"inputs\":{},\"topLevel\":false,\"opcode\":\"control_stop\",\"fields\":{\"STOP_OPTION\":[\"all\",null]}}"
 Native Func Control::stopOtherScripts() "{\"mutation\":{\"children\":[],\"hasnext\":\"true\",\"tagName\":\"mutation\"},\"shadow\":false,\"inputs\":{},\"topLevel\":false,\"opcode\":\"control_stop\",\"fields\":{\"STOP_OPTION\":[\"other scripts in sprite\",null]}}"
 
-
-Native Event Control::whenCloned "{\"shadow\":false,\"inputs\":{},\"topLevel\":false,\"opcode\":\"control_start_as_clone\",\"fields\":{}}"
-Native Func Control::cloneMySelf() "{\"shadow\":false,\"inputs\":{\"CLONE_OPTION\":[1,[10,\"_myself_\"]]]},\"topLevel\":false,\"opcode\":\"control_create_clone_of\",\"fields\":{}}"
-Native Func Control::cloneSprite(spriteName: Text) "{\"shadow\":false,\"inputs\":{\"CLONE_OPTION\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"control_create_clone_of\",\"fields\":{}}"
-
-Native Func Control::deleteThisClone() "{\"shadow\":false,\"inputs\":{},\"topLevel\":false,\"opcode\":\"control_delete_this_clone\",\"fields\":{}}"

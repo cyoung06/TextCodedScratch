@@ -41,7 +41,7 @@ public class OneTermedExpression implements Expression, StatementFormedListener 
         if (operator instanceof OperatorGetName) {
             if (!(firstTerm instanceof VariableExpression)) throw new ParsingGrammarException("After the Pointer Operator, there should Only be identifier name");
             if (firstTerm instanceof ConstantVariableExpression) throw new ParsingGrammarException("No pointers for constant variable");
-            return firstTerm;
+            return this;
         }
 
         firstTerm = firstTerm.simplify();

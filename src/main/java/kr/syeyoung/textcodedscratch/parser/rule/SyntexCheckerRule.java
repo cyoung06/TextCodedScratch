@@ -10,6 +10,7 @@ import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.NativeFunctionCall
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.declaration.*;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.expression.*;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.function.FunctionParameter;
+import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.statements.EmbedFunctionCallStatement;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.statements.FunctionCallStatement;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.statements.NativeFunctionCallStatement;
 import kr.syeyoung.textcodedscratch.parser.tokens.terminal.TypeToken;
@@ -53,7 +54,6 @@ public class SyntexCheckerRule implements ParserRule {
         ParserNode node = past.getLast();
 
         if (node instanceof ICodeContextConsumer) {
-            System.out.println("gave "+node+" "+lastContext);
             ((ICodeContextConsumer) node).setICodeContext(lastContext);
         }
 
@@ -103,6 +103,9 @@ public class SyntexCheckerRule implements ParserRule {
                 } else {
                     throw new AssertionError("What the heck just happened");
                 }
+            } else if (fd instanceof EmbedFunctionDeclaration && !(fcs instanceof EmbedFunctionCallStatement)) {
+                past.removeLast();
+                past.addLast(new EmbedFunctionCallStatement(fcs.getFunctionName(), fcs.getParameters(), (EmbedFunctionDeclaration) fd));
             }
         } else if (node instanceof NativeEventDeclaration) {
             NativeEventDeclaration fcs = (NativeEventDeclaration) node;
@@ -115,6 +118,12 @@ public class SyntexCheckerRule implements ParserRule {
             if (fd == null) throw new ParsingGrammarException("Not defined event used" + fcs.getEvent().getMatchedStr());
             fcs.setEventJsonDeclaration(fd);
 
+            System.out.println(fcs.getEvent().getMatchedStr());
+            if (fcs.getEvent().getMatchedStr().equalsIgnoreCase("Control::whenCloned")) {
+                for (EventDeclaration ed:definition.getEvents()) {
+                    if (ed.getEvent().getMatchedStr().equalsIgnoreCase("Control::whenCloned")) throw new ParsingGrammarException("Can not define more than one when cloned");
+                }
+            }
             definition.getEvents().add(fcs);
         } else if (node instanceof VariableExpression) {
             String name = ((VariableExpression) node).getVariableName().getMatchedStr();
@@ -145,11 +154,9 @@ public class SyntexCheckerRule implements ParserRule {
 
         if (node instanceof StackAddingOperation) {
             lastContext.incrementStackCount();
-            System.out.println("stack incremented by" +node);
         }
         if (node instanceof StackRemovingOperation) {
             lastContext.decrementStackCount();
-            System.out.println("stack decremented by" +node);
         }
         if (node instanceof StackRequringOperation) {
             ((StackRequringOperation) node).setCurrentStack(lastContext.getTotalStackSize());

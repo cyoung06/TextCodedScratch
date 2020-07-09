@@ -5,6 +5,7 @@ import kr.syeyoung.textcodedscratch.parser.context.ICodeContext;
 import kr.syeyoung.textcodedscratch.parser.context.VariableContext;
 import kr.syeyoung.textcodedscratch.parser.exception.ParsingGrammarException;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.AccessedIdentifier;
+import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.declaration.EmbedFunctionDeclaration;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.declaration.FunctionDeclaration;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.declaration.Declaration;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.declaration.NativeFunctionDeclaration;
@@ -19,9 +20,7 @@ import kr.syeyoung.textcodedscratch.parser.tokens.terminal.brackets.CBOpenToken;
 import kr.syeyoung.textcodedscratch.parser.tokens.terminal.brackets.PCloseToken;
 import kr.syeyoung.textcodedscratch.parser.tokens.terminal.brackets.POpenToken;
 import kr.syeyoung.textcodedscratch.parser.tokens.terminal.constant.StringToken;
-import kr.syeyoung.textcodedscratch.parser.tokens.terminal.keywords.KeywordFunc;
-import kr.syeyoung.textcodedscratch.parser.tokens.terminal.keywords.KeywordNative;
-import kr.syeyoung.textcodedscratch.parser.tokens.terminal.keywords.KeywordReporter;
+import kr.syeyoung.textcodedscratch.parser.tokens.terminal.keywords.*;
 
 import java.sql.Statement;
 import java.util.*;
@@ -67,6 +66,8 @@ public class FunctionDeclarationRule implements ParserRule {
         ParserNode id;
         if (!((id = it.next()) instanceof IdentifierToken && it.next() instanceof KeywordFunc)) return false;
         boolean isNative = false;
+        boolean isEmbed = false;
+        boolean noRefresh = false;
         boolean isReporter = false;
         ParserNode ISnative = it.next();
         if (ISnative instanceof KeywordReporter) {
@@ -77,11 +78,27 @@ public class FunctionDeclarationRule implements ParserRule {
             isNative = true;
             ISnative = it.next();
         }
+        if (ISnative instanceof KeywordEmbed) {
+            isEmbed = true;
+            ISnative = it.next();
+        }
+        if (ISnative instanceof KeywordNoRefresh) {
+            noRefresh = true;
+            ISnative = it.next();
+        }
 
         if (!(ISnative instanceof EOSToken)) return false;
-        if (!(it.next() instanceof Declaration)) throw new RuntimeException("Function declaration should be after other declarations");
-        if (weirdnessFound) throw new ParsingGrammarException("Malformed Function Declaration :: "+id+" :: Check parameters");
-        if (isNative != possibleNative) throw new RuntimeException("Function declaration expected to be "+(possibleNative ? "Native" : "User Defined") + " But it was actually "+(isNative ? "Native" : "User Defined") );
+        if (!(it.next() instanceof Declaration))
+            throw new RuntimeException("Function declaration should be after other declarations");
+        if (weirdnessFound)
+            throw new ParsingGrammarException("Malformed Function Declaration :: " + id + " :: Check parameters");
+        if (isNative != possibleNative)
+            throw new ParsingGrammarException("Function declaration " + id + " expected to be " + (possibleNative ? "Native" : "User Defined") + " But it was actually " + (isNative ? "Native" : "User Defined"));
+        if (isNative && noRefresh)
+            throw new ParsingGrammarException("Native function can not have noRefresh attribute - " + id);
+        if (isEmbed && (isNative || isReporter || noRefresh))
+            throw new ParsingGrammarException("Embed function can not have any attribute - " + id);
+
         if (isNative) {
             StringToken json = (StringToken) past.removeLast();
             IdentifierToken identifierToken = null;
@@ -94,6 +111,36 @@ public class FunctionDeclarationRule implements ParserRule {
             future.addFirst(new NativeFunctionDeclaration(identifierToken, parameters, json, isReporter));
 
 
+            scr.getVariableContextQueue().removeLast();
+            scr.setLastContext(scr.getVariableContextQueue().getLast());
+
+        } else if (isEmbed) {
+            GroupedStatements inside = (GroupedStatements) past.removeLast();
+            IdentifierToken identifierToken = null;
+            FunctionParameter[] parameters = new FunctionParameter[parametersCount];
+            for (int i = 0, j = parametersCount; i < read; i++) {
+                ParserNode pn = past.removeLast();
+                if (pn instanceof FunctionParameter) {
+                    parameters[--j] = (FunctionParameter) pn;
+                }
+                if (pn instanceof IdentifierToken) identifierToken = (IdentifierToken) pn;
+            }
+            if (identifierToken instanceof AccessedIdentifier) throw new RuntimeException("Function name shouldn't be accessed identifier - "+identifierToken);
+            future.removeFirst();
+//            future.addFirst(new CBOpenToken("{") {
+//                @Override
+//                public ICodeContext createContext(ICodeContext parent) {
+//                    ICodeContext context = super.createContext(parent);
+//                    for (FunctionParameter p:parameters)
+//                        context.putVariable(p);
+//                    return context;
+//                }
+//            });
+            for (ParserNode stmt:inside.getChildren()) {
+                if (stmt instanceof ReturnStatement) throw new ParsingGrammarException("Can not use return statement inside embed function");
+            }
+
+            future.addFirst(new EmbedFunctionDeclaration(identifierToken, parameters, inside));
 
             scr.getVariableContextQueue().removeLast();
             scr.setLastContext(scr.getVariableContextQueue().getLast());
@@ -131,7 +178,7 @@ public class FunctionDeclarationRule implements ParserRule {
                 rs.setICodeContext(scr.getLastContext());
             }
 
-            future.addFirst(new FunctionDeclaration(identifierToken, parameters, inside));
+            future.addFirst(new FunctionDeclaration(identifierToken, parameters, inside, noRefresh));
 
             scr.getVariableContextQueue().removeLast();
             scr.setLastContext(scr.getVariableContextQueue().getLast());

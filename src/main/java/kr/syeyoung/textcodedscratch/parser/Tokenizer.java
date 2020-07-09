@@ -112,6 +112,8 @@ public class Tokenizer {
 
         terminalNodeConverter.put((str,next) -> str.equals("Extension") && " \t\n\r".contains(String.valueOf(next)), (str) -> new KeywordExtension());
         terminalNodeConverter.put((str,next) -> str.equals("Native") && " \t\n\r".contains(String.valueOf(next)), (str) -> new KeywordNative());
+        terminalNodeConverter.put((str,next) -> str.equals("Embed") && " \t\n\r".contains(String.valueOf(next)), (str) -> new KeywordEmbed());
+        terminalNodeConverter.put((str,next) -> str.equals("NoRefresh") && " \t\n\r".contains(String.valueOf(next)), (str) -> new KeywordNoRefresh());
         terminalNodeConverter.put((str,next) -> str.equals("Reporter") && " \t\n\r".contains(String.valueOf(next)), (str) -> new KeywordReporter());
         terminalNodeConverter.put((str,next) -> str.equals("Module") && " \t\n\r".contains(String.valueOf(next)), (str) -> new KeywordModule());
 
@@ -145,7 +147,7 @@ public class Tokenizer {
         terminalNodeConverter.put((str,next) -> str.equals("else") && " \t\n\r".contains(String.valueOf(next)), str -> new KeywordElse());
         terminalNodeConverter.put((str,next) -> str.equals("while") && " \t\n\r".contains(String.valueOf(next)), str -> new KeywordWhile());
         terminalNodeConverter.put((str,next) -> str.equals("repeat") && " \t\n\r".contains(String.valueOf(next)), str -> new KeywordRepeat());
-        terminalNodeConverter.put((str,next) -> str.equals("return") && " \t\n\r".contains(String.valueOf(next)), str -> new KeywordReturn());
+        terminalNodeConverter.put((str,next) -> str.equals("return") && " \t\n\r;".contains(String.valueOf(next)), str -> new KeywordReturn());
 
         // "IDENTIFIER"
         terminalNodeConverter.put((str,next) -> identifier.matcher(str).matches() && !identAfter.matcher(String.valueOf(next)).matches(), (str) -> new IdentifierToken(str));

@@ -2,22 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2f7c2811-c825-4b1d-9edc-399842841dce" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/ICodeContextConsumer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/rule/ReturnStatementRule.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/statements/ReturnStatement.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/terminal/keywords/KeywordReturn.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/declaration/EmbedFunctionDeclaration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/statements/EmbedFunctionCallStatement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/terminal/keywords/KeywordEmbed.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/terminal/keywords/KeywordNoRefresh.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/Parser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/Tokenizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/Tokenizer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/rule/EventDeclarationRule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/rule/EventDeclarationRule.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/rule/FunctionDeclarationRule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/rule/FunctionDeclarationRule.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/rule/SpriteDeclarationRule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/rule/SpriteDeclarationRule.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/rule/SyntexCheckerRule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/rule/SyntexCheckerRule.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/rule/VariableExpresionRule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/rule/VariableExpresionRule.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/AccessedIdentifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/AccessedIdentifier.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/declaration/FunctionDeclaration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/declaration/FunctionDeclaration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/statements/FunctionCallStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/statements/FunctionCallStatement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/statements/FunctionExprCallMicroStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/statements/FunctionExprCallMicroStatement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/statements/GroupedStatements.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/statements/GroupedStatements.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/terminal/brackets/CBCloseToken.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/terminal/brackets/CBCloseToken.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/util/StackHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/util/StackHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/declaration/NativeFunctionDeclaration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/declaration/NativeFunctionDeclaration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/expression/FunctionCallExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/expression/FunctionCallExpr.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/expression/FunctionVariableExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/expression/FunctionVariableExpression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/expression/OneTermedExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/expression/OneTermedExpression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/kr/syeyoung/textcodedscratch/predefined/Control.tcsmodule" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/kr/syeyoung/textcodedscratch/predefined/Control.tcsmodule" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/testscript.sprite3" beforeDir="false" afterPath="$PROJECT_DIR$/testscript.sprite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/testscript.tcs" beforeDir="false" afterPath="$PROJECT_DIR$/testscript.tcs" afterDir="false" />
     </list>
@@ -62,11 +63,11 @@
       <recent name="B:\프로그래밍\TextCodedScratch\src" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="kr.syeyoung.textcodedscratch.parser.rule" />
-      <recent name="kr.syeyoung.textcodedscratch.parser" />
       <recent name="kr.syeyoung.textcodedscratch.parser.tokens.terminal.keywords" />
       <recent name="kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.statements" />
-      <recent name="kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.expression" />
+      <recent name="kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.declaration" />
+      <recent name="kr.syeyoung.textcodedscratch.parser.rule" />
+      <recent name="kr.syeyoung.textcodedscratch.parser" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="B:\프로그래밍\TextCodedScratch" />

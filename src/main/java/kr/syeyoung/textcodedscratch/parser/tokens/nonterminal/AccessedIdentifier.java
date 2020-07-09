@@ -8,7 +8,7 @@ public class AccessedIdentifier extends IdentifierToken {
     private IdentifierToken identifier;
 
     public AccessedIdentifier(IdentifierToken parent, IdentifierToken identifier) {
-        super((parent instanceof AccessedIdentifier ? ((AccessedIdentifier) parent).getIdentifierConcated() : "") + "::"+parent.getMatchedStr()+"::"+identifier.getMatchedStr());
+        super((parent instanceof AccessedIdentifier ? ((AccessedIdentifier) parent).getIdentifierConcated() : parent.getMatchedStr())+"::"+identifier.getMatchedStr());
         this.parents = (parent instanceof AccessedIdentifier) ? (IdentifierToken[]) parent.getChildren() : new IdentifierToken[] {parent};
         this.identifier = identifier;
     }

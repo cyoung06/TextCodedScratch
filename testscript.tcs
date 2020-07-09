@@ -7,8 +7,12 @@ Require Looks;
 
 Costume DEFAULT = "default.png";
 
+Embed Func testEmbed(param1: VariablePointer, param2: Text, param3: Boolean) {
+    Variables::show(param1);
+    Looks::say(param2 .. param3);
+}
 
-Func testFunction(param1: Text, param2: Boolean) {
+NoRefresh Func testFunction(param1: Text, param2: Boolean) {
     Var localVar = param1 .. param2;
     if (param1 == param2) {
         return "hmm";
@@ -17,6 +21,12 @@ Func testFunction(param1: Text, param2: Boolean) {
     return localVar .. "fancy!";
 }
 
+Event Control::whenCloned {
+
+}
+Event Control::whenCloned {
+
+}
 Var asdf=1+1;
 
 Event Events::OnGreenFlagClicked {
@@ -30,4 +40,6 @@ Event Events::OnGreenFlagClicked {
 
     Looks::sayFor(localVar2, 2);
     Looks::sayFor(localVar, 2);
+
+    testEmbed(&asdf, localVar, true);
 }

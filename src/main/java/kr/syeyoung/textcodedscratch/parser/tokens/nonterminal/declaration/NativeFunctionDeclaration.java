@@ -20,7 +20,7 @@ public class NativeFunctionDeclaration extends FunctionDeclaration implements Pa
     private boolean isReporter;
 
     public NativeFunctionDeclaration(IdentifierToken identifierToken, FunctionParameter[] parameters, StringToken inside, boolean isReporter) {
-        super(identifierToken, parameters, new GroupedStatements(new Statements[0]));
+        super(identifierToken, parameters, new GroupedStatements(new Statements[0]), false);
         this.identifierToken = identifierToken;
         this.parameters = parameters;
         this.json = inside;

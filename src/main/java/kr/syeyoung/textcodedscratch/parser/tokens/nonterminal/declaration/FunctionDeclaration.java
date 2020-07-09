@@ -26,10 +26,11 @@ public class FunctionDeclaration implements ParserNode, ScratchTransferable, Dec
         return noRefresh;
     }
 
-    public FunctionDeclaration(IdentifierToken identifierToken, FunctionParameter[] parameters, GroupedStatements inside) {
+    public FunctionDeclaration(IdentifierToken identifierToken, FunctionParameter[] parameters, GroupedStatements inside, boolean noRefresh) {
         this.identifierToken = identifierToken;
         this.parameters = parameters;
         this.toExecute = inside;
+        this.noRefresh = noRefresh;
     }
     public IdentifierToken getName() {
         return identifierToken;
@@ -71,7 +72,7 @@ public class FunctionDeclaration implements ParserNode, ScratchTransferable, Dec
                 paramIDs.put("$TCS_FP$_"+identifierToken.getMatchedStr()+"$"+parameters[i].getName().getMatchedStr());
                 procCode += " "+(parameters[i].getType() == FunctionParameter.ParameterType.TEXT ? "%s" : "%b");
             }
-            sbb.put("mutation", new JSONObject().put("tagName", "mutation").put("children", new JSONArray()).put("proccode", procCode).put("argumentids", paramIDs.toString()).put("argumentnames", paramNames.toString()).put("argumentdefaults", defaults.toString()).put("warp", String.valueOf(refresh)));
+            sbb.put("mutation", new JSONObject().put("tagName", "mutation").put("children", new JSONArray()).put("proccode", procCode).put("argumentids", paramIDs.toString()).put("argumentnames", paramNames.toString()).put("argumentdefaults", defaults.toString()).put("warp", String.valueOf(noRefresh)));
 
             builder.putComplexObject(protoID, sbb.build());
         }

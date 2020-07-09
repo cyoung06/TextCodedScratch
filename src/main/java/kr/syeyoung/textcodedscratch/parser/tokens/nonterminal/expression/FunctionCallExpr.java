@@ -66,8 +66,6 @@ public class FunctionCallExpr implements Expression, FunctionCall, StatementForm
 
     @Override
     public Object[] buildJSON(String parentId, String nextId, ScriptBuilder builder) {
-        System.out.println(stmt.getCurrentStack());
-        System.out.println(fecms.getCurrentStack());
         String id= StackHelper.accessStack(builder, parentId, nextId, stmt.getStackCountAtExecution() - fecms.getCurrentStack() + (stmt instanceof StackAddingOperation ? -1 : stmt instanceof StackRemovingOperation ? 1 : 0));
         return new Object[] {id, id};
     }
