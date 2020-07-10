@@ -106,7 +106,6 @@ public class SyntexCheckerRule implements ParserRule {
                 } else if (fcs instanceof FunctionCallExpr) {
                     past.addLast(node = new NativeFunctionCallExpr(fcs.getFunctionName(), fcs.getParameters(), (NativeFunctionDeclaration) fd));
                 } else {
-                    System.out.println(fd+" - "+fcs.getClass());
                     throw new ParsingGrammarException("What the heck just happened");
                 }
             } else if (fd instanceof EmbedFunctionDeclaration && !(fcs instanceof EmbedFunctionCallStatement)) {
@@ -126,7 +125,6 @@ public class SyntexCheckerRule implements ParserRule {
             if (fd == null) throw new ParsingGrammarException("Not defined event used" + fcs.getEvent().getMatchedStr());
             fcs.setEventJsonDeclaration(fd);
 
-            System.out.println(fcs.getEvent().getMatchedStr());
             if (fcs.getEvent().getMatchedStr().equalsIgnoreCase("Control::whenCloned")) {
                 for (EventDeclaration ed:definition.getEvents()) {
                     if (ed.getEvent().getMatchedStr().equalsIgnoreCase("Control::whenCloned")) throw new ParsingGrammarException("Can not define more than one when cloned");
