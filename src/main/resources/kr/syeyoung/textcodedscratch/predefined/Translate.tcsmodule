@@ -1,0 +1,7 @@
+Module
+
+Extension "Translate";
+
+Native Reporter Func Translate::translateTo(sentence: Text, language: Text) "{\"shadow\":false,\"inputs\":{\"LANGUAGE\":[1,\"$TCS$I1\"],\"WORDS\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"translate_getTranslate\",\"fields\":{}}"
+
+Native Reporter Func Translate::getLanguage() "{\"shadow\":false,\"inputs\":{},\"topLevel\":false,\"opcode\":\"translate_getViewerLanguage\",\"fields\":{}}"

@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2f7c2811-c825-4b1d-9edc-399842841dce" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/kr/syeyoung/textcodedscratch/predefined/Video.tcsmodule" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/kr/syeyoung/textcodedscratch/predefined/TTS.tcsmodule" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/kr/syeyoung/textcodedscratch/predefined/Translate.tcsmodule" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -31,7 +32,7 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="JAVA" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/testScripts" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/kr/syeyoung/textcodedscratch/predefined" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -53,6 +54,7 @@
       <recent name="kr.syeyoung.textcodedscratch.parser.rule" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="B:\프로그래밍\TextCodedScratch\src\main\resources\kr\syeyoung\textcodedscratch\predefined" />
       <recent name="B:\프로그래밍\TextCodedScratch\testScripts" />
       <recent name="B:\프로그래밍\TextCodedScratch" />
       <recent name="B:\프로그래밍\TextCodedScratch\src\main\resources\kr.syeyoung.textcodedscratch.predefined" />

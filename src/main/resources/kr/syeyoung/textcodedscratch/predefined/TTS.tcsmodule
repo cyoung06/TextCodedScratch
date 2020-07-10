@@ -1,0 +1,10 @@
+Module
+
+Extension "text2speech";
+
+Native Func TTS::speak(sentence: Text) "{\"shadow\":false,\"inputs\":{\"WORDS\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"text2speech_speakAndWait\",\"fields\":{}}"
+
+// Input has to be short language code like kr
+Native Func TTS::setLanguage(language: Text) "{\"shadow\":false,\"inputs\":{\"LANGUAGE\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"text2speech_setLanguage\",\"fields\":{}}"
+
+Native Func TTS::setVoice(voice: Text) "{\"shadow\":false,\"inputs\":{\"VOICE\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"text2speech_setVoice\",\"fields\":{}}"
