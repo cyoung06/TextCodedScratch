@@ -1,6 +1,5 @@
 package kr.syeyoung.textcodedscratch.parser.rule;
 
-import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 import kr.syeyoung.textcodedscratch.parser.ParserNode;
 import kr.syeyoung.textcodedscratch.parser.exception.ParsingGrammarException;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.AccessedIdentifier;
