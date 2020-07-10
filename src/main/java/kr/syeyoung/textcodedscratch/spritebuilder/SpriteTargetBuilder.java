@@ -115,7 +115,7 @@ public class SpriteTargetBuilder {
     private void buildCostumes() throws IOException, NoSuchAlgorithmException {
         JSONArray costumeList = new JSONArray();
         for (CostumeDeclaration cd:definition.getCostumes().values()) {
-            File file = new File(cd.getLocation().getValue(String.class));
+            File file = new File(definition.getSpritefile(), cd.getLocation().getValue(String.class));
             if (!file.exists()) throw new ParsingGrammarException("Costume file not found :: "+file.getAbsolutePath());
 
             String varName = cd.getName().getMatchedStr();
@@ -140,7 +140,7 @@ public class SpriteTargetBuilder {
     private void buildSounds() throws IOException, NoSuchAlgorithmException {
         JSONArray costumeList = new JSONArray();
         for (SoundDeclaration cd:definition.getSounds().values()) {
-            File file = new File(cd.getLocation().getValue(String.class));
+            File file = new File(definition.getSpritefile(), cd.getLocation().getValue(String.class));
             if (!file.exists()) throw new ParsingGrammarException("Sound file not found :: "+file.getAbsolutePath());
 
             String varName = cd.getName().getMatchedStr();

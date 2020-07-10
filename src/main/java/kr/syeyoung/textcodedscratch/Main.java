@@ -38,7 +38,7 @@ public class Main {
                 FileInputStream fis = new FileInputStream(args[0]);
                 Tokenizer tokenizer = new Tokenizer(fis);
                 tokenizer.Tokenize();
-                Parser parser = new Parser(new LinkedList<>(tokenizer.getTerminalNodes().stream().map(t -> (ParserNode)t).collect(Collectors.toList())));
+                Parser parser = new Parser(new LinkedList<>(tokenizer.getTerminalNodes().stream().map(t -> (ParserNode)t).collect(Collectors.toList())), file);
                 parser.parse();
                 SpriteDefinition definition = parser.getSyntexCheckerRule().getDefinition();
                 stbs.add(definition);
@@ -50,7 +50,7 @@ public class Main {
             FileInputStream fis = new FileInputStream(args[0]);
             Tokenizer tokenizer = new Tokenizer(fis);
             tokenizer.Tokenize();
-            Parser parser = new Parser(new LinkedList<>(tokenizer.getTerminalNodes().stream().map(t -> (ParserNode)t).collect(Collectors.toList())));
+            Parser parser = new Parser(new LinkedList<>(tokenizer.getTerminalNodes().stream().map(t -> (ParserNode)t).collect(Collectors.toList())), f);
             parser.parse();
             SpriteDefinition definition = parser.getSyntexCheckerRule().getDefinition();
             SpriteTargetBuilder stb = new SpriteTargetBuilder(definition);

@@ -2,6 +2,7 @@ package kr.syeyoung.textcodedscratch.parser.context;
 
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.declaration.*;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -27,6 +28,16 @@ public class SpriteDefinition implements ICodeContext {
     private HashMap<String, NativeEventDeclaration> eventsDefined = new HashMap<>();
     private List<EventDeclaration> events = new ArrayList<>();
     private List<ExtensionDeclaration> extensionDeclarations = new ArrayList<>();
+
+    private File spritefile;
+
+    public File getSpritefile() {
+        return spritefile;
+    }
+
+    public void setSpritefile(File spritefile) {
+        this.spritefile = spritefile;
+    }
 
     public HashMap<String, NativeEventDeclaration> getEventsDefined() {
         return eventsDefined;

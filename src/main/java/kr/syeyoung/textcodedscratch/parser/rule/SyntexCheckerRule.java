@@ -19,6 +19,7 @@ import kr.syeyoung.textcodedscratch.parser.tokens.terminal.brackets.CBOpenToken;
 import kr.syeyoung.textcodedscratch.parser.tokens.terminal.keywords.KeywordFunc;
 import kr.syeyoung.textcodedscratch.parser.tokens.terminal.keywords.TypeKeywords;
 
+import java.io.File;
 import java.util.LinkedList;
 
 public class SyntexCheckerRule implements ParserRule {
@@ -45,8 +46,9 @@ public class SyntexCheckerRule implements ParserRule {
         return definition;
     }
 
-    public SyntexCheckerRule() {
+    public SyntexCheckerRule(File f) {
         variableContextQueue.add(definition);
+        definition.setSpritefile(f);
     }
 
     @Override

@@ -2,6 +2,7 @@ package kr.syeyoung.textcodedscratch.parser;
 
 import kr.syeyoung.textcodedscratch.parser.rule.*;
 
+import java.io.File;
 import java.util.*;
 
 public class Parser {
@@ -16,8 +17,10 @@ public class Parser {
         return syntexCheckerRule;
     }
 
-    public Parser(LinkedList<ParserNode> stack) {
+    private File f;
+    public Parser(LinkedList<ParserNode> stack, File f) {
         this.input = stack;
+        this.f = f;
         initRules();
     }
 
@@ -42,7 +45,7 @@ public class Parser {
     }
 
     private void initRules() {
-        rules.add(syntexCheckerRule = new SyntexCheckerRule());
+        rules.add(syntexCheckerRule = new SyntexCheckerRule(f));
         rules.add(new IncludeRule());
 
 

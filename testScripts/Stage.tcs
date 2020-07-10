@@ -1,0 +1,13 @@
+Stage;
+
+Global Var stageVar = "asdf";
+
+Global Var stageVar2 = "asdf2";
+
+Require Events;
+Costume DEFAULT = "default.png";
+
+
+Events Events::OnGreenFlagClicked {
+    stageVar = stageVar .. stageVar2;
+}
