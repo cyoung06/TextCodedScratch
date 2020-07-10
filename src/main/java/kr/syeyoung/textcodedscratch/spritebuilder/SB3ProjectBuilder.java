@@ -91,6 +91,7 @@ public class SB3ProjectBuilder {
         try (FileOutputStream fos = new FileOutputStream(f2);
              ZipOutputStream zos = new ZipOutputStream(new BufferedOutputStream(fos))) {
             for (Resource r:resources) {
+                System.out.println("Including resource "+r.getFile().getName()+ " to binary / hash: "+r.getHash());
                 File f = r.getFile();
                 String hash = r.getHash();
                 zos.putNextEntry(new ZipEntry(hash + "." + FileUtils.getExtension(f)));
@@ -99,6 +100,7 @@ public class SB3ProjectBuilder {
                 zos.closeEntry();
             }
             {
+                System.out.println("Including sprite.json to binary");
                 zos.putNextEntry(new ZipEntry("project.json"));
                 OutputStreamWriter osw = new OutputStreamWriter(zos);
                 getJSON().write(osw);

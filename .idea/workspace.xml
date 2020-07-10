@@ -2,8 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2f7c2811-c825-4b1d-9edc-399842841dce" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/project.sb3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project.sb3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TCSCompiler.jar" beforeDir="false" afterPath="$PROJECT_DIR$/TCSCompiler.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/rule/IncludeRule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/rule/IncludeRule.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/spritebuilder/SB3ProjectBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/spritebuilder/SB3ProjectBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/spritebuilder/SpriteTargetBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/spritebuilder/SpriteTargetBuilder.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -31,7 +37,7 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="JAVA" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/kr/syeyoung/textcodedscratch/predefined" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -53,9 +59,9 @@
       <recent name="kr.syeyoung.textcodedscratch.parser.rule" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="B:\프로그래밍\TextCodedScratch" />
       <recent name="B:\프로그래밍\TextCodedScratch\src\main\resources\kr\syeyoung\textcodedscratch\predefined" />
       <recent name="B:\프로그래밍\TextCodedScratch\testScripts" />
-      <recent name="B:\프로그래밍\TextCodedScratch" />
       <recent name="B:\프로그래밍\TextCodedScratch\src\main\resources\kr.syeyoung.textcodedscratch.predefined" />
     </key>
   </component>
@@ -76,7 +82,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.NativeFunctionBuilderHelper">
+  <component name="RunManager" selected="Application.Main But parameters">
     <configuration name="Main But parameters" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="kr.syeyoung.textcodedscratch.Main" />
       <module name="TextCodedScratch" />
@@ -140,10 +146,10 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.NativeFunctionBuilderHelper" />
         <item itemvalue="Application.Scratch (1)" />
         <item itemvalue="Java Scratch.Scratch" />
-        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -175,16 +181,5 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/rule/StatementGroupingRule.java</url>
-          <line>25</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

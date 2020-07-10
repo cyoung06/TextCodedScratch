@@ -114,6 +114,7 @@ public class SpriteTargetBuilder {
         for (CostumeDeclaration cd:definition.getCostumes().values()) {
             File file = new File(definition.getSpritefile().getParentFile(), cd.getLocation().getValue(String.class));
             if (!file.exists()) throw new ParsingGrammarException("Costume file not found :: "+file.getAbsolutePath());
+            System.out.println("Building costume resource - "+file.getName());
 
             String varName = cd.getName().getMatchedStr();
             String md5 = FileUtils.calcMD5Hash(file);
@@ -139,6 +140,7 @@ public class SpriteTargetBuilder {
         for (SoundDeclaration cd:definition.getSounds().values()) {
             File file = new File(definition.getSpritefile().getParentFile(), cd.getLocation().getValue(String.class));
             if (!file.exists()) throw new ParsingGrammarException("Sound file not found :: "+file.getAbsolutePath());
+            System.out.println("Building sound resource - "+file.getName());
 
             String varName = cd.getName().getMatchedStr();
             String md5 = FileUtils.calcMD5Hash(file);

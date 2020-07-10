@@ -33,6 +33,7 @@ public class IncludeRule implements ParserRule {
                 InputStream possible = IncludeRule.class.getResourceAsStream("/kr/syeyoung/textcodedscratch/predefined/"+name);
                 if (possible == null) possible = new FileInputStream(new File(f.getParentFile(), name));
 
+                System.out.println("Tokenizing "+name+"...");
                 Tokenizer tokenizer = new Tokenizer(possible);
                 ParserNode pn = tokenizer.getNextToken();
                 if (!(pn instanceof KeywordModule)) throw new ParsingGrammarException("File referenced in Require Declaration should be a module file - " + rdec.getName().getValue(String.class));
