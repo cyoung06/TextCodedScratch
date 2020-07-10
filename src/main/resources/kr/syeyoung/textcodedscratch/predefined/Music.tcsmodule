@@ -1,0 +1,12 @@
+Module;
+
+Extension "Music";
+
+Native Func Music::playDrum(drumidx: Text, beats: Text) "{\"shadow\":false,\"inputs\":{\"DRUM\":[1,\"$TCS$I0\"],\"BEATS\":[1,\"$TCS$I1\"]},\"topLevel\":false,\"opcode\":\"music_playDrumForBeats\",\"fields\":{}}"
+Native Func Music::rest(beats: Text) "{\"shadow\":false,\"inputs\":{\"BEATS\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"music_restForBeats\",\"fields\":{}}"
+Native Func Music::playNote(noteidx: Text, beats: Text) "{\"shadow\":false,\"inputs\":{\"NOTE\":[1,\"$TCS$I0\"],\"BEATS\":[1,\"$TCS$I1\"]},\"topLevel\":false,\"opcode\":\"music_playNoteForBeats\",\"fields\":{}}"
+Native Func Music::setInstrument(instidx: Text) "{\"shadow\":false,\"inputs\":{\"INSTRUMENT\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"music_setInstrument\",\"fields\":{}}"
+Native Func Music::setTempo(tempo: Text) "{\"shadow\":false,\"inputs\":{\"TEMPO\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"music_setTempo\",\"fields\":{}}"
+Native Func Music::changeTempoBy(tempo: Text) "{\"shadow\":false,\"inputs\":{\"TEMPO\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"music_changeTempo\",\"fields\":{}}"
+
+Native Reporter Func Music::getTempo() "{\"shadow\":false,\"inputs\":{},\"topLevel\":false,\"opcode\":\"music_getTempo\",\"fields\":{}}"
