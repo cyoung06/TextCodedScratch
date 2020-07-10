@@ -1,0 +1,54 @@
+Module;
+
+Extension "Pen";
+
+Native Func Pen::eraseAll() "{\"shadow\":false,\"inputs\":{},\"topLevel\":false,\"opcode\":\"pen_clear\",\"fields\":{}}"
+
+Native Func Pen::stamp() "{\"shadow\":false,\"inputs\":{},\"topLevel\":false,\"opcode\":\"pen_stamp\",\"fields\":{}}"
+
+Native Func Pen::startDrawing() "{\"shadow\":false,\"inputs\":{},\"topLevel\":false,\"opcode\":\"pen_penDown\",\"fields\":{}}"
+Native Func Pen::stopDrawing() "{\"shadow\":false,\"inputs\":{},\"topLevel\":false,\"opcode\":\"pen_penUp\",\"fields\":{}}"
+
+Native Func Pen::stamp() "{\"shadow\":false,\"inputs\":{},\"topLevel\":false,\"opcode\":\"pen_stamp\",\"fields\":{}}"
+
+Native Func Pen::setColorRGB(color: Text) "{\"shadow\":false,\"inputs\":{\"COLOR\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"pen_setPenColorToColor\",\"fields\":{}}"
+
+Native Func Pen::changePenAttribute(attribute: Text, value: Text) "{\"shadow\":false,\"inputs\":{\"COLOR_PARAM\":[1,\"$TCS$I0\"],\"VALUE\":[1,\"$TCS$I1\"]},\"topLevel\":false,\"opcode\":\"pen_changePenColorParamBy\",\"fields\":{}}"
+Native Func Pen::setPenAttribute(attribute: Text, value: Text) "{\"shadow\":false,\"inputs\":{\"COLOR_PARAM\":[1,\"$TCS$I0\"],\"VALUE\":[1,\"$TCS$I1\"]},\"topLevel\":false,\"opcode\":\"pen_setPenColorParamTo\",\"fields\":{}}"
+
+Embed Func Pen::changePenHSVColor(value: Text) {
+    Pen::changePenAttribute("color", value);
+}
+
+Embed Func Pen::setPenHSVColor(value: Text) {
+    Pen::setPenAttribute("color", value);
+}
+
+Embed Func Pen::changePenHSVSaturation(value: Text) {
+    Pen::changePenAttribute("saturation", value);
+}
+
+Embed Func Pen::setPenHSVSaturation(value: Text) {
+    Pen::setPenAttribute("saturation", value);
+}
+
+
+Embed Func Pen::changePenHSVBrightness(value: Text) {
+    Pen::changePenAttribute("brightness", value);
+}
+
+Embed Func Pen::setPenHSVBrightness(value: Text) {
+    Pen::setPenAttribute("brightness", value);
+}
+
+Embed Func Pen::changePenHSVTransparency(value: Text) {
+    Pen::changePenAttribute("transparency", value);
+}
+
+Embed Func Pen::setPenHSVTransparency(value: Text) {
+    Pen::setPenAttribute("transparency", value);
+}
+
+
+Native Func Pen::changeSize(size: Text) "{\"shadow\":false,\"inputs\":{\"SIZE\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"pen_changePenSizeBy\",\"fields\":{}}"
+Native Func Pen::setSize(size: Text) "{\"shadow\":false,\"inputs\":{\"SIZE\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"pen_setPenSizeTo\",\"fields\":{}}"
