@@ -22,7 +22,7 @@ public class CBCloseToken extends MarkerToken implements Statements, ICodeContex
     @Override
     public Object[] buildJSON(String parentId, String nextId, ScriptBuilder builder) {
         if (codeContext.getLocalStackSize() == 0) return null;
-        String id = StackHelper.deallocateStack(builder, parentId, nextId, codeContext.getLocalStackSize());
+        String id = StackHelper.deallocateStack(builder, parentId, nextId, codeContext.getLocalStackSize(), codeContext);
         return new Object[] {id, id};
     }
 

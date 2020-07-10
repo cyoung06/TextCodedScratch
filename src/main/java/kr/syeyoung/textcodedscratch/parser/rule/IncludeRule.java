@@ -35,25 +35,15 @@ public class IncludeRule implements ParserRule {
 
                 Tokenizer tokenizer = new Tokenizer(possible);
                 ParserNode pn = tokenizer.getNextToken();
-                if (!(pn instanceof KeywordModule || pn instanceof KeywordStage)) throw new ParsingGrammarException("File referenced in Require Declaration should be a module file - " + rdec.getName().getValue(String.class));
+                if (!(pn instanceof KeywordModule)) throw new ParsingGrammarException("File referenced in Require Declaration should be a module file - " + rdec.getName().getValue(String.class));
                 tokenizer.Tokenize();
 
-                if (pn instanceof KeywordModule) {
-                    LinkedList<TerminalNode> theList = tokenizer.getTerminalNodes();
-                    theList.removeFirst();
-                    theList.removeFirst();
+                LinkedList<TerminalNode> theList = tokenizer.getTerminalNodes();
+                theList.removeFirst();
+                theList.removeFirst();
 
-                    future.addAll(0, theList);
-                    future.addFirst(new EOSToken("INCLUDE"));
-                } else {
-                    LinkedList<TerminalNode> theList = tokenizer.getTerminalNodes();
-                    theList = new LinkedList<>(theList.stream().filter(tm -> ((tm instanceof VariableDeclaration && ((VariableDeclaration) tm).isGlobal()) || (tm instanceof ListDeclaration && ((ListDeclaration) tm).isGlobal())))
-                            .collect(Collectors.toList()));
-
-
-                    future.addAll(0, theList);
-                    future.addFirst(new EOSToken("INCLUDE STAGE VAR"));
-                }
+                future.addAll(0, theList);
+                future.addFirst(new EOSToken("INCLUDE"));
             } catch (IOException e) {
                 e.printStackTrace();
             }

@@ -1,7 +1,9 @@
 package kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.expression;
 
+import kr.syeyoung.textcodedscratch.parser.ICodeContextConsumer;
 import kr.syeyoung.textcodedscratch.parser.ParserNode;
 import kr.syeyoung.textcodedscratch.parser.StackRequringOperation;
+import kr.syeyoung.textcodedscratch.parser.context.ICodeContext;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.declaration.LocalVariableDeclaration;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.function.FunctionParameter;
 import kr.syeyoung.textcodedscratch.parser.tokens.terminal.IdentifierToken;
@@ -9,7 +11,7 @@ import kr.syeyoung.textcodedscratch.parser.tokens.terminal.constant.ConstantNode
 import kr.syeyoung.textcodedscratch.parser.util.ScriptBuilder;
 import kr.syeyoung.textcodedscratch.parser.util.StackHelper;
 
-public class LocalVariableExpression extends VariableExpression  implements StackRequringOperation {
+public class LocalVariableExpression extends VariableExpression  implements StackRequringOperation, ICodeContextConsumer {
     public LocalVariableDeclaration getDeclaration() {
         return declaration;
     }
@@ -31,7 +33,7 @@ public class LocalVariableExpression extends VariableExpression  implements Stac
 
     @Override
     public Object[] buildJSON(String parentId, String nextId, ScriptBuilder builder) {
-        String id =  StackHelper.accessStack(builder, parentId, nextId,  currentStack- declaration.getCurrentStack());
+        String id =  StackHelper.accessStack(builder, parentId, nextId,  currentStack- declaration.getCurrentStack(), context);
         return new Object[] {id, id};
     }
 
@@ -45,5 +47,12 @@ public class LocalVariableExpression extends VariableExpression  implements Stac
     @Override
     public int getCurrentStack() {
         return currentStack;
+    }
+
+
+    private ICodeContext context;
+    @Override
+    public void setICodeContext(ICodeContext context) {
+        this.context = context;
     }
 }

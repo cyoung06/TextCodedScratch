@@ -1,8 +1,10 @@
 package kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.declaration;
 
+import kr.syeyoung.textcodedscratch.parser.ICodeContextConsumer;
 import kr.syeyoung.textcodedscratch.parser.ParserNode;
 import kr.syeyoung.textcodedscratch.parser.StackAddingOperation;
 import kr.syeyoung.textcodedscratch.parser.StackRequringOperation;
+import kr.syeyoung.textcodedscratch.parser.context.ICodeContext;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.expression.Expression;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.statements.Statements;
 import kr.syeyoung.textcodedscratch.parser.tokens.terminal.IdentifierToken;
@@ -11,7 +13,7 @@ import kr.syeyoung.textcodedscratch.parser.tokens.terminal.constant.StringToken;
 import kr.syeyoung.textcodedscratch.parser.util.ScriptBuilder;
 import kr.syeyoung.textcodedscratch.parser.util.StackHelper;
 
-public class LocalVariableDeclaration extends VariableDeclaration implements StackRequringOperation, Statements, StackAddingOperation {
+public class LocalVariableDeclaration extends VariableDeclaration implements StackRequringOperation, Statements, StackAddingOperation, ICodeContextConsumer {
     private int currentStack;
     private Expression defaultValue;
     public LocalVariableDeclaration(IdentifierToken name, Expression defaultValue) {
@@ -46,7 +48,7 @@ public class LocalVariableDeclaration extends VariableDeclaration implements Sta
 
     @Override
     public Object[] buildJSON(String parentId, String nextId, ScriptBuilder builder) {
-        String id = StackHelper.putStack(builder, parentId, nextId, defaultValue);
+        String id = StackHelper.putStack(builder, parentId, nextId, defaultValue, context);
         return new Object[] {id, id};
     }
 
@@ -56,5 +58,11 @@ public class LocalVariableDeclaration extends VariableDeclaration implements Sta
     @Override
     public int getStackCountAtExecution() {
         return stackAtExe;
+    }
+
+    private ICodeContext context;
+    @Override
+    public void setICodeContext(ICodeContext context) {
+        this.context = context;
     }
 }

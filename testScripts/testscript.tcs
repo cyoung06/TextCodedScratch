@@ -4,6 +4,9 @@ Require "Events";
 Require "Control";
 Require Variables;
 Require Looks;
+Require Threads;
+
+Require VariableDef;
 
 Costume DEFAULT = "default.png";
 
@@ -22,14 +25,6 @@ NoRefresh Func testFunction(param1: Text, param2: Boolean) {
 }
 
 Event Control::whenCloned {
-
-}
-Event Control::whenCloned {
-
-}
-Var asdf=1+1;
-
-Event Events::OnGreenFlagClicked {
     asdf = asdf + 1;
     Var localVar = 10;
 
@@ -39,7 +34,13 @@ Event Events::OnGreenFlagClicked {
 
 
     Looks::sayFor(localVar2, 2);
+    Looks::sayFor(Threads::getCurrentThreadIndex());
     Looks::sayFor(localVar, 2);
 
     testEmbed(&asdf, localVar, true);
+}
+Var asdf=1+1;
+
+Event Events::OnGreenFlagClicked {
+    Threads::createNewThread();
 }

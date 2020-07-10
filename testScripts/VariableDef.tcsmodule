@@ -1,0 +1,5 @@
+Module;
+
+Global Var stageVar = "asdf";
+
+Global Var stageVar2 = "asdf2";

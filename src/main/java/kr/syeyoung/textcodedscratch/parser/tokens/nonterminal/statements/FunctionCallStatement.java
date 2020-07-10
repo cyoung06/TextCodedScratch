@@ -1,7 +1,9 @@
 package kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.statements;
 
+import kr.syeyoung.textcodedscratch.parser.ICodeContextConsumer;
 import kr.syeyoung.textcodedscratch.parser.ParserNode;
 import kr.syeyoung.textcodedscratch.parser.StackAddingOperation;
+import kr.syeyoung.textcodedscratch.parser.context.ICodeContext;
 import kr.syeyoung.textcodedscratch.parser.tokens.terminal.constant.ConstantNode;
 import kr.syeyoung.textcodedscratch.parser.tokens.terminal.constant.NumberToken;
 import kr.syeyoung.textcodedscratch.parser.tokens.terminal.constant.StringToken;
@@ -20,7 +22,7 @@ import org.json.JSONObject;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
-public class FunctionCallStatement implements Statements, FunctionCall {
+public class FunctionCallStatement implements Statements, FunctionCall, ICodeContextConsumer {
     private IdentifierToken identifierToken;
     private Expression[] parameters;
 
@@ -80,10 +82,16 @@ public class FunctionCallStatement implements Statements, FunctionCall {
             sbb.input(id, parameters[i].buildJSON(id2, null, builder)[0]);
         }
         sbb.put("mutation", new JSONObject().put("tagName", "mutation").put("children", new JSONArray()).put("proccode", procCode).put("argumentids", inputIDs.toString()).put("warp",  String.valueOf(functionDeclaration.isNoRefresh())));
-        String id3 = StackHelper.deallocateStack(builder, id2, nextId, 1);
+        String id3 = StackHelper.deallocateStack(builder, id2, nextId, 1,context);
         sbb.nextId(id3);
         builder.putComplexObject(id2, sbb.build());
         return new String[] {id2, id3};
+    }
+
+    private ICodeContext context;
+    @Override
+    public void setICodeContext(ICodeContext context) {
+        this.context = context;
     }
 
     private int stack;

@@ -1,9 +1,7 @@
 package kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.statements;
 
-import kr.syeyoung.textcodedscratch.parser.ParserNode;
-import kr.syeyoung.textcodedscratch.parser.StackAddingOperation;
-import kr.syeyoung.textcodedscratch.parser.StackRemovingOperation;
-import kr.syeyoung.textcodedscratch.parser.StackRequringOperation;
+import kr.syeyoung.textcodedscratch.parser.*;
+import kr.syeyoung.textcodedscratch.parser.context.ICodeContext;
 import kr.syeyoung.textcodedscratch.parser.exception.ParsingGrammarException;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.FunctionCall;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.declaration.FunctionDeclaration;
@@ -20,7 +18,7 @@ import org.json.JSONObject;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
-public class FunctionExprCallStackClearingMicroStatement implements Statements, StackRemovingOperation {
+public class FunctionExprCallStackClearingMicroStatement implements Statements, StackRemovingOperation, ICodeContextConsumer {
     private Statements stmt;
 
 
@@ -38,14 +36,20 @@ public class FunctionExprCallStackClearingMicroStatement implements Statements, 
     public Object[] buildJSON(String parentId, String nextId, ScriptBuilder builder) {
         String id;
         if (stmt instanceof LocalVariableDeclaration) {
-            id = StackHelper.deallocateStackOffset(builder, parentId, nextId, 1);
+            id = StackHelper.deallocateStackOffset(builder, parentId, nextId, 1, context);
         } else {
-            id = StackHelper.deallocateStack(builder, parentId, nextId, 1);
+            id = StackHelper.deallocateStack(builder, parentId, nextId, 1, context);
         }
 
         return new Object[] {id, id};
     }
 
+
+    private ICodeContext context;
+    @Override
+    public void setICodeContext(ICodeContext context) {
+        this.context = context;
+    }
 
 
     private int stack;

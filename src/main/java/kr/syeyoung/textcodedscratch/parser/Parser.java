@@ -46,7 +46,7 @@ public class Parser {
 
     private void initRules() {
         rules.add(syntexCheckerRule = new SyntexCheckerRule(f));
-        rules.add(new IncludeRule());
+        rules.add(new IncludeRule(f));
 
 
         // dec group
@@ -59,7 +59,7 @@ public class Parser {
         rules.add(new ListDeclarationRule());
         rules.add(new StatementGroupingRule());
         rules.add(new IdentifierAccessorConcatRule());
-        rules.add(new EventDeclarationRule());
+        rules.add(new EventDeclarationRule(syntexCheckerRule));
         rules.add(new FunctionDeclarationRule(syntexCheckerRule));
         rules.add(new ExtensionDeclarationRule());
         rules.add(new NativeEventDeclarationRule());

@@ -1,18 +1,15 @@
 
 Native Event Threads::onThreadCreation "{\"shadow\":false,\"inputs\":{},\"topLevel\":false,\"opcode\":\"control_start_as_clone\",\"fields\":{}}"
 
-Native Func Threads::internalCreateNewThread() "{\"shadow\":false,\"inputs\":{\"CLONE_OPTION\":[1,[10,\"_myself_\"]]]},\"topLevel\":false,\"opcode\":\"control_create_clone_of\",\"fields\":{}}"
-Native Func Threads::internalCreateNewThreadOf(spriteName: Text) "{\"shadow\":false,\"inputs\":{\"CLONE_OPTION\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"control_create_clone_of\",\"fields\":{}}"
+Native Func tcsinternal::createNewThread() "{\"shadow\":false,\"inputs\":{\"CLONE_OPTION\":[1,[10,\"_myself_\"]]]},\"topLevel\":false,\"opcode\":\"control_create_clone_of\",\"fields\":{}}"
 
 Embed Func Threads::createNewThread() {
-
+    tcsinternal::incrementThreads();
+    tcsinternal::createNewThread();
 }
 
-Embed Func Threads::createNewThreadOf() {
 
-}
-
-Native Func
+Native Func tcsinternal::incrementThreads() "{\"opcode\":\"data_changevariableby\",\"next\":null,\"parent\":null,\"inputs\":{\"VALUE\":[1,[4,\"1\"]]},\"fields\":{\"VARIABLE\":[\"$THREAD_CNT$\",\"$TCS_V$Stage$$THREAD_CNT$\"]},\"shadow\":false,\"topLevel\":true,\"x\":0,\"y\":0}";
 
 Native Func Threads::deleteThisThread() "{\"shadow\":false,\"inputs\":{},\"topLevel\":false,\"opcode\":\"control_delete_this_clone\",\"fields\":{}}"
 

@@ -29,14 +29,14 @@ public class ReturnStatement implements Statements, ICodeContextConsumer {
 
     @Override
     public Object[] buildJSON(String parentId, String nextId, ScriptBuilder builder) {
-        String id = StackHelper.putStack(builder, parentId, null, returnValue);
+        String id = StackHelper.putStack(builder, parentId, null, returnValue, context);
 
 
         ScratchBlockBuilder stop = new ScratchBlockBuilder().op("control_stop").nextId(nextId).parentId(null).field("STOP_OPTION", new JSONArray().put("this script").put(JSONObject.NULL)).shadow(false).topLevel(false).put("mutation", new JSONObject().put("tagName", "mutation").put("children", new JSONArray()).put("hasnext", false));
 
         String last = "";
         if (context.getTotalStackSize() != 0) {
-            String nextId2 = StackHelper.deallocateStackOffset(builder, id, null, 1, context.getTotalStackSize());
+            String nextId2 = StackHelper.deallocateStackOffset(builder, id, null, 1, context.getTotalStackSize(), context);
             builder.getComplexObject(id).put("next", nextId2);
 
             String nextId3 = builder.putComplexObject(stop.parentId(nextId2).build());

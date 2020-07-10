@@ -1,8 +1,6 @@
 Stage;
 
-Global Var stageVar = "asdf";
-
-Global Var stageVar2 = "asdf2";
+Require VariableDef;
 
 Require Events;
 Costume DEFAULT = "default.png";

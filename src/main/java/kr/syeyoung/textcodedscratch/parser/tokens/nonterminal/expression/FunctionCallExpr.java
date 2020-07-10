@@ -1,6 +1,7 @@
 package kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.expression;
 
 import kr.syeyoung.textcodedscratch.parser.*;
+import kr.syeyoung.textcodedscratch.parser.context.ICodeContext;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.statements.FunctionExprCallMicroStatement;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.statements.FunctionExprCallStackClearingMicroStatement;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.statements.Statements;
@@ -15,7 +16,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.stream.Collectors;
 
-public class FunctionCallExpr implements Expression, FunctionCall, StatementFormedListener, StackRequringOperation {
+public class FunctionCallExpr implements Expression, FunctionCall, StatementFormedListener, StackRequringOperation, ICodeContextConsumer {
     private IdentifierToken identifierToken;
     private Expression[] parameters;
     private FunctionDeclaration functionDeclaration;
@@ -23,6 +24,12 @@ public class FunctionCallExpr implements Expression, FunctionCall, StatementForm
     public FunctionCallExpr(IdentifierToken token, Expression[] expressions) {
         this.identifierToken = token;
         this.parameters = expressions;
+    }
+
+    private ICodeContext context;
+    @Override
+    public void setICodeContext(ICodeContext context) {
+        this.context = context;
     }
 
     public IdentifierToken getFunctionName() {
@@ -66,7 +73,7 @@ public class FunctionCallExpr implements Expression, FunctionCall, StatementForm
 
     @Override
     public Object[] buildJSON(String parentId, String nextId, ScriptBuilder builder) {
-        String id= StackHelper.accessStack(builder, parentId, nextId, stmt.getStackCountAtExecution() - fecms.getCurrentStack() + (stmt instanceof StackAddingOperation ? -1 : stmt instanceof StackRemovingOperation ? 1 : 0));
+        String id= StackHelper.accessStack(builder, parentId, nextId, stmt.getStackCountAtExecution() - fecms.getCurrentStack() + (stmt instanceof StackAddingOperation ? -1 : stmt instanceof StackRemovingOperation ? 1 : 0), context);
         return new Object[] {id, id};
     }
 

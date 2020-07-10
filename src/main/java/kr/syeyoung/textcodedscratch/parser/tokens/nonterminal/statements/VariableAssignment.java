@@ -1,7 +1,9 @@
 package kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.statements;
 
+import kr.syeyoung.textcodedscratch.parser.ICodeContextConsumer;
 import kr.syeyoung.textcodedscratch.parser.ParserNode;
 import kr.syeyoung.textcodedscratch.parser.StackRequringOperation;
+import kr.syeyoung.textcodedscratch.parser.context.ICodeContext;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.expression.LocalVariableExpression;
 import kr.syeyoung.textcodedscratch.parser.util.ScratchBlockBuilder;
 import kr.syeyoung.textcodedscratch.parser.util.ScriptBuilder;
@@ -10,13 +12,19 @@ import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.expression.Variabl
 import kr.syeyoung.textcodedscratch.parser.util.StackHelper;
 import org.json.JSONArray;
 
-public class VariableAssignment implements Statements, StackRequringOperation {
+public class VariableAssignment implements Statements, StackRequringOperation, ICodeContextConsumer {
     private VariableExpression variableExpression;
     private Expression expression;
 
     public VariableAssignment(VariableExpression expr, Expression expression) {
         this.variableExpression = expr;
         this.expression = expression;
+    }
+
+    private ICodeContext context;
+    @Override
+    public void setICodeContext(ICodeContext context) {
+        this.context = context;
     }
 
     @Override
@@ -32,7 +40,7 @@ public class VariableAssignment implements Statements, StackRequringOperation {
     @Override
     public Object[] buildJSON(String parentId, String nextId, ScriptBuilder builder) {
         if (variableExpression instanceof LocalVariableExpression) {
-            String id = StackHelper.replaceStack(builder, parentId, nextId, currentStack - ((LocalVariableExpression) variableExpression).getDeclaration().getCurrentStack(), expression);
+            String id = StackHelper.replaceStack(builder, parentId, nextId, currentStack - ((LocalVariableExpression) variableExpression).getDeclaration().getCurrentStack(), expression, context);
             return new String[] {id, id};
         } else {
             String id = builder.getNextID();
