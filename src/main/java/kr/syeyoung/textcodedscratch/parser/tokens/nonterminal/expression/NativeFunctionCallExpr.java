@@ -4,6 +4,9 @@ import kr.syeyoung.textcodedscratch.parser.ICodeContextConsumer;
 import kr.syeyoung.textcodedscratch.parser.ParserNode;
 import kr.syeyoung.textcodedscratch.parser.context.ICodeContext;
 import kr.syeyoung.textcodedscratch.parser.context.SpriteDefinition;
+import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.statements.FunctionExprCallMicroStatement;
+import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.statements.FunctionExprCallStackClearingMicroStatement;
+import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.statements.Statements;
 import kr.syeyoung.textcodedscratch.parser.util.ScriptBuilder;
 import kr.syeyoung.textcodedscratch.parser.exception.ParsingGrammarException;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.NativeFunctionCall;
@@ -14,6 +17,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.stream.Collectors;
 
 public class NativeFunctionCallExpr extends FunctionCallExpr implements NativeFunctionCall, ICodeContextConsumer {
@@ -154,4 +158,9 @@ public class NativeFunctionCallExpr extends FunctionCallExpr implements NativeFu
         while (!(context instanceof SpriteDefinition)) context = context.getParent();
         this.sd = (SpriteDefinition) context;
     }
+    @Override
+    public void process(Statements formed, ParserNode parent, LinkedList<ParserNode> past, LinkedList<ParserNode> future) {
+        // TODO
+    }
+
 }

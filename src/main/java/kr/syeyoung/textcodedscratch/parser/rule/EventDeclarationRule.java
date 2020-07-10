@@ -49,7 +49,7 @@ public class EventDeclarationRule implements ParserRule {
                 past.removeLast();
                 past.removeLast();
 
-                if (!identifierToken.getMatchedStr().equals("Control::whenCloned")) {
+                if (!identifierToken.getMatchedStr().equals("Threads::onThreadCreation")) {
                     for (ParserNode stmt: inside.getChildren()) {
                         if (stmt instanceof LocalVariableDeclaration) throw new ParsingGrammarException("Can not use local variables in events. Please create a new thread using clone");
                         if (stmt instanceof FunctionCall && !(stmt instanceof NativeFunctionCall)) throw new ParsingGrammarException("Can not call functions within events");

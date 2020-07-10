@@ -9,6 +9,7 @@ Require Threads;
 Require VariableDef;
 
 Costume DEFAULT = "default.png";
+Var asdf=1+1;
 
 Embed Func testEmbed(param1: VariablePointer, param2: Text, param3: Boolean) {
     Variables::show(param1);
@@ -24,7 +25,8 @@ NoRefresh Func testFunction(param1: Text, param2: Boolean) {
     return localVar .. "fancy!";
 }
 
-Event Control::whenCloned {
+Event Threads::onThreadCreation {
+
     asdf = asdf + 1;
     Var localVar = 10;
 
@@ -34,12 +36,11 @@ Event Control::whenCloned {
 
 
     Looks::sayFor(localVar2, 2);
-    Looks::sayFor(Threads::getCurrentThreadIndex());
+    Looks::sayFor(Threads::getCurrentThreadIndex(), 2);
     Looks::sayFor(localVar, 2);
 
     testEmbed(&asdf, localVar, true);
 }
-Var asdf=1+1;
 
 Event Events::OnGreenFlagClicked {
     Threads::createNewThread();

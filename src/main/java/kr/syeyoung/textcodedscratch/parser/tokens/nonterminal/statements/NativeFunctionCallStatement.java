@@ -73,6 +73,7 @@ public class NativeFunctionCallStatement extends FunctionCallStatement implement
             }
         }
 
+        System.out.println(json);
         JSONObject obj = new JSONObject(json);
         fillParameters(obj, asInputarrays,asFieldarrays);
         obj.put("parent", parentId == null ? JSONObject.NULL : parentId);

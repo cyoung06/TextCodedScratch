@@ -31,7 +31,7 @@ public class IncludeRule implements ParserRule {
                 String name = rdec.getName().getValue(String.class) + ".tcsmodule";
 
                 InputStream possible = IncludeRule.class.getResourceAsStream("/kr/syeyoung/textcodedscratch/predefined/"+name);
-                if (possible == null) possible = new FileInputStream(new File(f, name));
+                if (possible == null) possible = new FileInputStream(new File(f.getParentFile(), name));
 
                 Tokenizer tokenizer = new Tokenizer(possible);
                 ParserNode pn = tokenizer.getNextToken();

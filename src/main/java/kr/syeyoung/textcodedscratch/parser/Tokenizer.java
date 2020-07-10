@@ -115,7 +115,8 @@ public class Tokenizer {
         terminalNodeConverter.put((str,next) -> str.equals("Embed") && " \t\n\r".contains(String.valueOf(next)), (str) -> new KeywordEmbed());
         terminalNodeConverter.put((str,next) -> str.equals("NoRefresh") && " \t\n\r".contains(String.valueOf(next)), (str) -> new KeywordNoRefresh());
         terminalNodeConverter.put((str,next) -> str.equals("Reporter") && " \t\n\r".contains(String.valueOf(next)), (str) -> new KeywordReporter());
-        terminalNodeConverter.put((str,next) -> str.equals("Module") && " \t\n\r".contains(String.valueOf(next)), (str) -> new KeywordModule());
+        terminalNodeConverter.put((str,next) -> str.equals("Module") && " \t\n\r;".contains(String.valueOf(next)), (str) -> new KeywordModule());
+        terminalNodeConverter.put((str,next) -> str.equals("Stage") && " \t\n\r;".contains(String.valueOf(next)), (str) -> new KeywordStage());
 
 
 

@@ -125,7 +125,6 @@ public class FunctionDeclarationRule implements ParserRule {
                 }
                 if (pn instanceof IdentifierToken) identifierToken = (IdentifierToken) pn;
             }
-            if (identifierToken instanceof AccessedIdentifier) throw new RuntimeException("Function name shouldn't be accessed identifier - "+identifierToken);
             future.removeFirst();
 //            future.addFirst(new CBOpenToken("{") {
 //                @Override

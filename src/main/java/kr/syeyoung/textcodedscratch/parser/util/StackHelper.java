@@ -90,7 +90,7 @@ public class StackHelper {
         }, new StringToken("\"{\"shadow\":false,\"inputs\":{\"INDEX\":[1,\"$TCS$I1\"]},\"topLevel\":false,\"opcode\":\"data_itemoflist\",\"fields\":{\"LIST\":\"$TCS$I0\"}}\""), true);
         NativeFunctionCallExpr nfcs = new NativeFunctionCallExpr(new IdentifierToken("get"), new Expression[] {
                 new OneTermedExpression(createVarExprWithContext(new IdentifierToken("$THREAD_STACK$"), true, false, context), new OperatorGetName()),
-                sizeDiff == 0 ?  new NativeFunctionCallExpr(new IdentifierToken("size"), new Expression[] {
+                sizeDiff == 0 ?  nfce = new NativeFunctionCallExpr(new IdentifierToken("size"), new Expression[] {
                         new OneTermedExpression(createVarExprWithContext(new IdentifierToken("$THREAD_STACK$"), true, false, context), new OperatorGetName())
                 }, nfdSize) : new TwoTermedExpression(nfce = new NativeFunctionCallExpr(new IdentifierToken("size"), new Expression[] {
                         new OneTermedExpression(createVarExprWithContext(new IdentifierToken("$THREAD_STACK$"), true, false, context), new OperatorGetName())

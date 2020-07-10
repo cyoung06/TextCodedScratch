@@ -18,10 +18,7 @@ import java.nio.file.Paths;
 import java.security.DigestInputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -106,16 +103,16 @@ public class SpriteTargetBuilder {
         return built;
     }
 
-    private List<Resource> resources = new ArrayList<>();
+    private Set<Resource> resources = new HashSet<>();
 
-    public List<Resource> getResources() {
+    public Set<Resource> getResources() {
         return resources;
     }
 
     private void buildCostumes() throws IOException, NoSuchAlgorithmException {
         JSONArray costumeList = new JSONArray();
         for (CostumeDeclaration cd:definition.getCostumes().values()) {
-            File file = new File(definition.getSpritefile(), cd.getLocation().getValue(String.class));
+            File file = new File(definition.getSpritefile().getParentFile(), cd.getLocation().getValue(String.class));
             if (!file.exists()) throw new ParsingGrammarException("Costume file not found :: "+file.getAbsolutePath());
 
             String varName = cd.getName().getMatchedStr();
@@ -140,7 +137,7 @@ public class SpriteTargetBuilder {
     private void buildSounds() throws IOException, NoSuchAlgorithmException {
         JSONArray costumeList = new JSONArray();
         for (SoundDeclaration cd:definition.getSounds().values()) {
-            File file = new File(definition.getSpritefile(), cd.getLocation().getValue(String.class));
+            File file = new File(definition.getSpritefile().getParentFile(), cd.getLocation().getValue(String.class));
             if (!file.exists()) throw new ParsingGrammarException("Sound file not found :: "+file.getAbsolutePath());
 
             String varName = cd.getName().getMatchedStr();
@@ -174,6 +171,7 @@ public class SpriteTargetBuilder {
         JSONObject variables = new JSONObject();
         for (VariableDeclaration varDec: definition.getVariables().values()) {
             if (omitGlobalVars && varDec.isGlobal()) continue;
+            if (varDec instanceof CostumeDeclaration || varDec instanceof SoundDeclaration) continue;
             variables.put("$TCS_V$"+definition.getSpriteName().getName().getValue()+"$"+varDec.getName().getMatchedStr(), new JSONArray().put(varDec.getName().getMatchedStr()).put(varDec.getDefaultValue().getValue()));
         }
 
@@ -193,7 +191,7 @@ public class SpriteTargetBuilder {
     }
 
     private void buildProps() {
-        built.put("isStage", false);
+        built.put("isStage", definition.isStage());
         built.put("currentCostume", 0);
         built.put("volume", 100);
         built.put("visible", false);

@@ -9,7 +9,7 @@ public class Parser {
     private LinkedList<ParserNode> input;
     private LinkedList<ParserNode> out = new LinkedList<>();
 
-    private static final List<ParserRule> rules = new ArrayList<>();
+    private List<ParserRule> rules = new ArrayList<>();
 
     private SyntexCheckerRule syntexCheckerRule;
 

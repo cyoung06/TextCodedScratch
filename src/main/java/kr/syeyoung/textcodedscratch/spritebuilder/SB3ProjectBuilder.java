@@ -28,6 +28,7 @@ public class SB3ProjectBuilder {
     public SB3ProjectBuilder(List<SpriteDefinition> definitions) {
         this.definitions = definitions;
         if (this.definitions.stream().filter(sf -> sf.isStage()).count() != 1) throw new ParsingGrammarException("No Stage defined or duplicate stages defined");
+        stage = this.definitions.stream().filter(sf -> sf.isStage()).findFirst().get();
     }
 
     public void build() {
@@ -52,7 +53,7 @@ public class SB3ProjectBuilder {
         built.put("monitors", new JSONArray());
     }
 
-    private List<Resource> resources = new ArrayList<>();
+    private Set<Resource> resources = new HashSet<>();
     private void buildTargets() {
         JSONArray targets = new JSONArray();
         for (SpriteDefinition sd:definitions) {
@@ -63,6 +64,7 @@ public class SB3ProjectBuilder {
             resources.addAll(stb.getResources());
             lastScriptCounter += stb.getBuilderIndex() + 1;
         }
+        built.put("targets", targets);
     }
 
     private void addVariablesToStage() {

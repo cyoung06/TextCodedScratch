@@ -18,7 +18,7 @@ public class SpriteDeclarationRule implements ParserRule {
     @Override
     public boolean process(LinkedList<ParserNode> past, LinkedList<ParserNode> future) {
         Iterator it = past.descendingIterator();
-        if (future.getFirst() instanceof EOSToken && it.next() instanceof StringToken && it.next() instanceof KeywordSprite ) {
+        if (future.getFirst() instanceof EOSToken && it.next() instanceof StringToken && it.next().getClass() == KeywordSprite.class ) {
             if (!(it.next() instanceof SOFToken)) throw new RuntimeException("Sprite declaration should be right after start of the file without any lines");
             StringToken first = (StringToken) past.removeLast();
             past.removeLast(); past.removeLast();;
@@ -31,7 +31,6 @@ public class SpriteDeclarationRule implements ParserRule {
         it = past.descendingIterator();
         if (future.getFirst() instanceof EOSToken && it.next() instanceof KeywordStage) {
             if (!(it.next() instanceof SOFToken)) throw new RuntimeException("Stage declaration should be right after start of the file without any lines");
-            StringToken first = (StringToken) past.removeLast();
             past.removeLast(); past.removeLast();
             future.addFirst(new StageDeclaration());
             return true;

@@ -102,16 +102,19 @@ public class SyntexCheckerRule implements ParserRule {
             if (fd instanceof NativeFunctionDeclaration && !(fcs instanceof NativeFunctionCall)) {
                 past.removeLast();
                 if (fcs instanceof FunctionCallStatement) {
-                    past.addLast(new NativeFunctionCallStatement(fcs.getFunctionName(), fcs.getParameters(), (NativeFunctionDeclaration) fd));
+                    past.addLast(node = new NativeFunctionCallStatement(fcs.getFunctionName(), fcs.getParameters(), (NativeFunctionDeclaration) fd));
                 } else if (fcs instanceof FunctionCallExpr) {
-                    past.addLast(new NativeFunctionCallExpr(fcs.getFunctionName(), fcs.getParameters(), (NativeFunctionDeclaration) fd));
+                    past.addLast(node = new NativeFunctionCallExpr(fcs.getFunctionName(), fcs.getParameters(), (NativeFunctionDeclaration) fd));
                 } else {
-                    throw new AssertionError("What the heck just happened");
+                    System.out.println(fd+" - "+fcs.getClass());
+                    throw new ParsingGrammarException("What the heck just happened");
                 }
             } else if (fd instanceof EmbedFunctionDeclaration && !(fcs instanceof EmbedFunctionCallStatement)) {
                 past.removeLast();
-                past.addLast(new EmbedFunctionCallStatement(fcs.getFunctionName(), fcs.getParameters(), (EmbedFunctionDeclaration) fd));
+                past.addLast(node = new EmbedFunctionCallStatement(fcs.getFunctionName(), fcs.getParameters(), (EmbedFunctionDeclaration) fd));
             }
+            if (node instanceof ICodeContextConsumer)
+                ((ICodeContextConsumer) node).setICodeContext(lastContext);
         } else if (node instanceof NativeEventDeclaration) {
             NativeEventDeclaration fcs = (NativeEventDeclaration) node;
             NativeEventDeclaration fd = definition.getEventsDefined().get(fcs.getName().getMatchedStr());
@@ -143,6 +146,9 @@ public class SyntexCheckerRule implements ParserRule {
                 } else if (varDec instanceof FunctionParameter) {
                     past.removeLast();
                     past.addLast(node = new FunctionVariableExpression(varDec.getName(), (FunctionParameter) varDec));
+                }
+                if (node instanceof ICodeContextConsumer) {
+                    ((ICodeContextConsumer) node).setICodeContext(lastContext);
                 }
                 if (varDec.isGlobal()) ((VariableExpression) node).setGlobal(true);
             } else if (definition.getLists().containsKey(name)) {

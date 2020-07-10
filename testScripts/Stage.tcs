@@ -1,11 +1,11 @@
 Stage;
 
 Require VariableDef;
-
 Require Events;
+
 Costume DEFAULT = "default.png";
 
 
-Events Events::OnGreenFlagClicked {
+Event Events::OnGreenFlagClicked {
     stageVar = stageVar .. stageVar2;
 }

@@ -35,13 +35,14 @@ public class Main {
             for (File file: f.listFiles()) {
                 if (!file.getName().endsWith(".tcs")) continue;
 
-                FileInputStream fis = new FileInputStream(args[0]);
+                FileInputStream fis = new FileInputStream(file);
                 Tokenizer tokenizer = new Tokenizer(fis);
                 tokenizer.Tokenize();
                 Parser parser = new Parser(new LinkedList<>(tokenizer.getTerminalNodes().stream().map(t -> (ParserNode)t).collect(Collectors.toList())), file);
                 parser.parse();
                 SpriteDefinition definition = parser.getSyntexCheckerRule().getDefinition();
                 stbs.add(definition);
+                System.out.println();
             }
 
             SB3ProjectBuilder sb3ProjectBuilder = new SB3ProjectBuilder(stbs);
