@@ -36,7 +36,7 @@ public class ReturnStatement implements Statements, ICodeContextConsumer {
 
         String last = "";
         if (context.getTotalStackSize() != 0) {
-            String nextId2 = StackHelper.deallocateStackOffset(builder, id, null, 1, context.getTotalStackSize(), context);
+            String nextId2 = StackHelper.deallocateStackOffset(builder, id, null, 1, stack, context);
             builder.getComplexObject(id).put("next", nextId2);
 
             String nextId3 = builder.putComplexObject(stop.parentId(nextId2).build());

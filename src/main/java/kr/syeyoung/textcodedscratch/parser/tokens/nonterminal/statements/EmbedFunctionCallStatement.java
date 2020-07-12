@@ -18,7 +18,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class EmbedFunctionCallStatement extends FunctionCallStatement implements NativeFunctionCall {
+public class EmbedFunctionCallStatement extends FunctionCallStatement {
     private IdentifierToken identifierToken;
     private Expression[] parameters;
     private EmbedFunctionDeclaration embedFunctionDeclaration;

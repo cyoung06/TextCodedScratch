@@ -23,7 +23,7 @@ public class StatementGroupingRule implements ParserRule {
             try {
                 ParserNode node = pNodes.next();
                 if (node instanceof CBOpenToken) break;
-                if (!(node instanceof Statements || node instanceof EOSToken)) throw new ParsingGrammarException("There should ONLY Be statements or empty lines inside statementgroup");
+                if (!(node instanceof Statements || node instanceof EOSToken)) throw new ParsingGrammarException("There should ONLY Be statements or empty lines inside statementgroup :: "+node);
                 nodes++;
                 if (node instanceof Statements) stmts++;
             } catch (NoSuchElementException exception) {

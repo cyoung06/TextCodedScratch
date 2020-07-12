@@ -37,8 +37,10 @@ public class FunctionCallRule implements ParserRule {
         }
         ParserNode id;
         if (!((id=it.next()) instanceof IdentifierToken)) return false;
-        if (it.hasNext() && it.next() instanceof EOSToken) it.remove();
-
+        if (!(it.hasNext() && it.next() instanceof EOSToken)) {
+            return false;
+        }
+        it.remove();
         if (weirdnessFound) throw new ParsingGrammarException("Invalid Function Call To :: "+id + " :: Check parameters");
         Collections.reverse(expressions);
         for (int i =0; i < tokensRead; i++) past.removeLast();

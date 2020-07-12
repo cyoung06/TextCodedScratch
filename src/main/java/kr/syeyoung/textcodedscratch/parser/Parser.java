@@ -38,6 +38,8 @@ public class Parser {
                 }
             }
         }
+
+        syntexCheckerRule.onDone();
     }
 
     public LinkedList<ParserNode> getOutput() {

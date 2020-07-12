@@ -16,14 +16,6 @@ Embed Func testEmbed(param1: VariablePointer, param2: Text, param3: Boolean) {
     Looks::say(param2 .. param3);
 }
 
-NoRefresh Func testFunction(param1: Text, param2: Boolean) {
-    Var localVar = param1 .. param2;
-    if (param1 == param2) {
-        return "hmm";
-        Control::stopAll();
-    }
-    return localVar .. "fancy!";
-}
 
 Event Threads::onThreadCreation {
 
@@ -40,6 +32,15 @@ Event Threads::onThreadCreation {
     Looks::sayFor(localVar, 2);
 
     testEmbed(&asdf, localVar, true);
+}
+
+NoRefresh Func testFunction(param1: Text, param2: Boolean) {
+ Var localVar = param1 .. param2;
+    if (param1 == param2) {
+        return "hmm";
+        Control::stopAll();
+    }
+    return testFunction(param1, param2) .. testFunction(param2, param1 == true);
 }
 
 Event Events::OnGreenFlagClicked {

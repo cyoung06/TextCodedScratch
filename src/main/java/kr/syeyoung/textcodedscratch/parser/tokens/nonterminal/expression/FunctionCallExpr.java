@@ -4,6 +4,7 @@ import kr.syeyoung.textcodedscratch.parser.*;
 import kr.syeyoung.textcodedscratch.parser.context.ICodeContext;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.statements.FunctionExprCallMicroStatement;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.statements.FunctionExprCallStackClearingMicroStatement;
+import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.statements.ReturnStatement;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.statements.Statements;
 import kr.syeyoung.textcodedscratch.parser.util.ScriptBuilder;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.FunctionCall;
@@ -84,7 +85,8 @@ public class FunctionCallExpr implements Expression, FunctionCall, StatementForm
         // TODO
         this.stmt = formed;
         int index = future.indexOf(formed);
-        future.add(index+1, new FunctionExprCallStackClearingMicroStatement(formed));
+        if (!(stmt instanceof ReturnStatement))
+            future.add(index+1, new FunctionExprCallStackClearingMicroStatement(formed));
         future.addFirst(fecms = new FunctionExprCallMicroStatement(identifierToken, parameters, formed));
     }
 

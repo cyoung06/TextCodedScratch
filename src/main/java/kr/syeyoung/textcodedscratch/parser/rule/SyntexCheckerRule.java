@@ -20,13 +20,15 @@ import kr.syeyoung.textcodedscratch.parser.tokens.terminal.keywords.KeywordFunc;
 import kr.syeyoung.textcodedscratch.parser.tokens.terminal.keywords.TypeKeywords;
 
 import java.io.File;
-import java.util.LinkedList;
+import java.util.*;
 
 public class SyntexCheckerRule implements ParserRule {
     private SpriteDefinition definition = new SpriteDefinition();
 
     private LinkedList<ICodeContext> variableContextQueue = new LinkedList<>();
     private ICodeContext lastContext = definition;
+
+    private Map<FunctionCall, ICodeContext> functionDefNotFounds = new HashMap<>();
 
 
     public LinkedList<ICodeContext> getVariableContextQueue() {
@@ -86,34 +88,65 @@ public class SyntexCheckerRule implements ParserRule {
             String funcName = ((FunctionDeclaration) node).getName().getMatchedStr();
             if (definition.getFunctions().containsKey(funcName)) throw new ParsingGrammarException("Same Identifier used as function twice" + funcName);
             definition.getFunctions().put(funcName, (FunctionDeclaration) node);
+
+            FunctionDeclaration fd = (FunctionDeclaration) node;
+            List<FunctionCall> set = new ArrayList<>();
+            for(FunctionCall fcs:functionDefNotFounds.keySet()) {
+                if (fcs.getFunctionName().getMatchedStr().equalsIgnoreCase(funcName)) {
+                    if (fd.getParameters().length != fcs.getParameters().length) throw new ParsingGrammarException("Parameter size mismatch" + fcs.getFunctionName().getMatchedStr());
+                    fcs.setFunctionDeclaration(fd);
+                    for (int i = 0; i < fd.getParameters().length; i++) {
+                        if (fd.getParameters()[i].getType() != fcs.getParameters()[i].getReturnType()) {
+                            if (fd.getParameters()[i].getType() == FunctionParameter.ParameterType.TEXT) continue;
+                            throw new ParsingGrammarException("Argument Type mismatch while calling " + fcs.getFunctionName().getMatchedStr() +" expected type "+fd.getParameters()[i].getType() +" but found " +fcs.getParameters()[i].getReturnType());
+                        }
+                    }
+                    if (fd instanceof NativeFunctionDeclaration && !(fcs instanceof NativeFunctionCall)) {
+                        throw new ParsingGrammarException("Not defined function used" + fcs.getFunctionName().getMatchedStr());
+                    } else if (fd instanceof EmbedFunctionDeclaration && !(fcs instanceof EmbedFunctionCallStatement)) {
+                        throw new ParsingGrammarException("Not defined function used" + fcs.getFunctionName().getMatchedStr());
+                    }
+                    set.add(fcs);
+                    if (fcs instanceof ICodeContextConsumer)
+                        ((ICodeContextConsumer) fcs).setICodeContext(functionDefNotFounds.get(fcs));
+                }
+            }
+
+            set.forEach(functionDefNotFounds::remove);
         } else if (node instanceof ExtensionDeclaration) {
             definition.getExtensionDeclarations().add((ExtensionDeclaration) node);
         } else if (node instanceof FunctionCall) {
             FunctionCall fcs = (FunctionCall) node;
-            FunctionDeclaration fd = definition.getFunctions().get(fcs.getFunctionName().getMatchedStr());
-            if (fd == null) throw new ParsingGrammarException("Not defined function used" + fcs.getFunctionName().getMatchedStr());
-            if (fd.getParameters().length != fcs.getParameters().length) throw new ParsingGrammarException("Parameter size mismatch" + fcs.getFunctionName().getMatchedStr());
-            fcs.setFunctionDeclaration(fd);
-            for (int i = 0; i < fd.getParameters().length; i++) {
-                if (fd.getParameters()[i].getType() != fcs.getParameters()[i].getReturnType()) {
-                    throw new ParsingGrammarException("Argument Type mismatch while calling " + fcs.getFunctionName().getMatchedStr() +" expected type "+fd.getParameters()[i].getType() +" but found " +fcs.getParameters()[i].getReturnType());
-                }
-            }
-            if (fd instanceof NativeFunctionDeclaration && !(fcs instanceof NativeFunctionCall)) {
-                past.removeLast();
-                if (fcs instanceof FunctionCallStatement) {
-                    past.addLast(node = new NativeFunctionCallStatement(fcs.getFunctionName(), fcs.getParameters(), (NativeFunctionDeclaration) fd));
-                } else if (fcs instanceof FunctionCallExpr) {
-                    past.addLast(node = new NativeFunctionCallExpr(fcs.getFunctionName(), fcs.getParameters(), (NativeFunctionDeclaration) fd));
+            if (!(fcs instanceof NativeFunctionCall || fcs instanceof EmbedFunctionCallStatement)) {
+                FunctionDeclaration fd = definition.getFunctions().get(fcs.getFunctionName().getMatchedStr());
+                if (fd == null) {
+                    functionDefNotFounds.put(fcs, lastContext);
                 } else {
-                    throw new ParsingGrammarException("What the heck just happened");
+                    if (fd.getParameters().length != fcs.getParameters().length) throw new ParsingGrammarException("Parameter size mismatch" + fcs.getFunctionName().getMatchedStr());
+                    fcs.setFunctionDeclaration(fd);
+                    for (int i = 0; i < fd.getParameters().length; i++) {
+                        if (fd.getParameters()[i].getType() != fcs.getParameters()[i].getReturnType()) {
+                            if (fd.getParameters()[i].getType() == FunctionParameter.ParameterType.TEXT) continue;
+                            throw new ParsingGrammarException("Argument Type mismatch while calling " + fcs.getFunctionName().getMatchedStr() +" expected type "+fd.getParameters()[i].getType() +" but found " +fcs.getParameters()[i].getReturnType());
+                        }
+                    }
+                    if (fd instanceof NativeFunctionDeclaration) {
+                        past.removeLast();
+                        if (fcs instanceof FunctionCallStatement) {
+                            past.addLast(node = new NativeFunctionCallStatement(fcs.getFunctionName(), fcs.getParameters(), (NativeFunctionDeclaration) fd));
+                        } else if (fcs instanceof FunctionCallExpr) {
+                            past.addLast(node = new NativeFunctionCallExpr(fcs.getFunctionName(), fcs.getParameters(), (NativeFunctionDeclaration) fd));
+                        } else {
+                            throw new ParsingGrammarException("What the heck just happened");
+                        }
+                    } else if (fd instanceof EmbedFunctionDeclaration) {
+                        past.removeLast();
+                        past.addLast(node = new EmbedFunctionCallStatement(fcs.getFunctionName(), fcs.getParameters(), (EmbedFunctionDeclaration) fd));
+                    }
+                    if (node instanceof ICodeContextConsumer)
+                        ((ICodeContextConsumer) node).setICodeContext(lastContext);
                 }
-            } else if (fd instanceof EmbedFunctionDeclaration && !(fcs instanceof EmbedFunctionCallStatement)) {
-                past.removeLast();
-                past.addLast(node = new EmbedFunctionCallStatement(fcs.getFunctionName(), fcs.getParameters(), (EmbedFunctionDeclaration) fd));
             }
-            if (node instanceof ICodeContextConsumer)
-                ((ICodeContextConsumer) node).setICodeContext(lastContext);
         } else if (node instanceof NativeEventDeclaration) {
             NativeEventDeclaration fcs = (NativeEventDeclaration) node;
             NativeEventDeclaration fd = definition.getEventsDefined().get(fcs.getName().getMatchedStr());
@@ -174,6 +207,12 @@ public class SyntexCheckerRule implements ParserRule {
         }
 
         return false;
+    }
+
+    public void onDone() {
+        for (FunctionCall fcs:functionDefNotFounds.keySet()) {
+            throw new ParsingGrammarException("Not defined function used" + fcs.getFunctionName().getMatchedStr());
+        }
     }
 
     public boolean checkDuplicate(String name) {

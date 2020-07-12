@@ -11,10 +11,7 @@ import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.declaration.Native
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.expression.Expression;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.expression.VariableExpression;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.function.FunctionParameter;
-import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.statements.GroupedStatements;
-import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.statements.NativeFunctionCallStatement;
-import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.statements.Statements;
-import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.statements.VariableAssignment;
+import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.statements.*;
 import kr.syeyoung.textcodedscratch.parser.tokens.terminal.EOSToken;
 import kr.syeyoung.textcodedscratch.parser.tokens.terminal.IdentifierToken;
 import kr.syeyoung.textcodedscratch.parser.tokens.terminal.constant.StringToken;
@@ -52,7 +49,7 @@ public class EventDeclarationRule implements ParserRule {
                 if (!identifierToken.getMatchedStr().equals("Threads::onThreadCreation")) {
                     for (ParserNode stmt: inside.getChildren()) {
                         if (stmt instanceof LocalVariableDeclaration) throw new ParsingGrammarException("Can not use local variables in events. Please create a new thread using clone");
-                        if (stmt instanceof FunctionCall && !(stmt instanceof NativeFunctionCall)) throw new ParsingGrammarException("Can not call functions within events");
+                        if (stmt instanceof FunctionCall && !(stmt instanceof NativeFunctionCall || stmt instanceof EmbedFunctionCallStatement)) throw new ParsingGrammarException("Can not call functions within events");
                     }
                 } else {
                     List<Statements> stmts = new ArrayList<>(Arrays.asList((Statements[])inside.getChildren()));
