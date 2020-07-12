@@ -2,16 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2f7c2811-c825-4b1d-9edc-399842841dce" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/project.sb3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/ICodeContextConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/ICodeContextConsumer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/Parser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/rule/EventDeclarationRule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/rule/EventDeclarationRule.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/rule/FunctionCallRule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/rule/FunctionCallRule.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/rule/StatementGroupingRule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/rule/StatementGroupingRule.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/rule/SyntexCheckerRule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/rule/SyntexCheckerRule.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/expression/FunctionCallExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/expression/FunctionCallExpr.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/statements/EmbedFunctionCallStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/statements/EmbedFunctionCallStatement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/rule/CommentStatementRule.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/statements/CommentStatement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/terminal/CommentToken.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/terminal/CommentToken.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/testScripts/testscript.tcs" beforeDir="false" afterPath="$PROJECT_DIR$/testScripts/testscript.tcs" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />

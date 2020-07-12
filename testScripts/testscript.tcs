@@ -27,7 +27,7 @@ Event Threads::onThreadCreation {
     localVar = localVar - 10;
 
 
-    Looks::sayFor(localVar2, 2);
+    Looks::sayFor(localVar2, 2); // asdf
     Looks::sayFor(Threads::getCurrentThreadIndex(), 2);
     Looks::sayFor(localVar, 2);
 
