@@ -50,4 +50,10 @@ public class GroupedExpression implements Expression, StatementFormedListener {
         if (expr instanceof StatementFormedListener)
             ((StatementFormedListener) expr).process(formed, formed, past, future);
     }
+
+    @Override
+    public void onStatementChange(Statements formed) {
+        if (expr instanceof StatementFormedListener)
+            ((StatementFormedListener) expr).onStatementChange(formed);
+    }
 }

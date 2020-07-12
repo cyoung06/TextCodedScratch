@@ -6,4 +6,6 @@ import java.util.LinkedList;
 
 public interface StatementFormedListener {
     public void process(Statements formed, ParserNode parent, LinkedList<ParserNode> past, LinkedList<ParserNode> future);
+
+    public void onStatementChange(Statements formed);
 }

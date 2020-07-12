@@ -82,4 +82,12 @@ public class TwoTermedExpression implements Expression, StatementFormedListener 
         if (secondTerm instanceof StatementFormedListener)
             ((StatementFormedListener) secondTerm).process(formed, this, past, future);
     }
+
+    @Override
+    public void onStatementChange(Statements formed) {
+        if (firstTerm instanceof StatementFormedListener)
+            ((StatementFormedListener) firstTerm).onStatementChange(formed);
+        if (secondTerm instanceof StatementFormedListener)
+            ((StatementFormedListener) secondTerm).onStatementChange(formed);
+    }
 }

@@ -57,4 +57,10 @@ public class WrappingExpression implements Expression, StatementFormedListener {
         if (parent instanceof StatementFormedListener)
             ((StatementFormedListener) parent).process(formed, parent, past, future);
     }
+
+    @Override
+    public void onStatementChange(Statements formed) {
+        if (parent instanceof StatementFormedListener)
+            ((StatementFormedListener) parent).onStatementChange(formed);
+    }
 }

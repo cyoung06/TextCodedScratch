@@ -1,5 +1,6 @@
 package kr.syeyoung.textcodedscratch.parser.tokens.terminal.operators;
 
+import kr.syeyoung.textcodedscratch.parser.tokens.terminal.constant.StringToken;
 import kr.syeyoung.textcodedscratch.parser.util.ScratchBlockBuilder;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.function.FunctionParameter;
 import kr.syeyoung.textcodedscratch.parser.tokens.terminal.constant.ConstantNode;
@@ -15,8 +16,8 @@ public class OperatorMinus extends OperatorNode {
     public JSONObject operate(String parentId, String nextId, Object... terms) {
         return new ScratchBlockBuilder().op("operator_subtract")
                 .nextId(nextId).parentId(parentId).shadow(false).topLevel(false)
-                .input("NUM1", terms[0])
-                .input("NUM2", terms[1]).build();
+                .input("NUM1", terms.length == 1 ? new StringToken("\"\"") : terms[0])
+                .input("NUM2", terms.length == 1 ? terms[0] : terms[1]).build();
     }
     @Override
     public int getPriority() {

@@ -87,7 +87,7 @@ public class Tokenizer {
     private static final Pattern identifier = Pattern.compile("[a-zA-Z_][a-zA-Z0-9_\\-]*");
     private static final Pattern identAfter = Pattern.compile("[a-zA-Z0-9_\\-]");
 
-    private static final Pattern string = Pattern.compile("(\".+[^\\\\](?:[\\\\]{2})*\")");
+    private static final Pattern string = Pattern.compile("(\".*[^\\\\](?:[\\\\]{2})*\"|\"\")");
     static {
         terminalNodeConverter.put((str,next) -> str.equals("\n"), str -> new EOLToken(str));
         terminalNodeConverter.put((str,next) -> str.equals(";"), str -> new EOSToken(str));

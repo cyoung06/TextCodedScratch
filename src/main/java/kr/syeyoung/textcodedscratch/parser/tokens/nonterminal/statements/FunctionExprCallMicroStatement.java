@@ -27,6 +27,16 @@ public class FunctionExprCallMicroStatement implements Statements, FunctionCall,
     private Expression[] parameters;
     private Statements stmt;
 
+    public Statements getStmt() {
+        return stmt;
+    }
+
+    public void setStmt(Statements stmt) {
+        this.stmt = stmt;
+        for (int i = 0; i < incremented; i++)
+            incrementChildren(stmt.getChildren());
+    }
+
     private FunctionDeclaration functionDeclaration;
 
     public FunctionExprCallMicroStatement(IdentifierToken token, Expression[] expressions, Statements stmt) {
@@ -87,12 +97,14 @@ public class FunctionExprCallMicroStatement implements Statements, FunctionCall,
 
 
     private int stack;
+    private int incremented = 0;
     @Override
     public void setCurrentStack(int stackSize) {
+
         this.stack = stackSize;
         if (stackAtExe == -1)
             stackAtExe = stackSize;
-
+        incremented += 1;
         incrementChildren(stmt.getChildren());
     }
 

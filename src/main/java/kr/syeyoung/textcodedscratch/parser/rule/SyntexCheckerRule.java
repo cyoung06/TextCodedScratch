@@ -13,6 +13,7 @@ import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.function.FunctionP
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.statements.EmbedFunctionCallStatement;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.statements.FunctionCallStatement;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.statements.NativeFunctionCallStatement;
+import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.statements.Statements;
 import kr.syeyoung.textcodedscratch.parser.tokens.terminal.TypeToken;
 import kr.syeyoung.textcodedscratch.parser.tokens.terminal.brackets.CBCloseToken;
 import kr.syeyoung.textcodedscratch.parser.tokens.terminal.brackets.CBOpenToken;
@@ -134,6 +135,7 @@ public class SyntexCheckerRule implements ParserRule {
                         past.removeLast();
                         if (fcs instanceof FunctionCallStatement) {
                             past.addLast(node = new NativeFunctionCallStatement(fcs.getFunctionName(), fcs.getParameters(), (NativeFunctionDeclaration) fd));
+                            callOnStatementChanged((ParserNode)fcs, (Statements) node);
                         } else if (fcs instanceof FunctionCallExpr) {
                             past.addLast(node = new NativeFunctionCallExpr(fcs.getFunctionName(), fcs.getParameters(), (NativeFunctionDeclaration) fd));
                         } else {
@@ -142,6 +144,7 @@ public class SyntexCheckerRule implements ParserRule {
                     } else if (fd instanceof EmbedFunctionDeclaration) {
                         past.removeLast();
                         past.addLast(node = new EmbedFunctionCallStatement(fcs.getFunctionName(), fcs.getParameters(), (EmbedFunctionDeclaration) fd));
+                        callOnStatementChanged((ParserNode)fcs, (Statements) node);
                     }
                     if (node instanceof ICodeContextConsumer)
                         ((ICodeContextConsumer) node).setICodeContext(lastContext);
@@ -166,6 +169,7 @@ public class SyntexCheckerRule implements ParserRule {
             definition.getEvents().add(fcs);
         } else if (node instanceof VariableExpression) {
             String name = ((VariableExpression) node).getVariableName().getMatchedStr();
+            VariableExpression prev;
             if (lastContext.isVarialbeDefined(name)) {
                 VariableDeclaration varDec = lastContext.getVariable(name);
                 if (varDec instanceof CostumeDeclaration || varDec instanceof SoundDeclaration) {
@@ -222,5 +226,13 @@ public class SyntexCheckerRule implements ParserRule {
             return true;
         }
         return false;
+    }
+
+    public void callOnStatementChanged(ParserNode prev, Statements newst) {
+        for (ParserNode expr: prev.getChildren()) {
+            if (expr instanceof StatementFormedListener) {
+                ((StatementFormedListener) expr).onStatementChange(newst);
+            }
+        }
     }
 }

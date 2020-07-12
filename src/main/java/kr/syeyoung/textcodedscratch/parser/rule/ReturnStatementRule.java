@@ -24,6 +24,7 @@ public class ReturnStatementRule implements ParserRule {
             if (!(futureToken instanceof EOSToken)) return false;
 
             Expression expr = (Expression) past.removeLast(); past.removeLast();past.removeLast();
+            expr = expr.simplify();
             ReturnStatement rs;
             future.addFirst(rs = new ReturnStatement(expr));
             if (expr instanceof StatementFormedListener)

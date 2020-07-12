@@ -112,7 +112,7 @@ public class StackHelper {
         NativeFunctionCallExpr nfce = null;
         NativeFunctionCallStatement nfcs = new NativeFunctionCallStatement(new IdentifierToken("replace"), new Expression[] {
                 new OneTermedExpression(createVarExprWithContext(new IdentifierToken("$THREAD_STACK$"), true, false, context), new OperatorGetName()),
-                sizeDiff == 0 ?  new NativeFunctionCallExpr(new IdentifierToken("size"), new Expression[] {
+                sizeDiff == 0 ?  nfce = new NativeFunctionCallExpr(new IdentifierToken("size"), new Expression[] {
                         new OneTermedExpression(createVarExprWithContext(new IdentifierToken("$THREAD_STACK$"), true, false, context), new OperatorGetName())
                 }, nfdSize) : new TwoTermedExpression(nfce = new NativeFunctionCallExpr(new IdentifierToken("size"), new Expression[] {
                         new OneTermedExpression(createVarExprWithContext(new IdentifierToken("$THREAD_STACK$"), true,false, context), new OperatorGetName())

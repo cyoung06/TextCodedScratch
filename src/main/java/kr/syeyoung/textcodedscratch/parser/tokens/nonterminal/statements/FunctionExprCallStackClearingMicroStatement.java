@@ -21,6 +21,13 @@ import java.util.stream.Collectors;
 public class FunctionExprCallStackClearingMicroStatement implements Statements, StackRemovingOperation, ICodeContextConsumer {
     private Statements stmt;
 
+    public Statements getStmt() {
+        return stmt;
+    }
+
+    public void setStmt(Statements stmt) {
+        this.stmt = stmt;
+    }
 
     public FunctionExprCallStackClearingMicroStatement (Statements stmt) {
         this.stmt = stmt;
@@ -35,7 +42,7 @@ public class FunctionExprCallStackClearingMicroStatement implements Statements, 
     @Override
     public Object[] buildJSON(String parentId, String nextId, ScriptBuilder builder) {
         String id;
-        if (stmt instanceof LocalVariableDeclaration) {
+        if (stmt instanceof StackAddingOperation) {
             id = StackHelper.deallocateStackOffset(builder, parentId, nextId, 1, context);
         } else {
             id = StackHelper.deallocateStack(builder, parentId, nextId, 1, context);

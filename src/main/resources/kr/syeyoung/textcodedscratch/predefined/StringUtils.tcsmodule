@@ -3,3 +3,27 @@ Module
 Native Reporter Func StringUtils::getLetterOf(string: Text, index: Text) "{\"shadow\":false,\"inputs\":{\"LETTER\":[1,\"$TCS$I1\"],\"STRING\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"operator_letter_of\",\"fields\":{}}"
 Native Reporter Func StringUtils::getLengthOf(string: Text) "{\"shadow\":false,\"inputs\":{\"STRING\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"operator_length\",\"fields\":{}}"
 Native Reporter Func StringUtils::contains(string: Text, search: Text) "{\"shadow\":false,\"inputs\":{\"STRING1\":[1,\"$TCS$I0\"],\"STRING2\":[1,\"$TCS$I1\"]},\"topLevel\":false,\"opcode\":\"operator_contains\",\"fields\":{}}"
+
+NoRefresh Func StringUtils::subString(string: Text, start: Text, end: Text) {
+    Var idx = start;
+    Var final = "";
+    repeat (end - start) {
+        final = final .. StringUtils::getLetterOf(string, idx);
+        idx = idx + 1;
+    }
+
+    return final;
+}
+
+NoRefresh Func StringUtils::indexOf(string: Text, find: Text) {
+    Var idx = 0;
+    Var len = StringUtils::getLengthOf(find);
+    Var iterations = StringUtils::getLengthOf(string) - StringUtils::getLengthOf(find);
+    repeat (iterations) {
+        idx = idx + 1;
+        if (StringUtils::subString(string, idx, idx + len) == find) {
+            return idx;
+        }
+    }
+    return -1;
+}

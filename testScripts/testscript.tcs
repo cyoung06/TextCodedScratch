@@ -5,44 +5,16 @@ Require "Control";
 Require Variables;
 Require Looks;
 Require Threads;
+Require StringUtils;
 
 Require VariableDef;
 
 Costume DEFAULT = "default.png";
-Var asdf=1+1;
 
-Embed Func testEmbed(param1: VariablePointer, param2: Text, param3: Boolean) {
-    Variables::show(param1);
-    Looks::say(param2 .. param3);
-}
 
-// Also dec
 Event Threads::onThreadCreation {
-
-    asdf = asdf + 1;
-    Var localVar = 10;
-
-    Var localVar2 = testFunction(1,false) .. (localVar + 10) .. asdf;
-
-    localVar = localVar - 10;
-
-
-    Looks::sayFor(localVar2, 2); // asdf
-    Looks::sayFor(Threads::getCurrentThreadIndex(), 2);
-    Looks::sayFor(localVar, 2);
-
-    testEmbed(&asdf, localVar, true);
+    Looks::sayFor(StringUtils::subString(StringUtils::subString("apple1", 0, 2), 0, 2) .. StringUtils::subString("apple2", 0, 2), 2);
 }
-
-NoRefresh Func testFunction(param1: Text, param2: Boolean) {
- Var localVar = param1 .. param2;
-    if (param1 == param2) {
-        return "hmm";
-        Control::stopAll();
-    }
-    return testFunction(param1, param2) .. testFunction(param2, param1 == true);
-}
-
 Event Events::OnGreenFlagClicked {
     Threads::createNewThread();
 }

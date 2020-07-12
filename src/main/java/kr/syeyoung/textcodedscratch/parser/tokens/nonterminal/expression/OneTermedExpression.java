@@ -82,4 +82,10 @@ public class OneTermedExpression implements Expression, StatementFormedListener 
         if (firstTerm instanceof StatementFormedListener)
             ((StatementFormedListener) firstTerm).process(formed, this, past, future);
     }
+
+    @Override
+    public void onStatementChange(Statements formed) {
+        if (firstTerm instanceof StatementFormedListener)
+            ((StatementFormedListener) firstTerm).onStatementChange(formed);
+    }
 }

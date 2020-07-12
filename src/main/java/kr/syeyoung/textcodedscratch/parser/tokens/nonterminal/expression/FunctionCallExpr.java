@@ -80,14 +80,33 @@ public class FunctionCallExpr implements Expression, FunctionCall, StatementForm
 
     private Statements stmt;
     private FunctionExprCallMicroStatement fecms;
+    private FunctionExprCallStackClearingMicroStatement fecscm;
     @Override
     public void process(Statements formed, ParserNode parent, LinkedList<ParserNode> past, LinkedList<ParserNode> future) {
         // TODO
         this.stmt = formed;
         int index = future.indexOf(formed);
         if (!(stmt instanceof ReturnStatement))
-            future.add(index+1, new FunctionExprCallStackClearingMicroStatement(formed));
+            future.add(index+1, fecscm = new FunctionExprCallStackClearingMicroStatement(formed));
         future.addFirst(fecms = new FunctionExprCallMicroStatement(identifierToken, parameters, formed));
+
+        for (Expression param : parameters) {
+            if (param instanceof StatementFormedListener)
+                ((StatementFormedListener) param).process(fecms, parent, past, future);
+        }
+    }
+
+    public void onStatementChange(Statements formed) {
+        stmt = formed;
+        fecms.setStmt(formed);
+        if (fecscm != null)
+            fecscm.setStmt(formed);
+
+
+        for (Expression param : parameters) {
+            if (param instanceof StatementFormedListener)
+                ((StatementFormedListener) param).onStatementChange(fecms);
+        }
     }
 
 

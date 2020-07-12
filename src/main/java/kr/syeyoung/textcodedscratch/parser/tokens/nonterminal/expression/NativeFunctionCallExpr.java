@@ -2,6 +2,7 @@ package kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.expression;
 
 import kr.syeyoung.textcodedscratch.parser.ICodeContextConsumer;
 import kr.syeyoung.textcodedscratch.parser.ParserNode;
+import kr.syeyoung.textcodedscratch.parser.StatementFormedListener;
 import kr.syeyoung.textcodedscratch.parser.context.ICodeContext;
 import kr.syeyoung.textcodedscratch.parser.context.SpriteDefinition;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.statements.FunctionExprCallMicroStatement;
@@ -160,7 +161,17 @@ public class NativeFunctionCallExpr extends FunctionCallExpr implements NativeFu
     }
     @Override
     public void process(Statements formed, ParserNode parent, LinkedList<ParserNode> past, LinkedList<ParserNode> future) {
-        // TODO
+        for (Expression param : parameters) {
+            if (param instanceof StatementFormedListener)
+                ((StatementFormedListener) param).process(formed, parent, past, future);
+        }
     }
+    public void onStatementChange(Statements formed) {
+        for (Expression param : parameters) {
+            if (param instanceof StatementFormedListener)
+                ((StatementFormedListener) param).onStatementChange(formed);
+        }
+    }
+
 
 }
