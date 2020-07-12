@@ -16,7 +16,7 @@ Embed Func testEmbed(param1: VariablePointer, param2: Text, param3: Boolean) {
     Looks::say(param2 .. param3);
 }
 
-
+// Also dec
 Event Threads::onThreadCreation {
 
     asdf = asdf + 1;

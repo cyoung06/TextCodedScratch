@@ -1,10 +1,11 @@
 package kr.syeyoung.textcodedscratch.parser.tokens.terminal;
 
 import kr.syeyoung.textcodedscratch.parser.ParserNode;
+import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.declaration.Declaration;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.statements.Statements;
 import kr.syeyoung.textcodedscratch.parser.util.ScriptBuilder;
 
-public class CommentToken implements TerminalNode, Statements {
+public class CommentToken implements TerminalNode, Statements, Declaration {
     private String match;
     public CommentToken(String matched) {
         this.match = matched;
