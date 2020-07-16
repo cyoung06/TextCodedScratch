@@ -2,12 +2,14 @@ package kr.syeyoung.textcodedscratch.parser.rule;
 
 import kr.syeyoung.textcodedscratch.parser.ParserNode;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.declaration.Declaration;
+import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.declaration.ExtensionDeclaration;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.declaration.RequireDeclaration;
 import kr.syeyoung.textcodedscratch.parser.tokens.terminal.EOSToken;
 import kr.syeyoung.textcodedscratch.parser.tokens.terminal.constant.StringToken;
 import kr.syeyoung.textcodedscratch.parser.tokens.terminal.keywords.KeywordExtension;
 import kr.syeyoung.textcodedscratch.parser.tokens.terminal.keywords.KeywordRequire;
 
+import java.security.cert.Extension;
 import java.util.Iterator;
 import java.util.LinkedList;
 
@@ -19,7 +21,7 @@ public class ExtensionDeclarationRule implements ParserRule {
             if (!(it.next() instanceof Declaration)) throw new RuntimeException("Extension declaration should be after other declarations");
             StringToken first = (StringToken) past.removeLast();
             past.removeLast(); past.removeLast();
-            future.addFirst(new RequireDeclaration(first));
+            future.addFirst(new ExtensionDeclaration(first));
             return true;
         }
         return false;
