@@ -9,8 +9,6 @@ Native Func Pen::stamp() "{\"shadow\":false,\"inputs\":{},\"topLevel\":false,\"o
 Native Func Pen::startDrawing() "{\"shadow\":false,\"inputs\":{},\"topLevel\":false,\"opcode\":\"pen_penDown\",\"fields\":{}}"
 Native Func Pen::stopDrawing() "{\"shadow\":false,\"inputs\":{},\"topLevel\":false,\"opcode\":\"pen_penUp\",\"fields\":{}}"
 
-Native Func Pen::stamp() "{\"shadow\":false,\"inputs\":{},\"topLevel\":false,\"opcode\":\"pen_stamp\",\"fields\":{}}"
-
 Native Func Pen::setColorRGB(color: Text) "{\"shadow\":false,\"inputs\":{\"COLOR\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"pen_setPenColorToColor\",\"fields\":{}}"
 
 Native Func Pen::changePenAttribute(attribute: Text, value: Text) "{\"shadow\":false,\"inputs\":{\"COLOR_PARAM\":[1,\"$TCS$I0\"],\"VALUE\":[1,\"$TCS$I1\"]},\"topLevel\":false,\"opcode\":\"pen_changePenColorParamBy\",\"fields\":{}}"

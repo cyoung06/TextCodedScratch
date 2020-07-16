@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2f7c2811-c825-4b1d-9edc-399842841dce" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/rule/ExtensionDeclarationRule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/rule/ExtensionDeclarationRule.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/spritebuilder/DocumentationBuilderHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/spritebuilder/DocumentationBuilderHelper.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
