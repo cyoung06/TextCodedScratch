@@ -2,25 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2f7c2811-c825-4b1d-9edc-399842841dce" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/project.sb3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/spritebuilder/DocumentationBuilderHelper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/StatementFormedListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/StatementFormedListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/Tokenizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/Tokenizer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/rule/FunctionDeclarationRule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/rule/FunctionDeclarationRule.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/rule/ReturnStatementRule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/rule/ReturnStatementRule.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/rule/SyntexCheckerRule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/rule/SyntexCheckerRule.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/expression/FunctionCallExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/expression/FunctionCallExpr.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/expression/GroupedExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/expression/GroupedExpression.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/expression/NativeFunctionCallExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/expression/NativeFunctionCallExpr.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/expression/OneTermedExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/expression/OneTermedExpression.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/expression/TwoTermedExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/expression/TwoTermedExpression.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/expression/WrappingExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/expression/WrappingExpression.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/statements/FunctionExprCallMicroStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/statements/FunctionExprCallMicroStatement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/statements/FunctionExprCallStackClearingMicroStatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/statements/FunctionExprCallStackClearingMicroStatement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/terminal/operators/OperatorMinus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/terminal/operators/OperatorMinus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/util/StackHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/util/StackHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/kr/syeyoung/textcodedscratch/predefined/StringUtils.tcsmodule" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/kr/syeyoung/textcodedscratch/predefined/StringUtils.tcsmodule" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testScripts/testscript.tcs" beforeDir="false" afterPath="$PROJECT_DIR$/testScripts/testscript.tcs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/function/FunctionParameter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/syeyoung/textcodedscratch/parser/tokens/nonterminal/function/FunctionParameter.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -55,12 +39,11 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="B:\프로그래밍\TextCodedScratch\testScripts" />
-      <recent name="B:\프로그래밍\TextCodedScratch\src\main\java\kr\syeyoung\textcodedscratch\spritebuilder" />
-      <recent name="B:\프로그래밍\TextCodedScratch\src\main\resources\kr.syeyoung.textcodedscratch.predefined" />
-      <recent name="B:\프로그래밍\TextCodedScratch\src\main\java\kr\syeyoung\textcodedscratch\predefined" />
+    <key name="CopyFile.RECENT_KEYS">
       <recent name="B:\프로그래밍\TextCodedScratch" />
+      <recent name="B:\프로그래밍\TextCodedScratch\src\main\resources\kr\syeyoung\textcodedscratch\predefined" />
+      <recent name="B:\프로그래밍\TextCodedScratch\testScripts" />
+      <recent name="B:\프로그래밍\TextCodedScratch\src\main\resources\kr.syeyoung.textcodedscratch.predefined" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="kr.syeyoung.textcodedscratch.spritebuilder" />
@@ -69,11 +52,12 @@
       <recent name="kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.statements" />
       <recent name="kr.syeyoung.textcodedscratch.parser.rule" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="B:\프로그래밍\TextCodedScratch" />
-      <recent name="B:\프로그래밍\TextCodedScratch\src\main\resources\kr\syeyoung\textcodedscratch\predefined" />
+    <key name="MoveFile.RECENT_KEYS">
       <recent name="B:\프로그래밍\TextCodedScratch\testScripts" />
+      <recent name="B:\프로그래밍\TextCodedScratch\src\main\java\kr\syeyoung\textcodedscratch\spritebuilder" />
       <recent name="B:\프로그래밍\TextCodedScratch\src\main\resources\kr.syeyoung.textcodedscratch.predefined" />
+      <recent name="B:\프로그래밍\TextCodedScratch\src\main\java\kr\syeyoung\textcodedscratch\predefined" />
+      <recent name="B:\프로그래밍\TextCodedScratch" />
     </key>
   </component>
   <component name="RunAnythingCache">
@@ -93,7 +77,20 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Main But parameters">
+  <component name="RunManager" selected="Application.DocumentationBuilderHelper">
+    <configuration name="DocumentationBuilderHelper" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="kr.syeyoung.textcodedscratch.spritebuilder.DocumentationBuilderHelper" />
+      <module name="TextCodedScratch" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="kr.syeyoung.textcodedscratch.spritebuilder.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main But parameters" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="kr.syeyoung.textcodedscratch.Main" />
       <module name="TextCodedScratch" />
@@ -154,9 +151,11 @@
       <item itemvalue="Application.NativeFunctionBuilderHelper" />
       <item itemvalue="Application.Scratch (1)" />
       <item itemvalue="Java Scratch.Scratch" />
+      <item itemvalue="Application.DocumentationBuilderHelper" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.DocumentationBuilderHelper" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.NativeFunctionBuilderHelper" />
         <item itemvalue="Application.Scratch (1)" />

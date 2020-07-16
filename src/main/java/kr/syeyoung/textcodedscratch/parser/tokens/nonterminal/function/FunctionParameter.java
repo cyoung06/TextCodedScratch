@@ -44,11 +44,22 @@ public class FunctionParameter extends VariableDeclaration implements ParserNode
     }
 
     public static enum ParameterType implements ParserNode {
-        TEXT, BOOLEAN, VARIABLE_POINTER;
+        TEXT("Text"), BOOLEAN("Boolean"), VARIABLE_POINTER("VariablePointer");
+
+        private String capitalized;
+        private ParameterType(String capitalized) {
+            this.capitalized = capitalized;
+        }
+
+        public String getCapitalized() {
+            return capitalized;
+        }
 
         @Override
         public ParserNode[] getChildren() {
             return new ParserNode[0];
         }
+
+
     }
 }
