@@ -21,7 +21,7 @@ Native Func Motion::setDirectionTowards(name: Text) "{\"shadow\":false,\"inputs\
 
 Native Func Motion::addX(x: Text) "{\"shadow\":false,\"inputs\":{\"DX\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"motion_changexby\",\"fields\":{}}"
 
-Native Func Motion::setX(x: Text) "{\"shadow\":false,\"inputs\":{\"X\":[1,"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"motion_setx\",\"fields\":{}}"
+Native Func Motion::setX(x: Text) "{\"shadow\":false,\"inputs\":{\"X\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"motion_setx\",\"fields\":{}}"
 
 Native Func Motion::addY(y: Text) "{\"shadow\":false,\"inputs\":{\"DY\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"motion_changeyby\",\"fields\":{}}"
 
