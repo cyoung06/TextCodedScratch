@@ -4,20 +4,20 @@ Extension "Video";
 
 Native Event Video::OnMotionGreaterThan "{\"shadow\":false,\"inputs\":{\"REFERENCE\":[1,\"$TCS$Expr$\"]},\"topLevel\":false,\"opcode\":\"videoSensing_whenMotionGreaterThan\",\"fields\":{}}"
 
-Native Reporter Func getAttributeOn(attribute: Text, sprite: Text) "{\"shadow\":false,\"inputs\":{\"ATTRIBUTE\":[1,\"$TCS$I0\"],\"SUBJECT\":[1,\"$TCS$I1\"]},\"topLevel\":false,\"opcode\":\"videoSensing_videoOn\",\"fields\":{}}"
+Native Reporter Func Video::getAttributeOn(attribute: Text, sprite: Text) "{\"shadow\":false,\"inputs\":{\"ATTRIBUTE\":[1,\"$TCS$I0\"],\"SUBJECT\":[1,\"$TCS$I1\"]},\"topLevel\":false,\"opcode\":\"videoSensing_videoOn\",\"fields\":{}}"
 
 Native Func Video::setState(state: Text) "{\"shadow\":false,\"inputs\":{\"VIDEO_STATE\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"videoSensing_videoToggle\",\"fields\":{}}"
 
 Embed Func Video::turnOnFlip() {
-    Video::setEnabled("on-flipped")
+    Video::setState("on-flipped")
 }
 
 Embed Func Video::turnOn() {
-    Video::setEnabled("on")
+    Video::setState("on")
 }
 
 Embed Func Video::turnOff() {
-    Video::setEnabled("on")
+    Video::setState("on")
 }
 
 Native Func Video::setVideoTransparency(transparency: Text) "{\"shadow\":false,\"inputs\":{\"TRANSPARENCY\":[1,\"$TCS$I0\"]},\"topLevel\":false,\"opcode\":\"videoSensing_setVideoTransparency\",\"fields\":{}}"

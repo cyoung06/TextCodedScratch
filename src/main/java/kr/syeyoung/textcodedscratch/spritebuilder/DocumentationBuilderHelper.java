@@ -6,6 +6,7 @@ import kr.syeyoung.textcodedscratch.parser.Tokenizer;
 import kr.syeyoung.textcodedscratch.parser.context.SpriteDefinition;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.declaration.FunctionDeclaration;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.declaration.NativeEventDeclaration;
+import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.declaration.NativeFunctionDeclaration;
 import kr.syeyoung.textcodedscratch.parser.tokens.nonterminal.function.FunctionParameter;
 import org.json.JSONObject;
 import org.json.JSONTokener;
@@ -26,7 +27,7 @@ import java.util.zip.ZipInputStream;
 
 public class DocumentationBuilderHelper {
     public static void main(String[] args) throws IOException {
-        String moduleName = "Control";
+        String moduleName = "Video";
         String tcs = "Sprite \"sprite1\"\nRequire "+moduleName+";\nCostume costume1=\"default.png\"";
 
         ByteArrayInputStream bais = new ByteArrayInputStream(tcs.getBytes());
@@ -53,7 +54,7 @@ public class DocumentationBuilderHelper {
             functionSignature += Arrays.asList(functionDeclaration.getParameters()).stream().map(fp -> fp.getName().getMatchedStr() + ": "+fp.getType().getCapitalized()).collect(Collectors.joining(", "));
             functionSignature += ")";
 
-            functionsMD += "`"+functionSignature+"` : \n\n";
+            functionsMD += "`"+functionSignature+"` : "+(functionDeclaration instanceof NativeFunctionDeclaration && ((NativeFunctionDeclaration) functionDeclaration).isReporter() ? "(Expression only)" :"") +"\n\n";
         }
 
 
